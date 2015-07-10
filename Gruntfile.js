@@ -2,13 +2,27 @@
 module.exports = function(grunt){
 	'use strict';
     grunt.initConfig({
+	jshint:{
+		options:{
+		  "curly": true,
+		  "eqnull": true,
+		  "eqeqeq": true,
+		  "globals": {
+			"jQuery": true
+		  }
+		},
+		bin:['bin/api.js','bin/common.js','bin/config.js','bin/control.js','bin/route.js'],
+		api:['api/**/*.js'],
+		control:['control/**/*.js']
+	},
 		clean:{
-			all:['dest/**']
+			all:['dist/**/*']
 			},
 		copy:{
-			html:{expand: true, src: ['index.html'], dest: 'dest'}
+			html:{src: ['grunt.html'], dest: 'dist/index.html'},
+			include:{expand: true, src: ['include/**/*'], dest: 'dist'}
 			},
-        concat: {
+        cssmin: {
             options: {                                       //配置
                 stripBanners:true,
                 banner: '/*! This is the grunt test ' +      //添加自定义的banner
@@ -16,7 +30,7 @@ module.exports = function(grunt){
             },
             basic: {                                         //另一个任务
                 files: {                                     //另一种更简便的写法
-                    'dist/css/style.css': ['css/*.css']
+                    'dist/css/drunk.css': ['css/*.css']
                 }
             }
         },
@@ -25,9 +39,9 @@ module.exports = function(grunt){
                 banner: '/*! This is uglify test - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %> */'
             },
-			bin: {expand: true, cwd: 'bin', src: ['*.js'], dest: 'dest/bin'},
-			api: {expand: true, cwd: 'api', src: ['*.js'], dest: 'dest/api'},
-			control: {expand: true, cwd: 'control', src: ['*.js'], dest: 'dest/control'}
+			bin: {src: ['bin/jquery.js','bin/underscore.js','bin/config.js','bin/common.js','bin/route.js','bin/api.js','bin/control.js'], dest: 'dist/bin/drunk.js'},
+			api: {expand: true, cwd: 'api', src: ['*.js'], dest: 'dist/api'},
+			control: {expand: true, cwd: 'control', src: ['*.js'], dest: 'dist/control'}
             },
 		htmlmin:{
 			options: {
@@ -42,7 +56,7 @@ module.exports = function(grunt){
 				 removeOptionalTags: true
             },
 			html:{
-				 expand: true, cwd: 'view', src: ['*.html'], dest: 'dest/view'
+				 expand: true, cwd: 'view', src: ['*.html'], dest: 'dist/view'
 			}
 			},
 		imagemin:{
@@ -51,22 +65,25 @@ module.exports = function(grunt){
             pngquant: true
           },
 			img:{
-				 expand: true, cwd: 'img', src: ['*.{png,jpg,jpeg,gif,webp,svg}'], dest: 'dest/img'
+				 expand: true, cwd: 'img', src: ['*.{png,jpg,jpeg,gif,webp,svg}'], dest: 'dist/img'
 			}
 			},
         watch: {
             another: {
-                files: ['js/*.js'],
-                tasks: ['uglify']
+                files: ['bin/**/*.js','api/**/*.js','control/**/*.js'],
+                tasks: ['jshint']
             }
         }
     });
 	grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.registerTask('default', ['clean','copy','concat','uglify','htmlmin','imagemin']);
+    grunt.registerTask('default', ['jshint','clean','copy','cssmin','uglify','htmlmin','imagemin']);
+	grunt.registerTask('watch', ['jshint']);
 }

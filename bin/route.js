@@ -1,14 +1,15 @@
 // JavaScript Document
-;(function(obj){
+;(function($,obj,config){
 	var routeArry={};
 	function changePage(){
 		var hash="index";
 		if(location.hash){
 			hash=location.hash.replace("#","");
 			}
-		var hashArry=hash.split("/")
+		var hashArry=hash.split("/");
+		console.log(hashArry);
 		function runRoute(){	
-				var dataObj={}
+				var dataObj={};
 				if(routeArry[hashArry[0]].par){
 					var dataArry=routeArry[hashArry[0]].par.split("/");
 					for(var i=0;i<dataArry.length;i++){
@@ -32,7 +33,7 @@
 								config.loadingOff();								
 							urlArry[urlNum]=data;
 							totalUrl++;
-							if(totalUrl==routeArry[hashArry[0]].tem.length){
+							if(totalUrl === routeArry[hashArry[0]].tem.length){
 								dataObj.tem=urlArry;
 								routeArry[hashArry[0]].fn(dataObj);
 								}
@@ -60,26 +61,26 @@
 								config.loadingOff();								
 								runRoute();
 							}
-						})
+						});
 			
 			}
 		}
 	window.onhashchange=function(){
 		changePage();
-		}
+		};
 	var set=function(data){
 		if(data&&data.name){
 			routeArry[data.name]={
 				par:data.par||"",
 				tem:data.tem||[],
 				fn:data.fn||function(){}
-				}
+				};
 			}
-		}		
+		};		
 		obj.set=function(data){
 			set(data);
-			}
+			};
 		obj.init=function(){
 			changePage();
-			}
-	})(app.route);
+			};
+	})($,app.route,config);
