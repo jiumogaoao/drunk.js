@@ -13,7 +13,7 @@
 			}
 		}
 	var run=function(name,data,suc,err){
-		if(api[name]){
+		function runApi(){
 			if(!data){
 				data=api[name].cacheTime
 				}
@@ -23,15 +23,18 @@
 				}
 				var sendData=$.extend({},api[name].data);
 				sendData.data=data;
+				config.loadingOn();
 			$.ajax({ 
 							url:api[name].url,
 							dataType:"json",
 							method:api[name].method,
 							data:sendData,
 							error:function(){
+								config.loadingOff();
 								err();
 								},
 							success: function(returnData){
+								config.loadingOff();
 								if(returnData&&returnData.code!=0){
 									if(returnData.code==1){
 										api[name].cache=returnData.data;
@@ -48,9 +51,26 @@
 									}
 								}
 						});	
+			}
+		if(api[name]){
+			runApi();
 			}else{
-				return false;
-				}
+				config.loadingOn()
+				$.ajax({ 
+							url:"api/"+name+".js",
+							dataType:"script",
+							cache:true,
+							error:function(err){
+								config.loadingOff();
+								alert("错误"+JSON.stringify(err));
+								return false;
+								},
+							success: function(data){
+								config.loadingOff();								
+								runApi();
+							}
+						});
+				};
 		}
 	obj.add=function(name,url,data,method){
 		add(name,url,data,method);

@@ -7,10 +7,7 @@
 			hash=location.hash.replace("#","");
 			}
 		var hashArry=hash.split("/")
-		
-		if(!routeArry[hashArry[0]]){
-			window.location.hash="";
-			}else{
+		function runRoute(){	
 				var dataObj={}
 				if(routeArry[hashArry[0]].par){
 					var dataArry=routeArry[hashArry[0]].par.split("/");
@@ -23,13 +20,16 @@
 					var urlArry=[];
 					$.each(routeArry[hashArry[0]].tem,function(i,n){
 						var urlNum=i;
+						config.loadingOn();
 						$.ajax({ 
 							url:"view/"+n+".html",
 							dataType:"html",
 							error:function(err){
+								config.loadingOff();
 								alert("错误"+JSON.stringify(err));
 								},
-							success: function(data){								
+							success: function(data){
+								config.loadingOff();								
 							urlArry[urlNum]=data;
 							totalUrl++;
 							if(totalUrl==routeArry[hashArry[0]].tem.length){
@@ -42,7 +42,27 @@
 					}else{
 					routeArry[hashArry[0]].fn(dataObj);	
 						}
-				}
+			}
+		if(routeArry[hashArry[0]]){
+			runRoute();
+			}else{
+				config.loadingOn();
+				$.ajax({ 
+							url:"control/"+hashArry[0]+".js",
+							dataType:"script",
+							cache:true,
+							error:function(err){
+								config.loadingOff();
+								alert("错误"+JSON.stringify(err));
+								window.location.hash="";
+								},
+							success: function(data){
+								config.loadingOff();								
+								runRoute();
+							}
+						})
+			
+			}
 		}
 	window.onhashchange=function(){
 		changePage();
