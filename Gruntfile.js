@@ -28,11 +28,7 @@ module.exports = function(grunt){
                 banner: '/*! This is the grunt test ' +      //添加自定义的banner
                 '<%= grunt.template.today("yyyy-mm-dd") %> */'
             },
-            basic: {                                         //另一个任务
-                files: {                                     //另一种更简便的写法
-                    'dist/css/drunk.css': ['css/*.css']
-                }
-            }
+            basic: {expand: true, cwd: 'css', src: ['*.css'], dest: 'dist/css'}
         },
         uglify: {
             options: {
