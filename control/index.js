@@ -5,7 +5,8 @@
 		par:"a/b/f/e/k",
 		tem:["dsc","download"],
 		fn:function(data){
-			debugger;
+			$("#main").html(data.tem[0]);
+			$("#downLoad").html(data.tem[1]);
 			}
 		});
 	})($,app.control,config);
