@@ -22,4 +22,4 @@
 	obj.control.set=function(data){
 		obj.route.set(data);
 		};
-	})($,app,config);
+	})(window.$,window.app,window.config);

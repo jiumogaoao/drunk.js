@@ -1,12 +1,46 @@
 // JavaScript Document
 ;(function($,obj,config){
-	obj.set({
+	obj.control.set({
 		name:"index",
-		par:"a/b/f/e/k",
-		tem:["dsc","download"],
+		par:[],
 		fn:function(data){
-			$("#main").html(data.tem[0]);
-			$("#downLoad").html(data.tem[1]);
+			obj.model.get("#head","headSimple","head",function(model){
+				model.show();
+				});
+			$("#head").hide();
+			$("#spaceTop").hide();
+			obj.model.get("#foot","footPromo","footPromo",function(model){
+				model.show();
+				});
+			obj.model.get("#foot","footSimple","foot",function(model){
+				model.show();
+				});
+			obj.model.get("#main","seguesOne","segues",function(model){
+				model.show();
+				model.goto("pageOne",function(target,fn){target.clean();
+					var count=0;
+					function callback(){
+						count++;
+						if(count==3){
+							fn();
+							}
+						}
+					obj.model.get(target,"banner","banner",function(model){
+						model.show();
+					callback()
+						});
+					obj.model.get(target,"navIndex","navIndex",function(model){
+						model.show();
+					callback()
+						});
+					obj.model.get(target,"listIndex","listIndex",function(model){
+						model.show();
+					callback()
+						});
+					},{w:"100%"});
+					
+				})
+			
 			}
 		});
-	})($,app.control,config);
+	})($,app,config);

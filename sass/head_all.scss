@@ -1,0 +1,24 @@
+/* Scss Document */
+@import "lib/sass.scss";
+.head_all{
+	width:970px;
+	height:50px;
+	margin:auto;}
+.head_all .icon{
+	color:$col-yel;
+	float:left;
+	font-size:50px;
+	line-height:50px;
+	float:left;}
+.head_all .name{
+	float:left;
+	margin-left:10px;
+	margin-right:20px;
+	}
+.head_all .point{
+	float:left;
+	margin-right:50px;
+	font-size:$fs3;
+	line-height:50px;
+	font-weight:bold;
+	font-family:"SimHei"}

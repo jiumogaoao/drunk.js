@@ -2,47 +2,22 @@
 ;(function($,obj,config){
 	var routeArry={};
 	function changePage(){
+		$("#head").show();
+		$("#spaceTop").show();
 		var hash="index";
-		if(location.hash){
-			hash=location.hash.replace("#","");
+		if(window.location.href.split("#")[1]){
+			hash=window.location.href.split("#")[1].split("?")[0];
 			}
 		var hashArry=hash.split("/");
-		console.log(hashArry);
 		function runRoute(){	
 				var dataObj={};
-				if(routeArry[hashArry[0]].par){
-					var dataArry=routeArry[hashArry[0]].par.split("/");
+				if(routeArry[hashArry[0]].par.length){
+					var dataArry=routeArry[hashArry[0]].par;
 					for(var i=0;i<dataArry.length;i++){
 				dataObj[dataArry[i]]=hashArry[i+1];
 				}
 					}
-				if(routeArry[hashArry[0]].tem.length){
-					var totalUrl=0;
-					var urlArry=[];
-					$.each(routeArry[hashArry[0]].tem,function(i,n){
-						var urlNum=i;
-						config.loadingOn();
-						$.ajax({ 
-							url:"view/"+n+".html",
-							dataType:"html",
-							error:function(err){
-								config.loadingOff();
-								alert("错误"+JSON.stringify(err));
-								},
-							success: function(data){
-								config.loadingOff();								
-							urlArry[urlNum]=data;
-							totalUrl++;
-							if(totalUrl === routeArry[hashArry[0]].tem.length){
-								dataObj.tem=urlArry;
-								routeArry[hashArry[0]].fn(dataObj);
-								}
-							}
-						});
-						});
-					}else{
-					routeArry[hashArry[0]].fn(dataObj);	
-						}
+				routeArry[hashArry[0]].fn(dataObj);	
 			}
 		if(routeArry[hashArry[0]]){
 			runRoute();
@@ -51,7 +26,7 @@
 				$.ajax({ 
 							url:"control/"+hashArry[0]+".js",
 							dataType:"script",
-							cache:true,
+							cache:false,
 							error:function(err){
 								config.loadingOff();
 								alert("错误"+JSON.stringify(err));
@@ -65,6 +40,7 @@
 			
 			}
 		}
+		
 	window.onhashchange=function(){
 		changePage();
 		};
@@ -77,10 +53,11 @@
 				};
 			}
 		};		
+		
 		obj.set=function(data){
 			set(data);
 			};
 		obj.init=function(){
 			changePage();
 			};
-	})($,app.route,config);
+	})(window.$,window.app.route,window.config);
