@@ -33,3 +33,22 @@
 #spaceTop{
 	height:50px;
 	width:1px;}
+#pop{
+	border-radius:10px;
+	@include bdr(10px);
+	background-color:$col-whi;
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index:1008611;
+	}
+#popBG{
+	width:100%;
+	height:100%;
+	background-color:$col-bla;
+	@include opacity(0.3);
+	position:fixed;
+	left:0px;
+	top:0px;
+	z-index:10086;
+	}

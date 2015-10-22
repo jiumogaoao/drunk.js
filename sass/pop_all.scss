@@ -1,0 +1,85 @@
+/* Scss Document */
+@import "lib/sass.scss";
+.pop_all{
+	width:488px;
+	@include bdr(10px);
+}
+.pop_all .top{
+	height:48px;
+	width:100%;
+	background-color:$col-yel;
+	color:$col-whi;
+	line-height:48px;
+	text-align:center;
+	@include bdr(10px 10px 0px 0px);
+	overflow:hidden;
+	}
+.pop_all .top .nav{
+	width:50%;
+	float:left;
+	background-color:$col-whi;
+	color:$col-yel;
+	}
+.pop_all .top .nav.hl{
+	background-color:transparent;
+	color:$col-whi;}
+.pop_all .center{
+	width:100%;
+	min-height:100px;
+	}
+.pop_all .bottom{
+	width:100%;
+	height:60px;}
+.pop_all .close{
+	position:absolute;
+	top:-20px;
+	right:-20px;
+	font-size:40px;
+	@include bdr(40px);
+	line-height:40px;
+	height:40px;
+	width:40px;
+	background-color:$col-whi;
+	color:$col-red;}
+.pop_all .bottom .button{
+	width:115px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	color:$col-whi;
+	background-color:$col-yel;
+	@include bdr(5px);
+	float:right;
+	margin-top:15px;
+	margin-right:20px;
+	}
+.pop_all .center .list .point{
+	margin-top:10px;}
+.pop_all .center .list .point .left{
+	width:20%;
+	float:left;
+	text-align:right;
+	line-height:34px;}
+.pop_all .center .list .point .right{
+	float:left;
+	width:75%;
+	line-height:34px;
+	margin-left:5%;
+	}
+.pop_all .center .list .point .right .input{
+	width:309px;
+	height:33px;
+	@include bdr(5px);
+	border:1px solid $col-gra3;
+	}
+.pop_all .center .list .point .right .code input{
+	width:126px;
+	height:33px;
+	@include bdr(5px);
+	border:1px solid $col-gra3;
+	float:left;
+	}
+.pop_all .center .list .point .right .code .codeButton{
+	float:right;
+	margin-right:54px;
+	color:$col-blu;}

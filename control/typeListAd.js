@@ -29,6 +29,7 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(model){
+						model.clean();
 						model.show();
 						page();
 					callback()

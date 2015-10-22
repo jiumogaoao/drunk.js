@@ -29,6 +29,7 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(model){
+						model.clean();
 						page();
 						model.show();
 					callback()

@@ -5,4 +5,18 @@
 	app.control={};
 	app.model={};
 	app.api={};
+	app.pop={
+		show:function(){
+			$("#pop").css({
+				"top":($(window).height()-$("#pop").height())/2,
+				"left":($(window).width()-$("#pop").width())/2
+				});
+			$("#pop").show();
+			$("#popBG").show();
+			},
+		hide:function(){
+			$("#pop").hide();
+			$("#popBG").hide();
+			}
+		}
 	})();
