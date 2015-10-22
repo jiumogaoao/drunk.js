@@ -35,8 +35,8 @@
 								idArry[id].css=modelArry[name].cssArry;
 								idArry[id].hide=function(){this.target.hide()};
 								idArry[id].show=function(){this.target.show();};
-								idArry[id].clean=function(){
-									this.target.children(".model").hide();
+								idArry[id].clean=function(){debugger;
+									this.target.find(".model").hide();
 									}
 								idArry[id].remove=function(){
 									target.find("#"+id).remove();

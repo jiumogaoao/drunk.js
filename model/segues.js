@@ -37,6 +37,13 @@
 					
 						}
 				};
+			source.reflash(){
+				var page=source.target.find(".segues_page#"+newPage);
+				source.target.css({
+						width:page.width(),
+						height:page.height()
+						});
+				}
 			//goto
 			source.goto=function(id,fn,op){
 				var option={
@@ -54,13 +61,13 @@
 					var page=$("<div class='segues_page' id='"+id+"'></div>").appendTo(source.target);
 					page.css({"position":"absolute","top":"0px","left":"0px","width":option.w,"background-color":option.bg});
 					page.clean=function(){
-						page.children(".model").hide();
+						page.find(".model").hide();
 						}
 					pageArry[id]={
-						target:page,
-						fn:fn
+						target:page
 						};
 					}
+					pageArry[id].fn=fn;
 				pageArry[id].fn(pageArry[id].target,changePage);
 				};
 			}
