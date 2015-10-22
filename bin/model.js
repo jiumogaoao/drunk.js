@@ -5,14 +5,17 @@
 	function get(target,id,name,fn){/*进入get*/
 			if(typeof(target)==="string"){
 				target=$(target);
-				}	
-		function runObj(){/*进入runobj*/
-			function order(target,id){
-				idArry[id].target=$('#'+id).appendTo(target);
 				}
+			//function order(target,id){
+				//idArry[id].target=$('#'+id).appendTo(target);
+				//}	
+				
+					
+		function runObj(){/*进入runobj*/
+			
 			if(idArry[id]){/*id已存在*/
 				if(idArry[id].loaded){/*id已加载完成*/
-				order(target,id);
+				//order(target,id);
 				fn(idArry[id]);
 				}else{/*id没加载完成*/
 					if(!idArry[id].callbackArry){
@@ -29,7 +32,7 @@
 				function finish(){
 								idArry[id].loaded=false;
 								idArry[id].name=name;
-								idArry[id].target=frame;
+								idArry[id].target=$('.model#'+id);
 								idArry[id].id=id;
 								idArry[id].html=modelArry[name].htmlArry;
 								idArry[id].css=modelArry[name].cssArry;
@@ -52,7 +55,7 @@
 								fn(idArry[id]);
 								/*第一个回调*/
 								$.each(idArry[id].callbackArry,function(i,n){
-									order(n.target,n.id);
+									//order(n.target,n.id);
 									n.fn(idArry[id]);
 									});
 								/*序列回调*/				
@@ -108,6 +111,13 @@
 						}
 					}
 			}
+			/*******************************************************************************/
+			if(!idArry[id]){
+				$('<div class="model '+name+'" id="'+id+'"></div>').appendTo(target);
+				}else{
+					idArry[id].target=$('.model#'+id).appendTo(target);
+					}
+			/******************************************************************************/
 		if(modelArry[name]){
 			runObj();
 			}else{

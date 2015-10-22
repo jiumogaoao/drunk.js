@@ -37,7 +37,7 @@
 					
 						}
 				};
-			source.reflash(){
+			source.reflash=function(){
 				var page=source.target.find(".segues_page#"+newPage);
 				source.target.css({
 						width:page.width(),
