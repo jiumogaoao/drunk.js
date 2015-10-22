@@ -10,7 +10,16 @@
 	font-size:$fs3;
 	height:25px;
 	border-bottom:3px solid $col-yel;
-	float:left;}
+	float:left;
+	padding-left:10px;
+	padding-right:10px;}
+.form_input .nav{
+	font-size:$fs3;
+	height:25px;
+	float:left;
+	padding-left:10px;
+	padding-right:10px;
+	cursor:pointer;}
 .form_input .titleFrame .button{
 	float:right;
 	width:120px;
@@ -150,4 +159,15 @@
 	line-height:38px;
 	font-size:$fs3;
 	cursor:pointer;
+	}
+.form_input .typeArea{
+	margin-top:20px;
+	margin-left:25px;}
+.form_input .typeArea .typeButton{
+	padding:5px 10px;
+	background-color:$col-org;
+	color:$col-whi;
+	float:left;
+	margin-right:10px;
+	@include bdr(5px);
 	}
