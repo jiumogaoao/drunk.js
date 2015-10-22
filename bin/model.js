@@ -26,7 +26,7 @@
 				}else{/*id不存在*/
 				idArry[id]=	new modelArry[name].fn();
 				/*创建实例*/
-				var frame=$('<div class="model '+name+'" id="'+id+'"></div>').appendTo(target);
+			//	var frame=$('<div class="model '+name+'" id="'+id+'"></div>').appendTo(target);
 					/*加外框*/
 					/*modelArry[name]*/
 				function finish(){
