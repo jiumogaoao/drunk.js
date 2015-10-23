@@ -5,7 +5,23 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#ucMain","myAccount","myAccount",function(model){
+				obj.model.get("#ucMain","myAccount","formTable",function(model){
+				model.set({
+				title:"收支记录",
+				button:[],
+				head:[
+					{"title":"收支编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"收支金额/元","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"收支时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"收支类型","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"收支摘要","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","充值","充值还要写理由吗~"],
+					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","充值","充值还要写理由吗~"]
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}

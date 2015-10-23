@@ -1,6 +1,9 @@
 <div class="form_input">
 	<div class="titleFrame">
     	<div class="title"><%= title %></div>
+        <% _.each(nav,function(n){ %>
+        <div class="nav" id="<%= n.id %>"><%= n.title %></div>
+        <% }) %>
         <div class="clear"></div>
     </div>
     <div class="list">
@@ -95,6 +98,19 @@
                             	<img src="<%= y %>"/>
                             <% }) %>
                             <div class="addButton"><span class="fa fa-plus"></span></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            <%  } %>
+            <% if(n.type=="singlePic"){ %>
+            	<div class="point">
+                    <div class="left"><%= n.title %>：</div>
+                    <div class="right">
+                        <div class="singlePic">
+                            <img src="<%= n.value %>"/>
+                            <div class="desc"><%= n.placeholder %></div>
                             <div class="clear"></div>
                         </div>
                     </div>

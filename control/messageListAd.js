@@ -5,7 +5,23 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","messageListAd","messageListAd",function(model){
+				obj.model.get("#acMain","messageListAd","formTable",function(model){
+				model.set({
+				title:"待发消息列表",
+				button:[],
+				head:[
+					{"title":"消息编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"消息标题","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送用户","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送内容","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","特别提醒","2015.05.03","REDSFDSFFDGGFD","请勿恶意攻击我们老板"],
+					["REDSFDSFFDGGFD","特别提醒","2015.05.03","REDSFDSFFDGGFD","请勿恶意攻击我们老板"]
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}

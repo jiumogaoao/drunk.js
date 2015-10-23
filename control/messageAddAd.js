@@ -5,7 +5,19 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","messageAddAd","messageAddAd",function(model){
+				obj.model.get("#acMain","messageAddAd","formInput",function(model){
+				model.set({
+					title:"待发消息添加",
+					nav:[],
+					list:[
+					{name:"",title:"消息标题",placeholder:"请填写消息标题",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"发送时间",placeholder:"请选择发送时间",type:"time",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"发送对象",placeholder:"请填写接收用户编号",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"消息内容",placeholder:"",type:"textarea",value:"",valuelabel:"",option:[{label:"",value:""}]}
+					],
+					button:[{id:"",text:"确认提交"}]
+					});
+				model.reflash();
 				model.show();
 				});
 				}

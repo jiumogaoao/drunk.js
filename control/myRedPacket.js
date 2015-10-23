@@ -5,7 +5,24 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#ucMain","myRedPacket","myRedPacket",function(model){
+				obj.model.get("#ucMain","myRedPacket","formTable",function(model){
+				model.set({
+				title:"红包记录",
+				button:[],
+				head:[
+					{"title":"红包编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"红包金额/元","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发放时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"有效时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"状态","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发放规则","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","2015.10.04","已过期","注册后第一次登录奖励"],
+					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","2015.10.04","已过期","注册后第一次登录奖励"]
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}

@@ -8,6 +8,7 @@
 			/*
 			{
 					title:"",
+					nav:[{id:"",title:""}],
 					list:[
 					{name:"",title:"",placeholder:"",type:"",value:"",valuelabel:"",option:[{label:"",value:""}]}
 					],

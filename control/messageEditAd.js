@@ -5,7 +5,23 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","messageEditAd","messageEditAd",function(model){
+				obj.model.get("#acMain","messageEditAd","formTable",function(model){
+				model.set({
+				title:"待发消息列表",
+				button:[{id:"",text:"提交修改"}],
+				head:[
+					{"title":"消息编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"消息标题","type":"input","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送时间","type":"time","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送用户","type":"input","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"发送内容","type":"input","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","特别提醒","2015.05.03","REDSFDSFFDGGFD","请勿恶意攻击我们老板"],
+					["REDSFDSFFDGGFD","特别提醒","2015.05.03","REDSFDSFFDGGFD","请勿恶意攻击我们老板"]
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}

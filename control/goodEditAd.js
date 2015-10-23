@@ -5,7 +5,30 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","goodEditAd","goodEditAd",function(model){
+				obj.model.get("#acMain","goodEditAd","formTable",function(model){
+				model.set({
+				title:"商品列表",
+				button:[],
+				head:[
+					{"title":"商品编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"商品名","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"项目","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"类型","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"商品价格","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"总份数","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"总人数","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"总金额","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"预约时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"启动金额","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"开始时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"修改","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","星星花园","产品","热门","￥999","99","99","￥999","20150503","20150503","20150503",'<div class="button">修改</div>'],
+					["REDSFDSFFDGGFD","星星花园","产品","热门","￥999","99","99","￥999","20150503","20150503","20150503",'<div class="button">修改</div>']
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}

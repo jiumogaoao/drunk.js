@@ -8,6 +8,7 @@
 				obj.model.get("#acMain","goodAddAd","formInput",function(model){
 				model.set({
 					title:"商品添加",
+					nav:[],
 					list:[
 					{name:"",title:"商品名",placeholder:"请填写商品名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
 					{name:"",title:"所属项目",placeholder:"",type:"select",value:"",valuelabel:"请选择所属项目",option:[{label:"",value:""}]},

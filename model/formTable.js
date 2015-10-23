@@ -1,14 +1,15 @@
 // JavaScript Document
 ;(function($,obj,config){
-	obj.control.set({
-		name:"dealListAd",
-		par:[],
-		fn:function(data){
-			function page(){
-				obj.model.get("#acMain","dealListAd","formTable",function(model){
-				model.set({
+	obj.model.set({
+		name:"formTable",
+		css:["form_table"],
+		html:["form_table"],
+		fn:function(){
+			var data={};
+			/*
+			var data={
 				title:"交易列表",
-				button:[]
+				button:[{id:"",text:""}],
 				head:[
 					{"title":"交易编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"产品编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
@@ -24,40 +25,20 @@
 					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99999999999.99","99","2015.10.04","2015.10.04","卖出"],
 					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99999999999.99","99","2015.10.04","2015.10.04","卖出"]
 				]
-				});
-				model.reflash();
-				model.show();
-				});
+				};
+				*/
+			var source=this;
+			//init
+			source.init=function(){
+				};
+			source.reflash=function(){
+				var main=_.template(source.html[0])(data);
+				source.target.html(source.css[0]+main);
 				}
-			obj.model.get("#head","headSimple","head",function(model){
-				model.show();
-				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
-				model.show();
-				});
-			obj.model.get("#foot","footSimple","foot",function(model){
-				model.show();
-				});
-			obj.model.get("#main","seguesOne","segues",function(model){
-				model.show();
-				model.goto("pageTwo",function(target,fn){target.clean();
-					var count=0;
-					function callback(){
-						count++;
-						if(count==1){
-							fn();
-							}
-						}
-					obj.model.get(target,"adminCenterTem","adminCenterTem",function(model){
-						model.clean();
-						model.show();
-						page();
-					callback()
-						});
-					},{w:"100%"});
-					
-				})
-			
+			//set
+			source.set=function(setData){
+				data=setData;
+				};
 			}
 		});
 	})($,app,config);
