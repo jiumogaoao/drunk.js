@@ -1,33 +1,29 @@
 // JavaScript Document
 ;(function($,obj,config){
 	obj.control.set({
-		name:"typeListAd",
+		name:"setKey",
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","typeListAd","formTable",function(model){
+				obj.model.get("#acMain","setKeyAd","formInput",function(model){
 				model.set({
-				title:"类型列表",
-				button:[{id:"",text:""}],
-				head:[
-					{"title":"类型编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"类型名","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"商品数量","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"正在进行的商品数量","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					title:"重置密码",
+					nav:[],
+					list:[
+					{name:"",title:"原始密码",placeholder:"请输入原始密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"新密码",placeholder:"请输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"确认密码",placeholder:"请再次输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","热门城市","99","99"],
-					["REDSFDSFFDGGFD","热门城市","99","99"]
-				]
-				});
-				model.reflash();
+					button:[{id:"",text:"确认提交"}]
+					})
+				model.reflash()
 				model.show();
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
 				model.set({
 				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
-				type:0
+				type:2
 				});
 				model.reflash();
 				model.show();
@@ -48,9 +44,11 @@
 							fn();
 							}
 						}
-					obj.model.get(target,"adminCenterTem","adminCenterTem",function(model){
-						model.clean();
-						model.show();
+					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("setKey");
+						modelA.clean();
+						modelA.show();
 						page();
 					callback()
 						});

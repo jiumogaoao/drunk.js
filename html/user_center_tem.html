@@ -8,10 +8,10 @@
                 <div class="clear"></div>
             </div>
             <div class="list_tem">
-            	<div class="point_tem">我的账户</div>
-                <div class="point_tem">我的红包</div>
-                <div class="point_tem">我的邀请码</div>
-                <div class="point_tem">系消息</div>
+            	<div class="point_tem" pid="myAccount">我的账户</div>
+                <div class="point_tem" pid="myRedPacket">我的红包</div>
+                <div class="point_tem" pid="myCode">我的邀请码</div>
+                <div class="point_tem" pid="sysMessage">系消息</div>
             </div>
         </div>
         <div class="group_tem">
@@ -22,9 +22,9 @@
                 <div class="clear"></div>
             </div>
             <div class="list_tem">
-            	<div class="point_tem">产权众筹预约</div>
-                <div class="point_tem">经营权众筹预约</div>
-                <div class="point_tem">众筹建房预约</div>
+            	<% _.each(object,function(n){ %>
+                <div class="point_tem" pid="orderManage/<%= n.id %>"><%= n.name %>预约</div>
+                <% }) %>
             </div>
         </div>
         <div class="group_tem">
@@ -35,9 +35,9 @@
                 <div class="clear"></div>
             </div>
             <div class="list_tem">
-            	<div class="point_tem">产权众筹交易</div>
-                <div class="point_tem">经营权众筹交易</div>
-                <div class="point_tem">众筹建房交易</div>
+            	<% _.each(object,function(n){ %>
+                <div class="point_tem" pid="dealManage/<%= n.id %>"><%= n.name %>交易</div>
+                <% }) %>
             </div>
         </div>
         <div class="group_tem">
@@ -48,8 +48,8 @@
                 <div class="clear"></div>
             </div>
             <div class="list_tem">
-            	<div class="point_tem">个人资料</div>
-                <div class="point_tem">修改密码</div>
+            	<div class="point_tem" pid="myDetail">个人资料</div>
+                <div class="point_tem" pid="setKey">修改密码</div>
             </div>
         </div>
     </div>

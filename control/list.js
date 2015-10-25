@@ -2,9 +2,15 @@
 ;(function($,obj,config){
 	obj.control.set({
 		name:"list",
-		par:[],
+		par:["object"],
 		fn:function(data){
 			obj.model.get("#head","headSimple","head",function(model){
+				model.set({
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:0
+				});
+				model.reflash();
+				model.change(data.object);
 				model.show();
 				});
 			obj.model.get("#foot","footPromo","footPromo",function(model){
@@ -24,22 +30,109 @@
 							}
 						}
 					obj.model.get(target,"productList1","productList",function(model){
+						model.set({list:[
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			],
+			type:{
+					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
+				}
+			});
+						model.reflash();
 						model.show();
 					callback()
 						});
 					obj.model.get(target,"pomoTableA","pomoTableA",function(model){
+						model.set({image:[
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}
+			]
+			});
+						model.reflash();
 						model.show();
 					callback()
 						});
 					obj.model.get(target,"productList2","productList",function(model){
+						model.set({list:[
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			],
+			type:{
+					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
+				}
+			});
+						model.reflash();
 						model.show();
 					callback()
 						});
 					obj.model.get(target,"pomoTableB","pomoTableB",function(model){
+						model.set({image:[
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
+			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}
+			]
+			});
+						model.reflash();
 						model.show();
 					callback()
 						});
 					obj.model.get(target,"productList3","productList",function(model){
+						model.set({list:[
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
+			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
+			],
+			type:{
+					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
+				}
+			});
+						model.reflash();
 						model.show();
 					callback()
 						});

@@ -5,11 +5,31 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","pomoListAd","pomoListAd",function(model){
+				obj.model.get("#acMain","pomoListAd","formTable",function(model){
+				model.set({
+				title:"用户列表",
+				button:[],
+				head:[
+					{"title":"广告编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"广告位","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"广告图","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
+					{"title":"超链接","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					],
+				list:[
+					["REDSFDSFFDGGFD","头部（一）","http://www.baidu.com","http://www.baidu.com"],
+					["REDSFDSFFDGGFD","头部（一）","http://www.baidu.com","http://www.baidu.com"]
+				]
+				});
+				model.reflash();
 				model.show();
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
+				model.set({
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:0
+				});
+				model.reflash();
 				model.show();
 				});
 			obj.model.get("#foot","footPromo","footPromo",function(model){

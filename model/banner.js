@@ -5,42 +5,144 @@
 		css:["banner_all"],
 		html:["banner_all"],
 		fn:function(){
-			
+			var data={};
+			/*{
+				image:[{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}],
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:0
+				};*/
 			var source=this;
 			//init
 			source.init=function(){
-				source.target.html(source.css[0]+source.html[0]);
+				
+				};
+			source.reflash=function(){
+				var main=_.template(source.html[0])(data);
+				source.target.html(source.css[0]+main);
 				source.target.find("#login").unbind("click").bind("click",function(){
-					
+					obj.model.get("#pop","login","login",function(model){
+						model.type(0);
+						model.callback=function(result){
+							console.log(result);
+							data.type=1;
+							source.reflash();
+							}
+				model.show();
+				app.pop.show();
+				});
 					});
+				source.target.find("#regist").unbind("click").bind("click",function(){
+					obj.model.get("#pop","login","login",function(model){
+						model.type(1);
+						model.callback=function(result){
+							console.log(result)
+							data.type=1;
+							source.reflash();
+							}
+				model.show();
+				app.pop.show();
+				});
+					})
+				source.target.find("#userCenter").unbind("click").bind("click",function(){
+					obj.hash("myAccount")
+					});
+				source.target.find(".bottom .point").unbind("click").bind("click",function(){
+					if($(this).attr("oid")){
+						app.hash("list/"+$(this).attr("oid"));
+						}
+					});
+				
 				/*
-				obj.model.get("#pop","login","login",function(model){
+				obj.model.get("#pop","buy","pop",function(model){
+				model.set({
+				title:"买入确认",
+				button:[{id:"",text:"登录"}],
+				list:[
+					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
+				]
+				})
+				model.reflash();
 				model.show();
 				app.pop.show();
 				});
 				
-				obj.model.get("#pop","buy","buy",function(model){
+				obj.model.get("#pop","sale","pop",function(model){
+				model.set({
+				title:"卖出确认",
+				button:[{id:"",text:"卖出确认"}],
+				list:[
+					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"卖出价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"卖出时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]},
+				]
+				});
+				model.reflash();
 				model.show();
 				app.pop.show();
 				});
 				
-				obj.model.get("#pop","sale","sale",function(model){
+				obj.model.get("#pop","order","pop",function(model){
+				model.set({
+				title:"预约确认",
+				button:[{id:"",text:"确认预约"}],
+				list:[
+					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"预约价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"预约份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"预约时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"开始时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"启动金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
+				]
+				});
+				model.reflash();
 				model.show();
 				app.pop.show();
 				});
 				
-				obj.model.get("#pop","order","order",function(model){
+				
+				obj.model.get("#pop","change","pop",function(model){
+				model.set({
+				title:"转让确认",
+				button:[{id:"",text:"确认转让"}],
+				list:[
+					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"卖出价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"买入时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"卖出时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"转让账号",placeholder:"",type:"input",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"手续费",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
+				]
+				});
+				model.reflash();
 				model.show();
 				app.pop.show();
 				});
 				*/
-				obj.model.get("#pop","change","change",function(model){
-				model.show();
-				app.pop.show();
-				});
-				};
+				}
 			//set
-			source.set=function(data){};
+			source.set=function(dataSet){
+				data=dataSet;
+				};
 			}
 		});
 	})($,app,config);

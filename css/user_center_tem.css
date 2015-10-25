@@ -49,6 +49,9 @@
   line-height: 40px;
   text-align: center; }
 
+.user_center_tem .left_tem .point_tem.hl {
+  color: #1a84ec; }
+
 .user_center_tem .right_tem .top_tem {
   width: 100%;
   margin-top: 30px; }

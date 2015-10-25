@@ -5,11 +5,25 @@
 		par:[],
 		fn:function(data){
 			function page(){
-				obj.model.get("#acMain","projectAddAd","projectAddAd",function(model){
+				obj.model.get("#acMain","projectAddAd","formInput",function(model){
+				model.set({
+					title:"项目添加",
+					nav:[],
+					list:[
+					{name:"",title:"项目名",placeholder:"请填写项目名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]}
+					],
+					button:[{id:"",text:"确认提交"}]
+					});
+				model.reflash();
 				model.show();
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
+				model.set({
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:0
+				});
+				model.reflash();
 				model.show();
 				});
 			obj.model.get("#foot","footPromo","footPromo",function(model){

@@ -1,10 +1,9 @@
 <div class="banner_all">
 	<div class="frame">
     	<div class="roll">
-        	<img src="img/pic.jpg" />
-            <img src="img/pic.jpg" />
-            <img src="img/pic.jpg" />
-            <img src="img/pic.jpg" />
+        <% _.each(image,function(n){ %>
+        	<img id="<%= n.id %>" src="<%= n.image %>" href="<%= n.link %>"/>
+        <% }) %>
             <div class="clear"></div>
         </div>
         <div class="left"><span class="fa fa-left"></span></div>
@@ -13,8 +12,13 @@
     <div class="top">
     	<div class="left">电邮：394127821@qq.com | 客服热线：18520812136</div>
         <div class="right">
-        	<div class="button">注册</div>
-            <div class="button" id="login">登录</div>
+        	<% if(type){%>
+            <div class="button" id="userCenter" style="width:90px">个人中心</div>
+            <% }else{%>
+            <div class="button" id="regist">注册</div>
+            <div class="button" id="login" style="background-color:transparent;">登录</div>
+            <% }%>
+        	
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
@@ -26,9 +30,9 @@
             <div class="clear"></div>
         </div>
         <div class="right">
-        	<div class="point">产权众筹</div>
-            <div class="point">经营权众筹</div>
-            <div class="point">众筹建房</div>
+        	<% _.each(object,function(n){ %>
+            <div class="point" oid="<%= n.id %>"><%= n.name %></div>
+            <% }) %>
             <div class="point">关于我们</div>
             <div class="clear"></div>
         </div>

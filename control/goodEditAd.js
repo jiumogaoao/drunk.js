@@ -33,6 +33,11 @@
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
+				model.set({
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:0
+				});
+				model.reflash();
 				model.show();
 				});
 			obj.model.get("#foot","footPromo","footPromo",function(model){

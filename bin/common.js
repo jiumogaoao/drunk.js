@@ -5,6 +5,9 @@
 	app.control={};
 	app.model={};
 	app.api={};
+	app.hash=function(hash){
+		window.location.hash=hash;
+		}
 	app.pop={
 		show:function(){
 			$("#pop").css({

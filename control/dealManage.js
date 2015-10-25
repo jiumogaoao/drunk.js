@@ -2,13 +2,13 @@
 ;(function($,obj,config){
 	obj.control.set({
 		name:"dealManage",
-		par:[],
+		par:["object"],
 		fn:function(data){
 			function page(){
-				obj.model.get("#ucMain","dealManage","formTable",function(model){
+				obj.model.get("#ucMain","dealManage"+data.object,"formTable",function(model){
 					model.set({
 				title:"交易列表",
-				button:[{id:"",text:""}],
+				button:[],
 				head:[
 					{"title":"交易编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"产品名","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
@@ -26,12 +26,16 @@
 					["REDSFDSFFDGGFD","星星花园","REDSFDSFFDGGFD","99999999999.99","99999999999.99","99","99999999999.99","2015.10.04","2015.10.04",'<span class="fa fa-exit"></span><span class="fa fa-loop"></span>']
 				]
 				});
-				debugger;
 					model.reflash();
 				model.show();
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
+				model.set({
+				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				type:2
+				});
+				model.reflash();
 				model.show();
 				});
 			obj.model.get("#foot","footPromo","footPromo",function(model){
@@ -50,10 +54,11 @@
 							fn();
 							}
 						}
-					obj.model.get(target,"userCenterTem","userCenterTem",function(model){
-						model.clean();
+					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
+						modelA.change("dealManage/"+data.object);
+						modelA.clean();
 						page();
-						model.show();
+						modelA.show();
 					callback()
 						});
 					},{w:"100%"});
