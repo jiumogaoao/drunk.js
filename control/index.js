@@ -24,28 +24,31 @@
 				model.show();
 				model.goto("pageOne",function(target,fn){target.clean();
 					var count=0;
-					function callback(){
+					function callback(sg){
+						$('img').load(function(){
+				sg.reflash();
+				});
 						count++;
-						if(count==3){
+						if(count===3){
 							fn();
 							}
 						}
-					obj.model.get(target,"banner","banner",function(model){
-						model.set({
+					obj.model.get(target,"banner","banner",function(modelA){
+						modelA.set({
 				image:[{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}],
 				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
 				type:0
 				});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"navIndex","navIndex",function(model){
-						model.show();
-					callback()
+					obj.model.get(target,"navIndex","navIndex",function(modelA){
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"listIndex","listIndex",function(model){
-						model.set({
+					obj.model.get(target,"listIndex","listIndex",function(modelA){
+						modelA.set({
 				list:[
 					{name:"产权众筹",id:"a",list:[
 					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
@@ -76,13 +79,13 @@
 					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
 				}
 				});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

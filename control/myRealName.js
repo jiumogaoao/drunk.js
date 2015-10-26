@@ -4,9 +4,12 @@
 		name:"myRealName",
 		par:[],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#ucMain","myRealName","myRealName",function(model){
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -29,19 +32,19 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
 						modelA.clean();
-						page();
+						page(model);
 						modelA.show();
-					callback()
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

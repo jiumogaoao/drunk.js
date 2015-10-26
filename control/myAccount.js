@@ -4,7 +4,7 @@
 		name:"myAccount",
 		par:[],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#ucMain","myAccount","formTable",function(model){
 				model.set({
 				title:"收支记录",
@@ -23,6 +23,9 @@
 				});
 				model.reflash();
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -46,7 +49,7 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
@@ -54,13 +57,13 @@
 						modelA.reflash();
 						modelA.change("myAccount");
 						modelA.clean();
-						page();
+						page(model);
 						modelA.show();
-					callback()
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

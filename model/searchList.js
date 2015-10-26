@@ -14,11 +14,11 @@
 				type:"all",
 				state:"all",
 				order:"all"
-				}
+				};
 			var source=this;
 			source.callback=function(callback){
 				
-				}
+				};
 			//init
 			source.init=function(){
 				
@@ -27,15 +27,15 @@
 				var main=_.template(source.html[0])(data);
 				source.target.html(source.css[0]+main);
 				source.target.find(".point").unbind("click").bind("click",function(){
-					source.change($(this).parents(".list").attr("searchType"),$(this).attr("pid"))
+					source.change($(this).parents(".list").attr("searchType"),$(this).attr("pid"));
 					});
-				}
+				};
 			source.change=function(searchType,id){
-				source.target.find("."+searchType+" .point").removeClass("hl")
-				source.target.find("."+searchType+" .point[pid='"+id+"']").addClass("hl")
+				source.target.find("."+searchType+" .point").removeClass("hl");
+				source.target.find("."+searchType+" .point[pid='"+id+"']").addClass("hl");
 				callback[searchType]=id;
 				source.callback(callback);
-				}
+				};
 			
 			//set
 			source.set=function(data){};

@@ -12,35 +12,18 @@
 				
 					
 		function runObj(){/*进入runobj*/
-			
-			if(idArry[id]){/*id已存在*/
-				if(idArry[id].loaded){/*id已加载完成*/
-				//order(target,id);
-				fn(idArry[id]);
-				}else{/*id没加载完成*/
-					if(!idArry[id].callbackArry){
-						idArry[id].callbackArry=[];
-						}
-					idArry[id].callbackArry.push({target:target,id:id,fn:fn});
-					}
-				}else{/*id不存在*/
-				idArry[id]=	new modelArry[name].fn();
-				/*创建实例*/
-			//	var frame=$('<div class="model '+name+'" id="'+id+'"></div>').appendTo(target);
-					/*加外框*/
-					/*modelArry[name]*/
-				function finish(){
+			function finish(){
 								idArry[id].loaded=false;
 								idArry[id].name=name;
 								idArry[id].target=$('.model#'+id);
 								idArry[id].id=id;
 								idArry[id].html=modelArry[name].htmlArry;
 								idArry[id].css=modelArry[name].cssArry;
-								idArry[id].hide=function(){this.target.hide()};
+								idArry[id].hide=function(){this.target.hide();};
 								idArry[id].show=function(){this.target.show();};
 								idArry[id].clean=function(){
 									this.target.find(".model").hide();
-									}
+									};
 								idArry[id].remove=function(){
 									target.find("#"+id).remove();
 									delete idArry[id];
@@ -59,7 +42,24 @@
 									n.fn(idArry[id]);
 									});
 								/*序列回调*/				
-					};
+					}
+			if(idArry[id]){/*id已存在*/
+				if(idArry[id].loaded){/*id已加载完成*/
+				//order(target,id);
+				fn(idArry[id]);
+				}else{/*id没加载完成*/
+					if(!idArry[id].callbackArry){
+						idArry[id].callbackArry=[];
+						}
+					idArry[id].callbackArry.push({target:target,id:id,fn:fn});
+					}
+				}else{/*id不存在*/
+				idArry[id]=	new modelArry[name].fn();
+				/*创建实例*/
+			//	var frame=$('<div class="model '+name+'" id="'+id+'"></div>').appendTo(target);
+					/*加外框*/
+					/*modelArry[name]*/
+				
 				if((modelArry[name].html.length||modelArry[name].css.length)&&(modelArry[name].htmlArry.length!==modelArry[name].html.length||modelArry[name].cssArry.length!==modelArry[name].css.length)){
 					/*有参数*/
 					var totalUrl=0;
@@ -137,16 +137,16 @@
 							}
 						});	
 				}
-		};
+		}
 	function set(data){
 		modelArry[data.name]=data;
 		modelArry[data.name].htmlArry=[];
 		modelArry[data.name].cssArry=[];
-		};
-	obj.set=function(data){
-		set(data);
 		}
-	obj.get=function(target,id,name,fn){/*get开始*/
+	obj.model.set=function(data){
+		set(data);
+		};
+	obj.model.get=function(target,id,name,fn){/*get开始*/
 		get(target,id,name,fn);
-		}	
-	})(window.$,window.app.model,window.config);
+		};	
+	})(window.$,window.app,window.config);

@@ -4,9 +4,12 @@
 		name:"goodRemoveAd",
 		par:[],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#acMain","goodRemoveAd","goodRemoveAd",function(model){
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -29,19 +32,19 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
-					obj.model.get(target,"adminCenterTem","adminCenterTem",function(model){
-						model.clean();
-						model.show();
-						page();
-					callback()
+					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.clean();
+						modelA.show();
+						page(model);
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

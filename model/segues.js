@@ -8,7 +8,7 @@
 			var oldPage="";
 			var newPage="";
 			
-			var pageArry={}
+			var pageArry={};
 			var source=this;
 			//init
 			source.init=function(){
@@ -38,12 +38,13 @@
 						}
 				};
 			source.reflash=function(){
+				console.log(newPage);
 				var page=source.target.find(".segues_page#"+newPage);
 				source.target.css({
 						width:page.width(),
 						height:page.height()
 						});
-				}
+				};
 			//goto
 			source.goto=function(id,fn,op){
 				var option={
@@ -62,7 +63,7 @@
 					page.css({"position":"absolute","top":"0px","left":"0px","width":option.w,"background-color":option.bg});
 					page.clean=function(){
 						page.find(".model").hide();
-						}
+						};
 					pageArry[id]={
 						target:page
 						};

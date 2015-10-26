@@ -4,7 +4,7 @@
 		name:"setKey",
 		par:[],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#acMain","setKeyAd","formInput",function(model){
 				model.set({
 					title:"重置密码",
@@ -15,9 +15,12 @@
 					{name:"",title:"确认密码",placeholder:"请再次输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]}
 					],
 					button:[{id:"",text:"确认提交"}]
-					})
-				model.reflash()
+					});
+				model.reflash();
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -40,7 +43,7 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
@@ -49,12 +52,12 @@
 						modelA.change("setKey");
 						modelA.clean();
 						modelA.show();
-						page();
-					callback()
+						page(model);
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

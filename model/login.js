@@ -18,16 +18,16 @@
 				source.target.html(source.css[0]+source.html[0]);
 				source.target.find(".close").unbind("click").bind("click",function(){
 					app.pop.hide();
-					})
+					});
 				source.target.find("#regist").unbind("click").bind("click",function(){
 					source.type(1);
-					})
+					});
 				source.target.find("#login").unbind("click").bind("click",function(){
 					source.type(0);
-					})
+					});
 				source.target.find("[D_type='input']").unbind("change").bind("change",function(){
 					data[$(this).attr("D_key")]=$(this).val();
-					})
+					});
 				source.target.find("#sendButton").unbind("click").bind("click",function(){
 					source.callback({data:data,type:type});
 					app.pop.hide();
@@ -38,15 +38,15 @@
 				source.target.find(".list").hide();
 				source.target.find(".list"+typeSet).show();
 				if(type){
-					source.target.find("#sendButton").html("注册")
+					source.target.find("#sendButton").html("注册");
 					source.target.find(".nav").removeClass("hl");
 					source.target.find("#regist").addClass("hl");
 					}else{
-						source.target.find("#sendButton").html("登录")
+						source.target.find("#sendButton").html("登录");
 						source.target.find(".nav").removeClass("hl");
 						source.target.find("#login").addClass("hl");
 						}
-				}
+				};
 			//set
 			source.set=function(data){};
 			}

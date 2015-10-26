@@ -23,7 +23,7 @@
 				source.target.html(source.css[0]+main);
 				source.target.find(".close").unbind("click").bind("click",function(){
 					app.pop.hide();
-					})
+					});
 				};
 			//set
 			source.set=function(dataSet){

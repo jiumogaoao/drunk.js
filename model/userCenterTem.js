@@ -35,11 +35,11 @@
 				source.target.find(".point_tem").unbind("click").bind("click",function(){
 					obj.hash($(this).attr("pid"));
 					});
-				}
+				};
 			source.change=function(id){
 				point=id;
 				change();
-				}
+				};
 			//set
 			source.set=function(data){};
 			}

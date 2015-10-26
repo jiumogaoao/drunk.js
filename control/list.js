@@ -23,14 +23,17 @@
 				model.show();
 				model.goto("pageTree",function(target,fn){target.clean();
 					var count=0;
-					function callback(){
+					function callback(sg){
+						$('img').load(function(){
+				sg.reflash();
+				});
 						count++;
-						if(count==5){
+						if(count===5){
 							fn();
 							}
 						}
-					obj.model.get(target,"productList1","productList",function(model){
-						model.set({list:[
+					obj.model.get(target,"productList1","productList",function(modelA){
+						modelA.set({list:[
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
@@ -52,12 +55,12 @@
 					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
 				}
 			});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"pomoTableA","pomoTableA",function(model){
-						model.set({image:[
+					obj.model.get(target,"pomoTableA","pomoTableA",function(modelA){
+						modelA.set({image:[
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
@@ -65,12 +68,12 @@
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}
 			]
 			});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"productList2","productList",function(model){
-						model.set({list:[
+					obj.model.get(target,"productList2","productList",function(modelA){
+						modelA.set({list:[
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
@@ -92,12 +95,12 @@
 					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
 				}
 			});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"pomoTableB","pomoTableB",function(model){
-						model.set({image:[
+					obj.model.get(target,"pomoTableB","pomoTableB",function(modelA){
+						modelA.set({image:[
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},
@@ -105,12 +108,12 @@
 			{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}
 			]
 			});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
-					obj.model.get(target,"productList3","productList",function(model){
-						model.set({list:[
+					obj.model.get(target,"productList3","productList",function(modelA){
+						modelA.set({list:[
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
 			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
@@ -132,13 +135,13 @@
 					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
 				}
 			});
-						model.reflash();
-						model.show();
-					callback()
+						modelA.reflash();
+						modelA.show();
+					callback(model);
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

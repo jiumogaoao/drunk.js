@@ -4,7 +4,7 @@
 		name:"dealManage",
 		par:["object"],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#ucMain","dealManage"+data.object,"formTable",function(model){
 					model.set({
 				title:"交易列表",
@@ -28,6 +28,9 @@
 				});
 					model.reflash();
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -50,20 +53,20 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
 						modelA.change("dealManage/"+data.object);
 						modelA.clean();
-						page();
+						page(model);
 						modelA.show();
-					callback()
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

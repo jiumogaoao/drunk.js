@@ -38,7 +38,7 @@
 				source.target.find(".type .more").unbind("click").bind("click",function(){
 					obj.hash("list/"+$(this).attr("oid"));
 					});
-				}
+				};
 			//set
 			source.set=function(dataSet){
 				data=dataSet;

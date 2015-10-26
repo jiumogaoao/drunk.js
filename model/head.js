@@ -24,10 +24,9 @@
 					obj.model.get("#pop","login","login",function(model){
 						model.type(0);
 						model.callback=function(result){
-							console.log(result)
 							data.type=1;
 							source.reflash();
-							}
+							};
 				model.show();
 				app.pop.show();
 				});
@@ -36,27 +35,26 @@
 					obj.model.get("#pop","login","login",function(model){
 						model.type(1);
 						model.callback=function(result){
-							console.log(result)
 							data.type=1;
 							source.reflash();
-							}
+							};
 				model.show();
 				app.pop.show();
 				});
-					})
+					});
 				source.target.find(".point.object").unbind("click").bind("click",function(){
 						app.hash("list/"+$(this).attr("oid"));
 					});
 				source.target.find("[oid='index']").unbind("click").bind("click",function(){
 					app.hash("index");
-					})
+					});
 				source.target.find("#userCenter").unbind("click").bind("click",function(){
 					app.hash("myAccount");
 					});
-				}
+				};
 			source.change=function(id){
 				source.target.find(".point").removeClass("hl");
-				source.target.find(".point[oid='"+id+"']").addClass("hl")
+				source.target.find(".point[oid='"+id+"']").addClass("hl");
 				object=id;
 				};
 			//set

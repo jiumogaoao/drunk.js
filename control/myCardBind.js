@@ -4,11 +4,11 @@
 		name:"myCardBind",
 		par:[],
 		fn:function(data){
-			function page(){
+			function page(sg){
 				obj.model.get("#ucMain","myCardBind","formInput",function(model){
 				model.set({
 					title:"银行卡绑定",
-					nav:[{id:"",title:"基本资料"},{id:"",title:"实名认证"}]
+					nav:[{id:"",title:"基本资料"},{id:"",title:"实名认证"}],
 					list:[
 					{name:"",title:"开户名",placeholder:"请填写开户名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
 					{name:"",title:"银行卡号",placeholder:"请填写银行卡号",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
@@ -19,6 +19,9 @@
 					});
 				model.reflash();
 				model.show();
+				$('img').load(function(){
+				sg.reflash();
+				});
 				});
 				}
 			obj.model.get("#head","headSimple","head",function(model){
@@ -41,19 +44,19 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
 						modelA.clean();
-						page();
+						page(model);
 						modelA.show();
-					callback()
+					callback();
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

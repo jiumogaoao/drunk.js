@@ -5,7 +5,7 @@
 		css:["product_list"],
 		html:["product_list"],
 		fn:function(){
-			var data={}
+			var data={};
 			/*{list:[		{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
 			],
 			type:{

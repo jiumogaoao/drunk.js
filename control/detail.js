@@ -24,17 +24,21 @@
 					var count=0;
 					function callback(){
 						count++;
-						if(count==1){
+						if(count===1){
 							fn();
 							}
 						}
-					obj.model.get(target,"detailAll","detailAll",function(model){
-						model.show();
-					callback()
+					obj.model.get(target,"detailAll","detailAll",function(modelA){
+						modelA.show();
+					$('img').load(function(){
+				model.reflash();
+				});	
+					callback();
+					
 						});
 					},{w:"100%"});
 					
-				})
+				});
 			
 			}
 		});

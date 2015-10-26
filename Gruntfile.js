@@ -13,14 +13,18 @@ module.exports = function(grunt){
 		},
 		bin:['bin/api.js','bin/common.js','bin/config.js','bin/control.js','bin/route.js','bin/model.js'],
 		api:['api/**/*.js'],
-		control:['control/**/*.js']
+		control:['control/**/*.js'],
+		model:['model/**/*.js']
 	},
 		clean:{
 			all:['dist/**/*']
 			},
 		copy:{
 			html:{src: ['grunt.html'], dest: 'dist/index.html'},
-			include:{expand: true, src: ['include/**/*'], dest: 'dist'}
+			style:{src: ['style.css'], dest: 'dist/style.css'},
+			view:{expand: true, src: ['html/**/*'], dest: 'dist'},
+			include:{expand: true, src: ['include/**/*'], dest: 'dist'},
+			fonts:{expand: true, src: ['fonts/**/*'], dest: 'dist'},
 			},
         cssmin: {
             options: {                                       //配置
@@ -35,9 +39,10 @@ module.exports = function(grunt){
                 banner: '/*! This is uglify test - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %> */'
             },
-			bin: {src: ['bin/jquery.js','bin/underscore.js','bin/config.js','bin/common.js','bin/route.js','bin/api.js','bin/control.js'], dest: 'dist/bin/drunk.js'},
+			bin: {src: ['bin/jquery.js','bin/underscore.js','bin/config.js','bin/common.js','bin/route.js','bin/api.js','bin/control.js','bin/model.js'], dest: 'dist/bin/drunk.js'},
 			api: {expand: true, cwd: 'api', src: ['*.js'], dest: 'dist/api'},
-			control: {expand: true, cwd: 'control', src: ['*.js'], dest: 'dist/control'}
+			control: {expand: true, cwd: 'control', src: ['*.js'], dest: 'dist/control'},
+			model: {expand: true, cwd: 'model', src: ['*.js'], dest: 'dist/model'},
             },
 		htmlmin:{
 			options: {
@@ -80,6 +85,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.registerTask('default', ['jshint','clean','copy','cssmin','uglify','htmlmin','imagemin']);
+    grunt.registerTask('default', ['jshint','clean','copy','cssmin','uglify','imagemin']);
 	grunt.registerTask('watch', ['jshint']);
 }

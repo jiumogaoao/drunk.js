@@ -26,7 +26,7 @@
 							console.log(result);
 							data.type=1;
 							source.reflash();
-							}
+							};
 				model.show();
 				app.pop.show();
 				});
@@ -35,16 +35,15 @@
 					obj.model.get("#pop","login","login",function(model){
 						model.type(1);
 						model.callback=function(result){
-							console.log(result)
 							data.type=1;
 							source.reflash();
-							}
+							};
 				model.show();
 				app.pop.show();
 				});
-					})
+					});
 				source.target.find("#userCenter").unbind("click").bind("click",function(){
-					obj.hash("myAccount")
+					obj.hash("myAccount");
 					});
 				source.target.find(".bottom .point").unbind("click").bind("click",function(){
 					if($(this).attr("oid")){
@@ -138,7 +137,7 @@
 				app.pop.show();
 				});
 				*/
-				}
+				};
 			//set
 			source.set=function(dataSet){
 				data=dataSet;
