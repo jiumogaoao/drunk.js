@@ -15,6 +15,16 @@
 
 .detail_all .left .top img {
   width: 800px;
+  height: 394px;
+  float: left; }
+
+.detail_all .left .top .imgframe {
+  width: 800px;
+  height: 394px;
+  overflow: hidden; }
+
+.detail_all .left .top .imgRoll {
+  width: 3200px;
   height: 394px; }
 
 .detail_all .left .top .thirdPoint {
@@ -107,7 +117,7 @@
 .detail_all .left .bottom .com .name {
   color: #ec8215; }
 
-.detail_all .left .bottom .com .desc {
+.detail_all .left .bottom .com .descA {
   margin-top: 20px; }
 
 .detail_all .left .bottom .com .time {
