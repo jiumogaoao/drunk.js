@@ -71,4 +71,20 @@
 	obj.run=function(name,data,suc,err){
 		run(name,data,suc,err);
 		};
+	obj.tk=function(fn,input){
+		if(input){
+			app.cookies("tk",{tk:input});
+			}
+		if(app.cookies("tk")){
+			fn(app.cookies("tk").tk);
+			}else{
+				run("tk_get",null,function(data){
+					app.cookies("tk",{tk:data.tk});
+					fn(app.cookies("tk").tk);
+			},function(e){
+				window.app.pop.on("alert",{text:JSON.stringify(e)});
+				return false;
+			});
+				}
+		};
 	})(window.$,window.app.api,window.config);

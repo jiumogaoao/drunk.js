@@ -1,5 +1,5 @@
 // JavaScript Document
-var sourArry=[location.hostname];
+var sourArry=["localhost",location.hostname];
 var config={
 	sour:sourArry[0],
 	loadingOn:function(){},

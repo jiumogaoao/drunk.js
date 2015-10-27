@@ -22,4 +22,26 @@
 			$("#popBG").hide();
 			}
 		};
+	app.cookies=function(key,value){
+		if(value&&typeof(value) ==="object"){
+			Cookies("xz_"+key,JSON.stringify(value),{expires:24*3600*1000});
+			}else if(Cookies("xz_"+key)){
+				return JSON.parse(Cookies("xz_"+key));
+				}else{
+					return false;
+					}
+		};
+	app.cache=function(key,value,remove){
+		if(value&&typeof(value) ==="object"){
+			localStorage.setItem("xz_"+key,JSON.stringify(value));
+			}else if(localStorage.getItem("xz_"+key)){
+				if(remove){
+					localStorage.removeItem("xz_"+key);
+					}else{
+				return JSON.parse(localStorage.getItem("xz_"+key));		
+						}
+				}else{
+					return false;
+					}
+		};
 	})();
