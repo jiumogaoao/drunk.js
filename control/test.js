@@ -5,11 +5,14 @@
 		par:[],
 		fn:function(data){
 			$("body").hide();
-			obj.api.run("obj_get",null,function(returnData){
+			obj.api.tk(function(tk){
+				obj.api.run("com_get",null,function(returnData){
 				debugger;
 				},function(err){
 					console.log(err);
 					});
+				});
+			
 			}
 		});
 	})($,app,config);
