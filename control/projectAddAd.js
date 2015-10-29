@@ -46,6 +46,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("projectAddAd");
 						modelA.clean();
 						modelA.show();
 						page(model);

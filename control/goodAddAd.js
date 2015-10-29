@@ -4,74 +4,112 @@
 		name:"goodAddAd",
 		par:[],
 		fn:function(data){
-			function page(sg){
+			function page(sg,tk,ob,type){
+				var objArry=[];
+				$.each(ob,function(i,n){
+					objArry.push({label:n.name,value:n.id});
+					});
+				var typeArry=[];
+				$.each(type,function(i,n){
+					typeArry.push({label:n.name,value:n.id});
+					});
 				obj.model.get("#acMain","goodAddAd","formInput",function(model){
 				model.set({
 					title:"商品添加",
 					nav:[],
 					list:[
-					{name:"",title:"商品名",placeholder:"请填写商品名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"所属项目",placeholder:"",type:"select",value:"",valuelabel:"请选择所属项目",option:[{label:"",value:""}]},
-					{name:"",title:"所属分类",placeholder:"",type:"select",value:"",valuelabel:"请选择所属分类",option:[{label:"",value:""}]},
-					{name:"",title:"商品价格",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品份数",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"预约时间",placeholder:"",type:"time",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"启动金额",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"开始时间",placeholder:"",type:"time",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"是否可转让",placeholder:"",type:"select",value:"",valuelabel:"是否可转让",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
-					{name:"",title:"年化率",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"转让费用",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"地点",placeholder:"",type:"place",value:["",""],valuelabel:["",""],option:
+					{name:"title",title:"商品名",placeholder:"请填写商品名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"object",title:"所属项目",placeholder:"",type:"select",value:"",valuelabel:"请选择所属项目",option:objArry},
+					{name:"type",title:"所属分类",placeholder:"",type:"select",value:"",valuelabel:"请选择所属分类",option:typeArry},
+					{name:"price",title:"商品价格",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"copy",title:"商品份数",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"orderTime",title:"预约时间",placeholder:"",type:"time",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"passNumber",title:"通过份数",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"stratTime",title:"开始时间",placeholder:"",type:"time",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"canChange",title:"是否可转让",placeholder:"",type:"select",value:"",valuelabel:"是否可转让",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
+					{name:"yearReturn",title:"年化率",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"change",title:"转让费用",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"place",title:"地点",placeholder:"",type:"place",value:["",""],valuelabel:["",""],option:
 					{"a":{label:"",value:"",option:[{label:"",value:""}]}}
 					},
-					{name:"",title:"建筑类型",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
-					{name:"",title:"建筑阶段",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
-					{name:"",title:"展示图片",placeholder:"",type:"pic",value:"",valuelabel:"",option:[]},
-					{name:"",title:"概述",placeholder:"",type:"textarea",value:"",valuelabel:"",option:[]},
+					{name:"buildtype",title:"建筑类型",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
+					{name:"buildState",title:"建筑阶段",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
+					{name:"image",title:"展示图片",placeholder:"",type:"pic",value:"",valuelabel:"",option:[]},
+					{name:"dsc",title:"概述",placeholder:"",type:"textarea",value:"",valuelabel:"",option:[]},
+					{name:"detail",title:"详情",placeholder:"",type:"pic",value:"",valuelabel:"",option:[]}
 					],
 					button:[{id:"sendAdd",text:"确认提交"}]
 					});
+				
 				model.reflash();
+				model.target.find("#sendAdd").unbind("click").bind("click",function(){
+					console.log(model.result());
+					});	
 				model.show();
+				sg.reflash();
 				$('img').load(function(){
 				sg.reflash();
 				});
 				});
 				}
-			obj.model.get("#head","headSimple","head",function(model){
+			function getHead(tk,ob){
+				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:ob,
 				type:0
 				});
 				model.reflash();
 				model.show();
 				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+				}
+			function getFoot(tk){
+				obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
-				model.show();
-				model.goto("pageTwo",function(target,fn){target.clean();
-					var count=0;
-					function callback(){
-						count++;
-						if(count===1){
-							fn();
-							}
-						}
-					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
-						});
-					},{w:"100%"});
-					
-				});
-			
+				}
+			function getmain(tk,ob){
+				var type=[];
+				var callbackCount=function(){
+						obj.model.get("#main","seguesOne","segues",function(model){
+							model.show();
+							model.goto("pageTwo",function(target,fn){target.clean();
+								var count=0;
+								function callback(){
+									count++;
+									if(count===1){
+										fn();
+										}
+									}
+								obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+									modelA.reflash();
+									modelA.change("goodAddAd");
+									modelA.clean();
+									modelA.show();
+									page(model,tk,ob,type);
+								callback();
+									});
+								},{w:"100%"});
+								
+							});
+						
+					}
+				obj.api.run("type_get",null,function(returnData){
+					type=returnData;
+					callbackCount();
+					},function(e){});
+				
+				}
+			function getcommon(tk){
+				obj.api.run("obj_get",null,function(returnData){
+					getHead(tk,returnData);
+					getFoot(tk);
+					getmain(tk,returnData);
+					},function(e){})
+				}
+			obj.api.tk(getcommon);
 			}
 		});
 	})($,app,config);

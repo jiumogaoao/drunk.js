@@ -52,6 +52,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("typeListAd");
 						modelA.clean();
 						modelA.show();
 						page(model);

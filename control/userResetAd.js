@@ -55,6 +55,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("userResetAd");
 						modelA.clean();
 						modelA.show();
 						page(model);

@@ -15,11 +15,12 @@
 					button:[{id:"",text:""}]
 					};
 			*/
+			var result={};
 			var data={};
 			var source=this;
 			//init
 			source.init=function(){
-				source.target.html();
+				source.target.html("");
 				};
 			source.reflash=function(){
 				var main=_.template(source.html[0])(data);
@@ -29,6 +30,12 @@
 			source.set=function(setData){
 				data=setData;
 				};
+			source.setResult=function(setData){
+				result=setData;
+				}
+			source.result=function(){
+				return result;
+				}
 			}
 		});
 	})($,app,config);

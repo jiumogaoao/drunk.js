@@ -49,6 +49,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("messageAddAd");
 						modelA.clean();
 						modelA.show();
 						page(model);

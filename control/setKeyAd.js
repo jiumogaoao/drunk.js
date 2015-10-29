@@ -48,6 +48,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("setKeyAd");
 						modelA.clean();
 						modelA.show();
 						page(model);

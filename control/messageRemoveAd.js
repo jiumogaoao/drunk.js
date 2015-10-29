@@ -54,6 +54,8 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.reflash();
+						modelA.change("messageRemoveAd");
 						modelA.clean();
 						modelA.show();
 						page(model);
