@@ -6,7 +6,7 @@
 		fn:function(data){
 			$("body").hide();
 			obj.api.tk(function(tk){
-				obj.api.run("com_get",null,function(returnData){
+				obj.api.run("promo_get",null,function(returnData){
 				debugger;
 				},function(err){
 					console.log(err);
