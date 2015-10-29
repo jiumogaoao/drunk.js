@@ -14,8 +14,6 @@
 					{name:"",title:"邮箱",placeholder:"请填写邮箱",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
 					{name:"",title:"头像",placeholder:"支持JPG,JPEG,GIF,PNG,BMP格式，且不超过5M",type:"singlePic",value:"",valuelabel:"",option:[{label:"",value:""}]},
 					{name:"",title:"昵称",placeholder:"请填写昵称",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"性别",placeholder:"请填写昵称",type:"select",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"城市",placeholder:"",type:"place",value:["",""],valuelabel:"",option:{"a":{label:"",value:"",option:[{label:"",value:""}]}}},
 					{name:"",title:"简介",placeholder:"",type:"textArea",value:"",valuelabel:"",option:[{label:"",value:""}]}
 					],
 					button:[{id:"",text:"保存"}]
