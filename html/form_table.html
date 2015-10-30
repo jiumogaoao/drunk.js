@@ -29,12 +29,9 @@
                             <% if(head[y].type=="select"){ %>
                                 <div class="select" D_key="<%= head[y].name %>" D_type="select">
                                     <div class="value"><%= x.label %></div>
-                                    <select>
-                                        <option value="" disabled="disabled"><%= head[y].placeholder %></option>
-                                        <% _.each(head[y].option,function(z){ %>
-                                            <option value="<%= z.value %>" <% if(z.value==x.value){print('selected="selected"')} %>><%= z.label %></option>
-                                        <% }) %>
-                                    </select>
+                                    <div class="dropdownFrame">
+                                        <div class="dropdownPoint" value="<%= head[y].value %>"><%= head[y].label %></div>
+                                    </div>
                                     <div class="drop"><span class="fa fa-triangle-down"></span></div>
                                 </div>                                
                             <% } %>

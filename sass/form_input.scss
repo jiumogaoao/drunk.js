@@ -67,6 +67,27 @@
 .form_input .point .right .doubleSelect .doublePoint{
 	float:left;
 	margin-right:10px;}
+.form_input .point .right .dropdownFrame{
+	width:164px;
+	height:33px;
+	position:absolute;
+	top:33px;
+	left:0px;
+	display:none;
+	}
+.form_input .point .right .select:hover .dropdownFrame{
+	display:block;
+	}
+.form_input .point .right .dropdownPoint{
+	width:164px;
+	height:33px;
+	}
+.form_input .point .right .dropdownPoint:hover{
+	background-color:$col-blu;
+	color:$col-whi;
+	text-align:center;
+	line-height:33px;
+	}
 .form_input .point .right .select select,.form_input .point .right .doubleSelect select{
 	width:164px;
 	height:33px;

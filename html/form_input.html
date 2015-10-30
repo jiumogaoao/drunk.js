@@ -28,12 +28,9 @@
                     <div class="right">
                     	<div class="select" D_key="<%= n.name %>" D_type="select">
                         	<div class="value"><%= n.valuelabel %></div>
-                        	<select>
-                            	<option value="" disabled="disabled"><%= n.placeholder %></option>
-                                <% _.each(n.option,function(y){ %>
-                                	<option value="<%= y.value %>" <% if(y.value==n.value){print('selected="selected"')} %>><%= y.label %></option>
-                                <% }) %>
-                    		</select>
+                            <div class="dropdownFrame">
+                            	<div class="dropdownPoint" value="<%= y.value %>"><%= y.label %></div>
+                            </div>
                             <div class="drop"><span class="fa fa-triangle-down"></span></div></div></div>
                     <div class="clear"></div>
                 </div>
@@ -97,7 +94,12 @@
                         	<% _.each(n.value,function(y){ %>
                             	<img src="<%= y %>"/>
                             <% }) %>
-                            <div class="addButton"><span class="fa fa-plus"></span></div>
+                            <div class="addButton">
+                            	<span class="fa fa-plus"></span>
+                                <form>
+                                <input type="file"/>
+                                </form>
+                            </div>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -110,6 +112,9 @@
                     <div class="right">
                         <div class="singlePic">
                             <img src="<%= n.value %>"/>
+                            <form>
+                                <input type="file"/>
+                            </form>
                             <div class="desc"><%= n.placeholder %></div>
                             <div class="clear"></div>
                         </div>
