@@ -64,6 +64,9 @@
   border: 1px solid #7c7c7c;
   text-align: center; }
 
+.form_input .point .right .longInput {
+  width: 500px; }
+
 .form_input .point .right .select, .form_input .point .right .doubleSelect .doublePoint {
   width: 164px;
   height: 33px;
@@ -76,6 +79,28 @@
 .form_input .point .right .doubleSelect .doublePoint {
   float: left;
   margin-right: 10px; }
+
+.form_input .point .right .dropdownFrame {
+  width: 164px;
+  position: absolute;
+  top: 33px;
+  left: 0px;
+  background-color: #fff;
+  z-index: 10;
+  display: none; }
+
+.form_input .point .right .select:hover .dropdownFrame {
+  display: block; }
+
+.form_input .point .right .dropdownPoint {
+  width: 164px;
+  height: 33px; }
+
+.form_input .point .right .dropdownPoint:hover {
+  background-color: #1a84ec;
+  color: #fff;
+  text-align: center;
+  line-height: 33px; }
 
 .form_input .point .right .select select, .form_input .point .right .doubleSelect select {
   width: 164px;
@@ -142,6 +167,26 @@
   left: 35px;
   text-align: center; }
 
+.form_input .point .right .picFrame img {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 10px; }
+
+.form_input .point .right .addButton input {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 4;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  cursor: pointer; }
+
 .form_input .point .right .addButton {
   float: left;
   width: 100px;
@@ -152,7 +197,15 @@
   color: #fff;
   text-align: center;
   line-height: 110px;
-  font-size: 66px; }
+  font-size: 66px;
+  position: relative;
+  cursor: pointer;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 10px; }
+
+.form_input .point .right .addButton form {
+  cursor: pointer; }
 
 .form_input .point .bottom {
   width: 100%; }
@@ -163,8 +216,11 @@
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   border: 1px solid #7c7c7c;
-  text-align: center;
-  margin-top: 20px; }
+  margin-top: 20px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+  text-indent: 20px; }
 
 .form_input .sendButton {
   width: 125px;
@@ -193,5 +249,31 @@
   margin-right: 10px;
   border-radius: 5px;
   behavior: url(include/PIE.htc); }
+
+.form_input .singlePic {
+  position: relative; }
+
+.form_input .singlePic img {
+  width: 100px;
+  height: 100px;
+  float: left; }
+
+.form_input .singlePic .desc {
+  float: left;
+  margin-left: 10px;
+  position: relative;
+  top: 72px; }
+
+.form_input .singlePic input {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0; }
 
 /*# sourceMappingURL=form_input.css.map */

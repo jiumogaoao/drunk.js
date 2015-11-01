@@ -28,9 +28,15 @@
 				source.target.find("[D_type='input']").unbind("change").bind("change",function(){
 					result[$(this).attr("D_key")]=$(this).val();
 					});
+				source.target.find("[D_type='longInput']").unbind("change").bind("change",function(){
+					result[$(this).attr("D_key")]=$(this).val();
+					});
+				source.target.find("[D_type='textarea']").unbind("change").bind("change",function(){
+					result[$(this).attr("D_key")]=$(this).val();
+					});
 				source.target.find("[D_type='select'] .dropdownPoint").unbind("click").bind("click",function(){
 					result[$(this).parents(".select").attr("D_key")]=$(this).attr("value");
-					result[$(this).parents(".select").find(".value").html($(this).html());
+					$(this).parents(".select").find(".value").html($(this).html());
 					});
 				source.target.find("[D_type='number'] .add").unbind("click").bind("click",function(){
 					var newValue=1;
@@ -54,12 +60,58 @@
 				source.target.find("[D_type='time']").each(function(){
 					var that=this;
 					$(this).datepicker({
-						change:function(){
-							result[$(that).attr("D_key")]=$(that).val();
+						dateFormat: 'yy-mm-dd', 
+						onSelect:function(){
+							result[$(that).attr("D_key")]=Number(moment($(that).val(), "YYYY-MM-DD").format("x"));
 							}
 });
 					});
-					
+				source.target.find("[D_type='pic'] form").each(function(){
+					var that=this;
+					$(this).ajaxForm();
+					$(this).find("input").unbind("change").bind("change",function(){
+						$(that).ajaxSubmit(function(upReturn){
+							upReturn=JSON.parse(upReturn);
+							if(upReturn.succeed){
+								if(!result[$(that).parents(".picFrame").attr("D_key")]){
+									result[$(that).parents(".picFrame").attr("D_key")]=[];
+									}
+								result[$(that).parents(".picFrame").attr("D_key")].push(upReturn.data);
+								$(that).parents(".addButton").before('<img src="'+upReturn.data+'"/>');
+								}
+							});
+						});
+					});	
+				source.target.find("[D_type='singlePic'] form").each(function(){
+					var that=this;
+					$(this).ajaxForm();
+					$(this).find("input").unbind("change").bind("change",function(){
+						$(that).ajaxSubmit(function(upReturn){
+							upReturn=JSON.parse(upReturn);
+							if(upReturn.succeed){
+								result[$(that).parents(".singlePic").attr("D_key")]=upReturn.data;
+								$(that).parents(".singlePic").find("img").attr("src",upReturn.data);
+								}
+							});
+						});
+					});	
+				source.target.find("[D_type='checkbox']").unbind("click").bind("click",function(){
+					var that=this;
+					if($(this).data("choose")){
+						$(this).data("choose",false);
+						$(this).removeClass("hl");
+						}else{
+							$(this).data("choose",true);
+							$(this).addClass("hl");
+							}
+						result[$(that).attr("D_key")]=[];
+						source.target.find("[D_key='"+$(that).attr("D_key")+"']").each(function(){
+							if($(this).data("choose")){
+							result[$(that).attr("D_key")].push($(this).attr("D_id"));	
+								}
+							});
+					});
+				
 				};
 			//set
 			source.set=function(setData){

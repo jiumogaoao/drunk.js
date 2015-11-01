@@ -15,19 +15,19 @@
         <tbody>
         	<% _.each(list,function(n,i){ %>
             	<tr>
-                	<% _.each(n,function(x,y){ %>
+                	<% _.each(n.main,function(x,y){ %>
                     	<td>
                         	<% if(head[y].type=="simple"){ %>
                             	<div class="simple" y="<%= i %>" x="<%= y %>" D_key="<%= head[y].name %>" D_type="simple"><%= x %></div>
                             <% } %>
                             <% if(head[y].type=="input"){ %>
-                            	<input class="simple" y="<%= i %>" x="<%= y %>" D_key="<%= head[y].name %>" D_type="input" value="<%= x %>" placeholder="head[y].placeholder"/>
+                            	<input class="input" y="<%= i %>" x="<%= y %>" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="input" value="<%= x %>" placeholder="head[y].placeholder"/>
                             <% } %>
                             <% if(head[y].type=="time"){ %>
-                            	<input class="simple" y="<%= i %>" x="<%= y %>" D_key="<%= head[y].name %>" D_type="time" value="<%= x %>" placeholder="head[y].placeholder"/>
+                            	<input class="input" y="<%= i %>" x="<%= y %>" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="time" value="<%= x %>" placeholder="head[y].placeholder"/>
                             <% } %>
                             <% if(head[y].type=="select"){ %>
-                                <div class="select" D_key="<%= head[y].name %>" D_type="select">
+                                <div class="select" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="select">
                                     <div class="value"><%= x.label %></div>
                                     <div class="dropdownFrame">
                                         <div class="dropdownPoint" value="<%= head[y].value %>"><%= head[y].label %></div>
@@ -36,14 +36,14 @@
                                 </div>                                
                             <% } %>
                             <% if(head[y].type=="number"){ %>
-                            	<div class="number" D_key="<%= head[y].name %>" D_type="number">
+                            	<div class="number" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="number">
                                     <div class="add"><span class="fa fa-plus"></span></div>
                                     <input class="value" value="<%= (x||0) %>"/>
                                     <div class="sub"><span class="fa fa-minus"></span></div>
                                 </div>
                             <% } %>
                             <% if(head[y].type=="checkbox"){ %>
-                            	<div class="checkbox <% if(x){print("hl")} %>" D_key="<%= head[y].name %>" D_type="checkbox"></div>
+                            	<div class="checkbox <% if(x){print("hl")} %>" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="checkbox"></div>
                             <% } %>
                         </td>
                     <% }) %>

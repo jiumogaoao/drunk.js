@@ -4,22 +4,54 @@
 		name:"list",
 		par:["object"],
 		fn:function(data){
-			obj.model.get("#head","headSimple","head",function(model){
+			var objArry={};
+			var typeArry={};
+			var list=[];
+			function headLayout(){
+				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:objArry,
 				type:0
 				});
 				model.reflash();
 				model.change(data.object);
 				model.show();
 				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+				}
+			function footLayout(){
+				obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
+				}
+			function mainLayout(){
+				console.log(list)
+				var now=new Date().getTime();
+				var nostart=[];
+				var started=[];
+				var end=[]
+				$.each(list,function(i,n){
+					console.log("*****")
+					console.log(now)
+					console.log(n.orderTime)
+					console.log(n.stratTime)
+					console.log(n.payedCount)
+					console.log(n.passNumber)
+					console.log(n.copy)
+					if(n.orderTime<now){
+						if(n.stratTime<now){
+							nostart.push(n);
+							}else if(n.stratTime<=now&&n.payedCount>=n.passNumber&&n.payedCount<n.copy){
+								started.push(n)
+								}else{
+									end.push(n)
+									}
+						}
+					})
+					debugger;
+				obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageTree",function(target,fn){target.clean();
 					var count=0;
@@ -33,27 +65,8 @@
 							}
 						}
 					obj.model.get(target,"productList1","productList",function(modelA){
-						modelA.set({list:[
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			],
-			type:{
-					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
-				}
+						modelA.set({list:end,
+			type:typeArry
 			});
 						modelA.reflash();
 						modelA.show();
@@ -73,27 +86,8 @@
 					callback(model);
 						});
 					obj.model.get(target,"productList2","productList",function(modelA){
-						modelA.set({list:[
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			],
-			type:{
-					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
-				}
+						modelA.set({list:started,
+			type:typeArry
 			});
 						modelA.reflash();
 						modelA.show();
@@ -113,27 +107,8 @@
 					callback(model);
 						});
 					obj.model.get(target,"productList3","productList",function(modelA){
-						modelA.set({list:[
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
-			],
-			type:{
-					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
-				}
+						modelA.set({list:nostart,
+			type:typeArry
 			});
 						modelA.reflash();
 						modelA.show();
@@ -142,7 +117,38 @@
 					},{w:"100%"});
 					
 				});
+				}
 			
+			function getObj(tk){
+				var callbackCount=0;
+				function callback(){
+					callbackCount++;
+					if(callbackCount==3){
+						headLayout();
+						footLayout();
+						mainLayout();
+						}
+					}
+				obj.api.run("product_get",null,function(returnData){
+					console.log(returnData);
+					list=[];
+					$.each(returnData,function(i,n){
+						if(n.object==data.object){
+							list.push(n)
+							}
+						})
+					callback();
+					},function(e){});
+				obj.api.run("obj_get",null,function(returnData){
+					objArry=_.indexBy(returnData,"id");
+					callback();
+					},function(e){});
+				obj.api.run("type_get",null,function(returnData){
+					typeArry=_.indexBy(returnData,"id");
+					callback();
+					},function(e){});
+				}
+			obj.api.tk(getObj);
 			}
 		});
 	})($,app,config);

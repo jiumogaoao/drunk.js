@@ -4,40 +4,58 @@
 		name:"setKey",
 		par:[],
 		fn:function(data){
+			var tk="";
+			var objArry=[];
+			var typeArry=[];
 			function page(sg){
-				obj.model.get("#acMain","setKeyAd","formInput",function(model){
+				obj.model.get("#ucMain","setKey","formInput",function(model){
 				model.set({
 					title:"重置密码",
 					nav:[],
 					list:[
-					{name:"",title:"原始密码",placeholder:"请输入原始密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"新密码",placeholder:"请输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"确认密码",placeholder:"请再次输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]}
+					{name:"oldKey",title:"原始密码",placeholder:"请输入原始密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"newKey",title:"新密码",placeholder:"请输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]},
+					{name:"newKey2",title:"确认密码",placeholder:"请再次输入新密码",type:"password",value:"",valuelabel:"",option:[{label:"",value:""}]}
 					],
-					button:[{id:"",text:"确认提交"}]
+					button:[{id:"setSend",text:"确认提交"}]
 					});
 				model.reflash();
+				model.target.find("#setSend").unbind("click").bind("click",function(){
+					var sendMessage=model.result();
+					sendMessage.tk=tk;
+					if(sendMessage.oldKey&&sendMessage.newKey&&sendMessage.newKey2&&(sendMessage.newKey===sendMessage.newKey2)){debugger;
+						obj.api.run("set_key",sendMessage,function(){
+							alert("修改成功")
+							model.reflash();
+							},function(){})
+						}
+					})
 				model.show();
 				$('img').load(function(){
 				sg.reflash();
 				});
 				});
 				}
-			obj.model.get("#head","headSimple","head",function(model){
+				function headLayout(){
+					obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:objArry,
 				type:2
 				});
 				model.reflash();
 				model.show();
 				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+					}
+				function footLayout(){
+					obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
+					}
+				function mainLayout(){
+					obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageTwo",function(target,fn){target.clean();
 					var count=0;
@@ -58,7 +76,29 @@
 					},{w:"100%"});
 					
 				});
+					}
 			
+			function getList(tka){
+				tk=tka;
+				var callbackcount=0;
+				var callbackfn=function(){
+					callbackcount++;
+					if(callbackcount==2){
+						headLayout();
+				footLayout();
+				mainLayout();
+						}
+					}
+				obj.api.run("obj_get",{tk:tk},function(returnData){
+					objArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("type_get",{tk:tk},function(returnData){
+					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				}
+			obj.api.tk(getList);
 			}
 		});
 	})($,app,config);

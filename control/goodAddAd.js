@@ -29,8 +29,8 @@
 					{name:"canChange",title:"是否可转让",placeholder:"",type:"select",value:"",valuelabel:"是否可转让",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
 					{name:"yearReturn",title:"年化率",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
 					{name:"change",title:"转让费用",placeholder:"",type:"number",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"place",title:"地点",placeholder:"",type:"place",value:["",""],valuelabel:["",""],option:
-					{"a":{label:"",value:"",option:[{label:"",value:""}]}}
+					{name:"place",title:"地点",placeholder:"",type:"longInput",value:"",valuelabel:"",option:
+					[{label:"",value:""}]
 					},
 					{name:"buildtype",title:"建筑类型",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
 					{name:"buildState",title:"建筑阶段",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
@@ -43,7 +43,11 @@
 				
 				model.reflash();
 				model.target.find("#sendAdd").unbind("click").bind("click",function(){
-					console.log(model.result());
+					var sendResult=model.result();
+					sendResult.tk=tk;
+					obj.api.run("product_add",sendResult,function(addReturn){
+						obj.hash("goodListAd");
+						},function(e){});
 					});	
 				model.show();
 				sg.reflash();

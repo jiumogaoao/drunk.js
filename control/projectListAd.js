@@ -4,7 +4,13 @@
 		name:"projectListAd",
 		par:[],
 		fn:function(data){
+			var tk="";
+			var list={};
 			function page(sg){
+				var showList=[];
+				$.each(list,function(i,n){
+					showList.push({id:n.id,main:[n.id,n.name,"99","99"]});
+					});
 				obj.model.get("#acMain","projectListAd","formTable",function(model){
 				model.set({
 				title:"项目列表",
@@ -15,10 +21,7 @@
 					{"title":"商品数量","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"正在进行的商品数量","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","产权众筹","99","99"],
-					["REDSFDSFFDGGFD","产权众筹","99","99"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -27,21 +30,26 @@
 				});
 				});
 				}
-			obj.model.get("#head","headSimple","head",function(model){
+			function headLayout(){
+				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:list,
 				type:0
 				});
 				model.reflash();
 				model.show();
 				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+				}
+			function footLayout(){
+				obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
+				}
+			function mainLayout(){
+				obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageTwo",function(target,fn){target.clean();
 					var count=0;
@@ -62,7 +70,20 @@
 					},{w:"100%"});
 					
 				});
+				}
 			
+			function getObj(tka){
+				tk=tka;
+				obj.api.run("obj_get",{tk:tk},function(retuenData){
+					$.each(retuenData,function(i,n){
+						list[n.id]=n;
+						})
+					headLayout();
+					footLayout();
+					mainLayout();
+					},function(e){})
+				}
+			obj.api.tk(getObj);
 			}
 		});
 	})($,app,config);

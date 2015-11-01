@@ -22,11 +22,15 @@
 			$("#popBG").hide();
 			}
 		};
-	app.cookies=function(key,value){
+	app.cookies=function(key,value,remove){
 		if(value&&typeof(value) ==="object"){
 			Cookies("xz_"+key,JSON.stringify(value),{expires:24*3600*1000});
 			}else if(Cookies("xz_"+key)){
-				return JSON.parse(Cookies("xz_"+key));
+				if(!remove){
+					return JSON.parse(Cookies("xz_"+key));
+					}else{
+						Cookies("xz_"+key,null,{expires:-1});
+						}	
 				}else{
 					return false;
 					}

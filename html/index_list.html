@@ -19,12 +19,12 @@
                         <img class="tag" src="img/tag0.png"/>
                     </div>
                     <div class="center">
-                        <div class="title"><%= p.title+"-"+p.subhead %></div>
+                        <div class="title"><%= p.title %></div>
                         <div class="desc"><%= p.dsc %></div>
                     </div>
                     <div class="bottom">
                         <div class="tag"><span class="fa fa-price-tags"></span></div>
-                        <div class="pointType"><%= type[p.type].name %></div>
+                        <div class="pointType"><%= type[p.type]?type[p.type].name:"" %></div>
                         <div class="clear"></div>
                         <div class="barFrame">
                             <div class="bar" style="background-color:#ec8215;width:<%= (p.payedCount/p.copy)*100 %>%;"></div>

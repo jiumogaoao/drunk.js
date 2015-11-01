@@ -4,12 +4,14 @@
 		name:"index",
 		par:[],
 		fn:function(data){
-			obj.api.tk(function(tk){
-				debugger;
-				});
-			obj.model.get("#head","headSimple","head",function(model){
+			var tk="";
+			var objArry=[];
+			var typeArry=[];
+			var productArry=[];
+			function headLayput(){
+				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:objArry,
 				type:0
 				});
 				model.reflash();
@@ -17,13 +19,17 @@
 				});
 			$("#head").hide();
 			$("#spaceTop").hide();
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+				}
+			function footLayout(){
+				obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
+				}
+			function mainLayout(){
+				obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageOne",function(target,fn){target.clean();
 					var count=0;
@@ -39,48 +45,30 @@
 					obj.model.get(target,"banner","banner",function(modelA){
 						modelA.set({
 				image:[{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}],
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:objArry,
 				type:0
 				});
-						modelA.reflash();
-						modelA.show();
-					callback(model);
+				obj.api.run("tk_get",{tk:tk},function(returnData){
+							modelA.setType(returnData.user.type||0);
+							modelA.reflash();
+							modelA.show();
+							callback(model);
+							},function(){});
 						});
 					obj.model.get(target,"navIndex","navIndex",function(modelA){
 						modelA.show();
 					callback(model);
 						});
-					obj.model.get(target,"listIndex","listIndex",function(modelA){
+					obj.model.get(target,"listIndex","listIndex",function(modelA){debugger;
+						$.each(productArry,function(i,n){debugger;
+							if(!objArry[n.object].list){
+								objArry[n.object].list=[];
+								}
+								objArry[n.object].list.push(n);
+							})
 						modelA.set({
-				list:[
-					{name:"产权众筹",id:"a",list:[
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
-					]},
-					{name:"经营权众筹",id:"b",list:[
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
-					]},
-					{name:"众筹建房",id:"c",list:[
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-					{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99}
-					]}
-				],
-				type:{
-					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
-				}
+				list:objArry,
+				type:typeArry
 				});
 						modelA.reflash();
 						modelA.show();
@@ -89,7 +77,33 @@
 					},{w:"100%"});
 					
 				});
+				}
 			
+			function getList(tka){
+				tk=tka;
+				var callbackcount=0;
+				var callbackfn=function(){
+					callbackcount++;
+					if(callbackcount==3){
+						headLayput();
+				footLayout();
+				mainLayout();
+						}
+					}
+				obj.api.run("obj_get",{tk:tk},function(returnData){
+					objArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("type_get",{tk:tk},function(returnData){
+					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					productArry=returnData;
+					callbackfn()
+					},function(){})
+				}
+			obj.api.tk(getList);
 			}
 		});
 	})($,app,config);

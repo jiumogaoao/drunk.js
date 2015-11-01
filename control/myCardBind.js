@@ -4,41 +4,64 @@
 		name:"myCardBind",
 		par:[],
 		fn:function(data){
+			var tk="";
+			var objArry=[];
+			var typeArry=[];
+			var cardBind={};
 			function page(sg){
 				obj.model.get("#ucMain","myCardBind","formInput",function(model){
 				model.set({
 					title:"银行卡绑定",
-					nav:[{id:"",title:"基本资料"},{id:"",title:"实名认证"}],
+					nav:[{id:"baseDetail",title:"基本资料"},{id:"realName",title:"实名认证"}],
 					list:[
-					{name:"",title:"开户名",placeholder:"请填写开户名",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"银行卡号",placeholder:"请填写银行卡号",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"开户城市",placeholder:"请填写银行卡号",type:"place",value:["",""],valuelabel:"",option:{"aa":{label:"",value:"",option:[]}}},
-					{name:"",title:"开户支行",placeholder:"请填写银行卡号",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]}
+					{name:"name",title:"开户名",placeholder:"请填写开户名",type:"input",value:cardBind.name,valuelabel:"",option:[{label:"",value:""}]},
+					{name:"number",title:"银行卡号",placeholder:"请填写银行卡号",type:"input",value:cardBind.number,valuelabel:"",option:[{label:"",value:""}]},
+					{name:"place",title:"开户城市",placeholder:"请填写银行卡号",type:"longInput",value:cardBind.place,valuelabel:"",option:{"aa":{label:"",value:"",option:[]}}},
+					{name:"bank",title:"开户支行",placeholder:"请填写银行卡号",type:"input",value:cardBind.bank,valuelabel:"",option:[{label:"",value:""}]}
 					],
-					button:[{id:"",text:"确认"}]
+					button:[{id:"editSend",text:"确认"}]
 					});
+				model.setResult(cardBind);
 				model.reflash();
+				model.target.find("#editSend").unbind("click").bind("click",function(){
+					var sendMessage=model.result();
+					sendMessage.tk=tk;
+					obj.api.run("cardBind_edit",sendMessage,function(){
+						alert("修改成功")
+						},function(){})
+					})
+				model.target.find("#baseDetail").unbind("click").bind("click",function(){
+					obj.hash("myDetail")
+					});
+				model.target.find("#realName").unbind("click").bind("click",function(){
+					obj.hash("myRealName")
+					});
 				model.show();
 				$('img').load(function(){
 				sg.reflash();
 				});
 				});
 				}
-			obj.model.get("#head","headSimple","head",function(model){
+				function headLayout(){
+					obj.model.get("#head","headSimple","head",function(model){
 				model.set({
-				object:[{id:"a",name:"产权众筹"},{id:"b",name:"经营权众筹"},{id:"c",name:"众筹建房"}],
+				object:objArry,
 				type:0
 				});
 				model.reflash();
 				model.show();
 				});
-			obj.model.get("#foot","footPromo","footPromo",function(model){
+					}
+				function footLayout(){
+					obj.model.get("#foot","footPromo","footPromo",function(model){
 				model.show();
 				});
 			obj.model.get("#foot","footSimple","foot",function(model){
 				model.show();
 				});
-			obj.model.get("#main","seguesOne","segues",function(model){
+					}
+				function mainLayout(){
+					obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageTwo",function(target,fn){target.clean();
 					var count=0;
@@ -57,7 +80,33 @@
 					},{w:"100%"});
 					
 				});
+					}
 			
+			function getList(tka){
+				tk=tka;
+				var callbackcount=0;
+				var callbackfn=function(){
+					callbackcount++;
+					if(callbackcount==3){
+						headLayout();
+				footLayout();
+				mainLayout();
+						}
+					}
+				obj.api.run("obj_get",{tk:tk},function(returnData){
+					objArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("type_get",{tk:tk},function(returnData){
+					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("cardBind_get",{tk:tk},function(returnData){
+					cardBind=returnData[0];
+					callbackfn()
+					},function(){})
+				}
+			obj.api.tk(getList);
 			}
 		});
 	})($,app,config);
