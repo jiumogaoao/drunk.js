@@ -10,6 +10,7 @@
 			var product={};
 			var redpacket={};
 			var account={};
+			var user={};
 			function headLayout(){
 				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
@@ -41,9 +42,12 @@
 						}
 					obj.model.get(target,"detailAll","detailAll",function(modelA){
 						product.buy=0;
-						product.user={
-							balance:999,
-							redpacket:99
+						product.user={}
+						if(user&&user.id){
+							product.user={
+							balance:user.balance,
+							redpacket:user.redpacket
+						}
 						}
 						product.buildtypeArry=["农民房","商品房","商铺"];
 						product.buildStateArry=["未建","在建","新房","二手房"];
@@ -107,7 +111,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount==4){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -123,6 +127,11 @@
 					},function(){})
 				obj.api.run("product_detail",{tk:tk,id:data.id},function(returnData){
 					product=returnData;
+					callbackfn()
+					},function(){})
+				obj.api.run("tk_get",{tk:tk},function(returnData){
+					user=returnData.user;
+					console.log(user);
 					callbackfn()
 					},function(){})
 				}
