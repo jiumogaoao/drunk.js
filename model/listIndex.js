@@ -33,7 +33,7 @@
 					obj.hash("detail/"+$(this).attr("pid"));
 					});
 				source.target.find(".type .point").unbind("click").bind("click",function(){
-					obj.hash("search/"+$(this).attr("oid")+"/"+$(this).attr("tid"));
+					obj.hash("search/"+$(this).attr("oid")+"/"+$(this).attr("tid")+"/0/0");
 					});
 				source.target.find(".type .more").unbind("click").bind("click",function(){
 					obj.hash("list/"+$(this).attr("oid"));

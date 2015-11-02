@@ -2,7 +2,7 @@
 ;(function($,obj,config){
 	obj.control.set({
 		name:"detail",
-		par:[],
+		par:["id"],
 		fn:function(data){
 			var tk="";
 			var objArry=[];
@@ -40,68 +40,56 @@
 							}
 						}
 					obj.model.get(target,"detailAll","detailAll",function(modelA){
-						modelA.set({"id":"",/*id*/
-		"title":"星星花园",/*标题*/
-		"subhead":"第一期",/*副标题*/
-		"image":["img/pic.jpg","img/pic.jpg","img/pic.jpg","img/pic.jpg"],/*图片*/
-		"price":9999,/*金额*/
-		"copy":100,/*份数*/
-		"payedCount":9,/*已众筹笔数*/
-		"payedMoney":99,/*已众筹金额*/
-		"payedMember":3,/*已众筹人数*/
-		"maxTime":1024,/*持有期限*/
-		"tax":1,/*税费预算*/
-		"stratTime":1024,/*开始时间*/
-		"yearReturn":10,/*年收益率*/
-		"more":10,/*增值*/
-		"dsc":"",//简介
-		"change":10,//债权转移费用
-		"invite":"",/*介绍人*/
-		"inviteMoney":"",/*介绍费*/
-		"object":"",/*项目*/
-		"type":"",/*类型*/
-		"tag":"0",/*标签*/
-		"orderTime":2233,/*预约时间*/
-		"passNumber":3443,/*通过份数*/
-		"place":"广东广州",/*地点*/
-		"buildtype":"住宅",/*建筑类型*/
-		"buildState":"在建",/*建筑阶段*/
-		"detail":"img/detail.jpg",/*详情*/
-		"com":[
-			{
-				productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试",child:[
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"}
-				]
-			},
-			{
-				productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试",child:[
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"}
-				]
-			},
-			{
-				productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试",child:[
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"},
-					{productId:"",comId:"",parent:"",userId:"",name:"Steven",icon:"img/user.jpg",time:"2015-0917 15:57:05",main:"怎么收益率那么高，我要试一试"}
-				]
-			}
-			],
-		"member":[
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"},
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"},
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"},
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"},
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"},
-			{userId:"",productId:"",name:"毛**",number:"400***************14",copy:"1,000.00",time:"2015-10-01 14:48:21",state:"支付成功"}
-		],
-		"balance":999,
-		"reckpacket":99
-		});
+						product.buy=0;
+						product.user={
+							balance:999,
+							redpacket:99
+						}
+						product.buildtypeArry=["农民房","商品房","商铺"];
+						product.buildStateArry=["未建","在建","新房","二手房"];
+						var now=new Date().getTime();
+						if(product.orderTime<now){
+							if(product.stratTime>now){
+								product.tag=0;
+							}else if(product.stratTime<now&&product.payedCount>=product.passNumber&&product.payedCount<product.copy){
+								product.tag=1;
+							}else{
+								product.tag=2;
+							}
+						}
+						modelA.set(product);
 						modelA.refalsh();
+						modelA.target.find(".numSub").unbind("click").bind("click",function(){
+							if(product.buy>1){
+								product.buy--;
+								modelA.target.find(".numInput").val(product.buy);
+								modelA.target.find("#buyButton").html("支持 ￥"+(product.price*product.buy));
+								modelA.target.find("#buyButton").show();
+							}else{
+								product.buy=0;
+								modelA.target.find(".numInput").val(product.buy);
+								modelA.target.find("#buyButton").hide();
+							}
+						});
+						modelA.target.find(".numAdd").unbind("click").bind("click",function(){
+							var maxValue=((product.copy-product.payedCount)<Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price))?(product.copy-product.payedCount):Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price);
+							if(product.buy<=maxValue-1){
+								product.buy++;
+								modelA.target.find(".numInput").val(product.buy);
+								modelA.target.find("#buyButton").html("支持 ￥"+(product.price*product.buy));
+								modelA.target.find("#buyButton").show();
+							}
+						});
+						modelA.target.find(".numInput").unbind("change").bind("change",function(){
+							var maxValue=((product.copy-product.payedCount)<Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price))?(product.copy-product.payedCount):Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price);
+							product.buy=Number($(this).val());
+							console.log(maxValue)
+							console.log(product.buy)
+							if(product.buy>maxValue){
+								product.buy=maxValue;
+							}
+							$(this).val(product.buy);
+						});
 						modelA.show();
 					$('img').load(function(){
 				model.reflash();
@@ -133,7 +121,7 @@
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
 					},function(){})
-				obj.api.run("product_detail",{tk:tk},function(returnData){
+				obj.api.run("product_detail",{tk:tk,id:data.id},function(returnData){
 					product=returnData;
 					callbackfn()
 					},function(){})

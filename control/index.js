@@ -59,8 +59,8 @@
 						modelA.show();
 					callback(model);
 						});
-					obj.model.get(target,"listIndex","listIndex",function(modelA){debugger;
-						$.each(productArry,function(i,n){debugger;
+					obj.model.get(target,"listIndex","listIndex",function(modelA){
+						$.each(productArry,function(i,n){
 							if(!objArry[n.object].list){
 								objArry[n.object].list=[];
 								}

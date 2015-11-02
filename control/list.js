@@ -33,15 +33,8 @@
 				var started=[];
 				var end=[]
 				$.each(list,function(i,n){
-					console.log("*****")
-					console.log(now)
-					console.log(n.orderTime)
-					console.log(n.stratTime)
-					console.log(n.payedCount)
-					console.log(n.passNumber)
-					console.log(n.copy)
 					if(n.orderTime<now){
-						if(n.stratTime<now){
+						if(n.stratTime>now){
 							nostart.push(n);
 							}else if(n.stratTime<=now&&n.payedCount>=n.passNumber&&n.payedCount<n.copy){
 								started.push(n)
@@ -50,7 +43,6 @@
 									}
 						}
 					})
-					debugger;
 				obj.model.get("#main","seguesOne","segues",function(model){
 				model.show();
 				model.goto("pageTree",function(target,fn){target.clean();
@@ -65,7 +57,7 @@
 							}
 						}
 					obj.model.get(target,"productList1","productList",function(modelA){
-						modelA.set({list:end,
+						modelA.set({list:nostart,
 			type:typeArry
 			});
 						modelA.reflash();
@@ -107,7 +99,7 @@
 					callback(model);
 						});
 					obj.model.get(target,"productList3","productList",function(modelA){
-						modelA.set({list:nostart,
+						modelA.set({list:end,
 			type:typeArry
 			});
 						modelA.reflash();

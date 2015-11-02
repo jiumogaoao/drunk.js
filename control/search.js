@@ -79,7 +79,7 @@
 							}
 						}
 						$.each(list,function(i,n){
-							if(n.object==="data.obj"){
+							if(n.object===data.object){
 								if(data.type!=="0"){
 									if(data.type===n.type){
 										checkState(n);

@@ -32,8 +32,8 @@
 					{name:"place",title:"地点",placeholder:"",type:"longInput",value:"",valuelabel:"",option:
 					[{label:"",value:""}]
 					},
-					{name:"buildtype",title:"建筑类型",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
-					{name:"buildState",title:"建筑阶段",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"是",value:"1"},{label:"否",value:"0"}]},
+					{name:"buildtype",title:"建筑类型",placeholder:"",type:"select",value:"",valuelabel:"建筑类型",option:[{label:"商铺",value:"2"},{label:"商品房",value:"1"},{label:"农民房",value:"0"}]},
+					{name:"buildState",title:"建筑阶段",placeholder:"",type:"select",value:"",valuelabel:"建筑阶段",option:[{label:"二手房",value:"3"},{label:"新房",value:"2"},{label:"在建",value:"1"},{label:"未建",value:"0"}]},
 					{name:"image",title:"展示图片",placeholder:"",type:"pic",value:"",valuelabel:"",option:[]},
 					{name:"dsc",title:"概述",placeholder:"",type:"textarea",value:"",valuelabel:"",option:[]},
 					{name:"detail",title:"详情",placeholder:"",type:"pic",value:"",valuelabel:"",option:[]}
