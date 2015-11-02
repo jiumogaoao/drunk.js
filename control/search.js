@@ -2,11 +2,12 @@
 ;(function($,obj,config){
 	obj.control.set({
 		name:"search",
-		par:["object","type"],
+		par:["object","type","state","order"],
 		fn:function(data){
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var list=[]
 			function headLayout(){
 				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
@@ -41,32 +42,72 @@
 							}
 						}
 					obj.model.get(target,"searchList","searchList",function(modelA){
+						modelA.set({
+							typeList:typeArry,
+							stateList:[{id:"1",name:"预约中"},{id:"2",name:"进行中"},{id:"3",name:"已结束"}],
+							orderList:[{id:"1",name:"时间"},{id:"2",name:"人气"},{id:"3",name:"金额"}]
+						});
+						modelA.setResult({
+							type:data.type,
+							state:data.state,
+							order:data.order
+						})
 						modelA.reflash();
+						modelA.callback=function(selectData){
+							obj.hash("search/"+data.object+"/"+selectData.type+"/"+selectData.state+"/"+selectData.order);
+						};
 						modelA.show();
+
 					callback(model);
 						});
 					obj.model.get(target,"productList","productList",function(modelA){
-						modelA.set({list:[
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			{"id":"yuu","title":"yy","subhead":"yyy","image":"img/pic.jpg","price":99,"payedCount":99,"payedMoney":99,"copy":99,"maxTime":99,"tax":99,"stratTime":99,"yearReturn":99,"more":99,"dsc":"gfff","change":0,"type":"a","object":"t","payedMember":99},
-			],
-			type:{
-					"a":{name:"热门城市",id:"a"},"b":{name:"热门地区",id:"b"},"c":{name:"潜力地区",id:"c"}
-				}
+						var now=new Date().getTime();
+						var showList=[];
+						function checkState(n){
+							if(data.state!=="0"){
+								if(data.state==="1"&&n.orderTime<=now&&n.stratTime>=now){
+									showList.push(n)
+								}
+								if(data.state==="2"&&n.stratTime<=now&&n.payedCount>=n.passNumber&&n.payedCount<n.copy){
+									showList.push(n)
+								}
+								if(data.state==="3"&&((n.stratTime<=now&&n.payedCount<n.passNumber)||(n.stratTime<=now&&n.payedCount===n.copy))){
+									showList.push(n)
+								}
+							}else{
+								showList.push(n)
+							}
+						}
+						$.each(list,function(i,n){
+							if(n.object==="data.obj"){
+								if(data.type!=="0"){
+									if(data.type===n.type){
+										checkState(n);
+									}
+								}else{
+									checkState(n);
+								}
+							}
+						})
+						if(data.order!=="0"){
+							if(data.order==="1"){
+								showList=_.sortBy(showList,function(point) {
+    return - point.stratTime;
+})
+							}
+							if(data.order==="2"){
+								showList=_.sortBy(showList,function(point) {
+    return - point.payedMember;
+})
+							}
+							if(data.order==="3"){
+								showList=_.sortBy(showList,function(point) {
+    return - (point.copy*point.price);
+})
+							}
+						}
+						modelA.set({list:showList,
+									type:typeArry
 			});
 						modelA.reflash();
 						modelA.show();
@@ -82,7 +123,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -94,6 +135,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					list=returnData;
 					callbackfn()
 					},function(){})
 				}

@@ -7,6 +7,9 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var product={};
+			var redpacket={};
+			var account={};
 			function headLayout(){
 				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
@@ -116,7 +119,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -128,6 +131,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("product_detail",{tk:tk},function(returnData){
+					product=returnData;
 					callbackfn()
 					},function(){})
 				}
