@@ -63,6 +63,43 @@
 						}
 						modelA.set(product);
 						modelA.refalsh();
+						modelA.target.find("#buyButton").unbind("click").bind("click",function(){
+							var newBuy={
+										"id":uuid(),/*id*/
+										"productId":product.id,/*商品id*/
+										"userId":user.id,/*用户id*/
+										"startTime":new Date().getTime(),/*购买时间*/
+										"endTime":0,/*退出时间*/
+										"buyPrice":product.price,/*买入价*/
+										"sellPrice":0,/*卖出价*/
+										"count":product.buy,/*数量*/
+										"tk":tk
+										}
+							obj.model.get("#pop","buy","pop",function(modelBuy){
+							modelBuy.set({
+							title:"买入确认",
+							button:[{id:"buySend",text:"买入"}],
+							list:[
+								{name:"",title:"交易编码",placeholder:"",type:"simple",value:newBuy.id,valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"商品编码",placeholder:"",type:"simple",value:newBuy.productId,valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"商品名",placeholder:"",type:"simple",value:product.title,valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥"+newBuy.buyPrice,valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"买入份数",placeholder:"",type:"simple",value:newBuy.count,valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"买入时间",placeholder:"",type:"simple",value:moment(newBuy.startTime,"x").format("YYYY-MM-DD"),valuelabel:"",option:[{label:"",value:""}]},
+								{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥"+(newBuy.buyPrice*newBuy.count),valuelabel:"",option:[{label:"",value:""}]}
+							]
+							})
+							modelBuy.reflash();
+							modelBuy.show();
+							modelBuy.target.find("#buySend").unbind("click").bind("click",function(){
+								obj.api.run("buy",newBuy,function(){
+									alert("购买成功");
+									obj.hash("orderManage");
+								},function(){})
+							})
+							app.pop.show();
+							});
+						});
 						modelA.target.find(".numSub").unbind("click").bind("click",function(){
 							if(product.buy>1){
 								product.buy--;

@@ -73,24 +73,7 @@
 					});
 					})
 				/*
-				obj.model.get("#pop","buy","pop",function(model){
-				model.set({
-				title:"买入确认",
-				button:[{id:"",text:"登录"}],
-				list:[
-					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
-				]
-				})
-				model.reflash();
-				model.show();
-				app.pop.show();
-				});
+				
 				
 				obj.model.get("#pop","sale","pop",function(model){
 				model.set({
