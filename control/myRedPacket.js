@@ -61,7 +61,11 @@
 							fn();
 							}
 						}
-					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
+					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
+						modelA.set({
+							object:objArry
+						})
+						modelA.reflash();
 						modelA.change("myRedPacket");
 						modelA.clean();
 						page(model);

@@ -7,7 +7,15 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var product=[];
+			var deal=[];
 			function page(sg){
+				var showList=[];
+				$.each(deal,function(i,n){
+					if(product[n.productId]){
+						showList.push({id:n.id,main:[n.id,product[n.productId].title,n.productId,n.buyPrice,n.count,n.buyPrice*n.count,n.startTime,product[n.productId].stratTime]});
+					}
+				});
 				obj.model.get("#ucMain","orderManage"+data.object,"formTable",function(model){
 				model.set({
 				title:"预约列表",
@@ -22,10 +30,7 @@
 					{"title":"预约时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"结束时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","星星花园","REDSFDSFFDGGFD","99999999999.99","2015.10.04","99999999999.99","2015.10.04","2015.10.04"],
-					["REDSFDSFFDGGFD","星星花园","REDSFDSFFDGGFD","99999999999.99","2015.10.04","99999999999.99","2015.10.04","2015.10.04"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -63,7 +68,11 @@
 							fn();
 							}
 						}
-					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){modelA.reflash();
+					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
+						modelA.set({
+							object:objArry
+						})
+						modelA.reflash();
 						modelA.change("orderManage/"+data.object);
 						modelA.clean();
 						page(model);
@@ -80,7 +89,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==4){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -92,6 +101,26 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					var now=new Date().getTime();
+					$.each(returnData,function(i,n){
+						if(n.orderTime<=now&&n.stratTime>now){
+							product.push(n)
+						}
+					})
+					product=_.groupBy(product,"object")[data.object];
+					product=_.indexBy(product,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("deal_get",{tk:tk},function(returnData){
+					$.each(returnData,function(i,n){
+						if(!n.endTime){
+							deal.push(n)
+						}	
+					})
+					deal=returnData;
 					callbackfn()
 					},function(){})
 				}

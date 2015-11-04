@@ -66,6 +66,9 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
+						modelA.set({
+							object:objArry
+						})
 						modelA.reflash();
 						modelA.change("setKey");
 						modelA.clean();

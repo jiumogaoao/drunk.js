@@ -18,7 +18,7 @@
                 	<% _.each(n.main,function(x,y){ %>
                     	<td>
                         	<% if(head[y].type=="simple"){ %>
-                            	<div class="simple" y="<%= i %>" x="<%= y %>" D_key="<%= head[y].name %>" D_type="simple"><%= x %></div>
+                            	<div class="simple" y="<%= i %>" x="<%= y %>" D_key="<%= head[y].name %>" D_type="simple" D_id="<%= n.id %>"><%= x %></div>
                             <% } %>
                             <% if(head[y].type=="input"){ %>
                             	<input class="input" y="<%= i %>" x="<%= y %>" D_id="<%= n.id %>" D_key="<%= head[y].name %>" D_type="input" value="<%= x %>" placeholder="head[y].placeholder"/>

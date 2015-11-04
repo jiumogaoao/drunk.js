@@ -41,7 +41,9 @@
 				change();
 				};
 			//set
-			source.set=function(data){};
+			source.set=function(dataSet){
+				data=dataSet;
+			};
 			}
 		});
 	})($,app,config);
