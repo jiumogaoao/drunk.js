@@ -7,6 +7,8 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var dealList=[];
+			var product=[];
 			function page(sg){
 				obj.model.get("#acMain","dealListAd","formTable",function(model){
 				model.set({
@@ -82,7 +84,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==4){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -96,6 +98,18 @@
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
 					},function(){})
+				obj.api.run("deal_getAll",{tk:tk},function(returnData){
+					dealList=returnData;
+				},function(){});
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					var now=new Date().getTime();
+					$.each(returnData,function(i,n){
+						if(n.orderTime<=now){
+							product.push(n)
+						}
+					})
+					product=_.indexBy(product,"id");
+				},function(){});
 				}
 			obj.api.tk(getList);
 			}

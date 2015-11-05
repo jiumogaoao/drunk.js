@@ -63,6 +63,28 @@
 						}
 						modelA.set(product);
 						modelA.refalsh();
+						modelA.target.find("#moneyIn").unbind("click").bind("click",function(){
+					obj.model.get("#pop","moneyIn","pop",function(model){
+						model.set({
+						title:"充值确认",
+						button:[{id:"inSend",text:"确认充值"}],
+						list:[
+							{name:"number",title:"充值金额",placeholder:"",type:"number",value:"0",valuelabel:"",option:[{label:"",value:""}]}
+						]
+						});
+						model.reflash();
+						model.target.find("#inSend").unbind("click").bind("click",function(){
+							var sendData=model.result();
+							sendData.tk=tk;
+							obj.api.run("money_in",sendData,function(){
+								alert("充值成功")
+								window.location.reload();
+							})
+						});
+						model.show();
+						app.pop.show();
+					});
+				});
 						modelA.target.find("#buyButton").unbind("click").bind("click",function(){
 							var newBuy={
 										"id":uuid(),/*id*/

@@ -7,7 +7,12 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var list=[];
 			function page(sg){
+				var showList=[];
+				$.each(list,function(i,n){
+					showList.push({id:n.id,main:[n.id,n.money,moment(n.time,"x").format("YYYY-MM-DD"),(n.type==="0")?"充值":"提现",(n.state==="0")?"进行中":"已完成"]})
+				})
 				obj.model.get("#ucMain","myAccount","formTable",function(model){
 				model.set({
 				title:"收支记录",
@@ -17,12 +22,9 @@
 					{"title":"收支金额/元","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"收支时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"收支类型","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"收支摘要","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					{"title":"收支状态","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","充值","充值还要写理由吗~"],
-					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","充值","充值还要写理由吗~"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -82,7 +84,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -94,6 +96,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("money_get",{tk:tk},function(returnData){console.log(returnData)
+					list=returnData;
 					callbackfn()
 					},function(){})
 				}
