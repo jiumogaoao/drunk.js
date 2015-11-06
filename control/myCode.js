@@ -7,8 +7,11 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var user={};
 			function page(sg){
 				obj.model.get("#ucMain","myCode","myCode",function(model){
+				model.set({id:user.id})
+				model.reflash();
 				model.show();
 				$('img').load(function(){
 				sg.reflash();
@@ -65,7 +68,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -77,6 +80,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("tk_get",{tk:tk},function(returnData){
+					user=returnData.user;
 					callbackfn()
 					},function(){})
 				}

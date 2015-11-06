@@ -72,54 +72,6 @@
 						}
 					});
 					})
-				/*
-				
-				
-				obj.model.get("#pop","order","pop",function(model){
-				model.set({
-				title:"预约确认",
-				button:[{id:"",text:"确认预约"}],
-				list:[
-					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"预约价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"预约份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"预约时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"开始时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"启动金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
-				]
-				});
-				model.reflash();
-				model.show();
-				app.pop.show();
-				});
-				
-				
-				obj.model.get("#pop","change","pop",function(model){
-				model.set({
-				title:"转让确认",
-				button:[{id:"",text:"确认转让"}],
-				list:[
-					{name:"",title:"交易编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品编码",placeholder:"",type:"simple",value:"DREGFDGHDFGDFGD",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"商品名",placeholder:"",type:"simple",value:"星星花园一期七栋208",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"卖出价",placeholder:"",type:"simple",value:"￥999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入份数",placeholder:"",type:"simple",value:"99",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"买入时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"卖出时间",placeholder:"",type:"simple",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"转让账号",placeholder:"",type:"input",value:"2015.10.5",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"手续费",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]},
-					{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥9999",valuelabel:"",option:[{label:"",value:""}]}
-				]
-				});
-				model.reflash();
-				model.show();
-				app.pop.show();
-				});
-				*/
 				};
 			//set
 			source.set=function(dataSet){

@@ -10,6 +10,26 @@
 			var dealList=[];
 			var product=[];
 			function page(sg){
+				var showList=[]
+				$.each(dealList,function(i,n){
+					if(product[n.productId]){
+						showList.push(
+							{
+								id:n.id,
+								main:[
+									n.id,
+									n.productId,
+									n.userId,
+									n.buyPrice,
+									n.sellPrice,
+									n.count,
+									moment(n.startTime,"x").format("YYYY-MM-DD"),
+									(n.endTime?moment(n.endTime,"x").format("YYYY-MM-DD"):0),
+									(n.endTime?"卖出":"持有")
+									]
+							})
+					}
+				})
 				obj.model.get("#acMain","dealListAd","formTable",function(model){
 				model.set({
 				title:"交易列表",
@@ -25,10 +45,7 @@
 					{"title":"卖出时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"状态","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99999999999.99","99","2015.10.04","2015.10.04","卖出"],
-					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99999999999.99","99","2015.10.04","2015.10.04","卖出"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -100,15 +117,17 @@
 					},function(){})
 				obj.api.run("deal_getAll",{tk:tk},function(returnData){
 					dealList=returnData;
+					callbackfn()
 				},function(){});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
-						if(n.orderTime<=now){
+						if(n.stratTime<=now){
 							product.push(n)
 						}
 					})
 					product=_.indexBy(product,"id");
+					callbackfn()
 				},function(){});
 				}
 			obj.api.tk(getList);

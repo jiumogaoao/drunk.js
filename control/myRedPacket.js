@@ -7,7 +7,12 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var list={};
 			function page(sg){
+				var showList=[];
+				$.each(list,function(i,n){
+					showList.push({id:n.id,main:[n.id,n.money,moment(n.strat,"x").format("YYYY-MM-DD"),n.type?"购买邀请奖励":"注册邀请奖励"]});
+				})
 				obj.model.get("#ucMain","myRedPacket","formTable",function(model){
 				model.set({
 				title:"红包记录",
@@ -16,14 +21,9 @@
 					{"title":"红包编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"红包金额/元","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"发放时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"有效时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"状态","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"发放规则","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","2015.10.04","已过期","注册后第一次登录奖励"],
-					["REDSFDSFFDGGFD","99999999999.99","2015.10.04","2015.10.04","已过期","注册后第一次登录奖励"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -82,7 +82,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -94,6 +94,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("redpacket_get",{tk:tk},function(returnData){console.log(returnData)
+					list=returnData;
 					callbackfn()
 					},function(){})
 				}

@@ -7,8 +7,28 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var dealList=[];
+			var product=[];
 			function page(sg){
-				obj.model.get("#acMain","orderListAd","orderListAd",function(model){
+				var showList=[]
+				$.each(dealList,function(i,n){
+					if(product[n.productId]){
+						showList.push(
+							{
+								id:n.id,
+								main:[
+									n.id,
+									n.productId,
+									n.userId,
+									n.buyPrice,
+									n.count,
+									moment(n.startTime,"x").format("YYYY-MM-DD"),
+									moment(product[n.productId].stratTime,"x").format("YYYY-MM-DD")
+									]
+							})
+					}
+				})
+				obj.model.get("#acMain","orderListAd","formTable",function(model){
 				model.set({
 				title:"预约列表",
 				button:[],
@@ -21,10 +41,7 @@
 					{"title":"预约时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"结束时间","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99","2015.10.04","2015.10.04"],
-					["REDSFDSFFDGGFD","REDSFDSFFDGGFD","REDSFDSFFDGGFD","99999999999.99","99","2015.10.04","2015.10.04"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -80,7 +97,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==4){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -94,6 +111,20 @@
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
 					},function(){})
+				obj.api.run("deal_getAll",{tk:tk},function(returnData){
+					dealList=returnData;
+					callbackfn()
+				},function(){});
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					var now=new Date().getTime();
+					$.each(returnData,function(i,n){
+						if(n.stratTime>now){
+							product.push(n)
+						}
+					})
+					product=_.indexBy(product,"id");
+					callbackfn()
+				},function(){});
 				}
 			obj.api.tk(getList);
 			}

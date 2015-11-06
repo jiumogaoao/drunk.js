@@ -7,23 +7,23 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var list=[];
 			function page(sg){
+				var showList=[];
+				$.each(list,function(i,n){
+					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email]})
+				})
 				obj.model.get("#acMain","userListAd","formTable",function(model){
 				model.set({
 				title:"用户列表",
-				button:[{id:"",text:""}],
+				button:[],
 				head:[
 					{"title":"用户编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"用户名","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"手机","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"邮箱","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"地址","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"证件号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					{"title":"邮箱","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","某人","18520812136","394127821@qq.com","广东深圳","44010319861105"],
-					["REDSFDSFFDGGFD","某人","18520812136","394127821@qq.com","广东深圳","44010319861105"]
-				]
+				list:showList
 				});
 				model.reflash();
 				model.show();
@@ -79,7 +79,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -91,6 +91,10 @@
 					},function(){})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
+					callbackfn()
+					},function(){})
+				obj.api.run("client_get",{tk:tk},function(returnData){console.log(returnData)
+					list=returnData;
 					callbackfn()
 					},function(){})
 				}
