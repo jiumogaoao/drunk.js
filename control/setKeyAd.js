@@ -27,7 +27,7 @@
 						obj.api.run("set_key",sendMessage,function(){
 							alert("修改成功")
 							model.reflash();
-							},function(){})
+							},function(e){alert(e)})
 						}
 					})
 				model.show();
@@ -92,11 +92,11 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getList);
 			}

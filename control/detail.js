@@ -79,7 +79,7 @@
 							obj.api.run("money_in",sendData,function(){
 								alert("充值成功")
 								window.location.reload();
-							})
+							},function(e){alert(e)})
 						});
 						model.show();
 						app.pop.show();
@@ -117,7 +117,7 @@
 								obj.api.run("buy",newBuy,function(){
 									alert("购买成功");
 									obj.hash("orderManage");
-								},function(){})
+								},function(e){alert(e)})
 							})
 							app.pop.show();
 							});
@@ -179,20 +179,20 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("product_detail",{tk:tk,id:data.id},function(returnData){
 					product=returnData;
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("tk_get",{tk:tk},function(returnData){
 					user=returnData.user;
 					console.log(user);
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getList);
 			}

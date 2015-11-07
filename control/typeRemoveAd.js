@@ -29,7 +29,7 @@
 				model.target.find("#removeSend").unbind("click").bind("click",function(){
 						obj.api.run("type_remove",{tk:tk,list:model.result().remove},function(){
 							obj.hash("typeListAd");
-							},function(){});
+							},function(e){alert(e)});
 					});
 				model.show();
 				$('img').load(function(){
@@ -93,11 +93,11 @@ function getList(tka){
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					list=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getList);
 			}

@@ -81,7 +81,7 @@
 					headLayout();
 					footLayout();
 					mainLayout();
-					},function(e){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getObj);
 			}

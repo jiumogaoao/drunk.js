@@ -46,7 +46,7 @@
 							obj.api.run("money_in",sendData,function(){
 								alert("充值成功")
 								window.location.reload();
-							})
+							},function(e){alert(e)})
 						});
 						model.show();
 						app.pop.show();
@@ -68,7 +68,7 @@
 							obj.api.run("money_out",sendData,function(){
 								alert("提现成功")
 								window.location.reload();
-							})
+							},function(e){alert(e)})
 						});
 						model.show();
 						app.pop.show();

@@ -47,7 +47,7 @@
 					sendResult.tk=tk;
 					obj.api.run("product_add",sendResult,function(addReturn){
 						obj.hash("goodListAd");
-						},function(e){});
+						},function(e){alert(e)});
 					});	
 				model.show();
 				sg.reflash();
@@ -103,7 +103,7 @@
 				obj.api.run("type_get",null,function(returnData){
 					type=returnData;
 					callbackCount();
-					},function(e){});
+					},function(e){alert(e)});
 				
 				}
 			function getcommon(tk){
@@ -111,7 +111,7 @@
 					getHead(tk,returnData);
 					getFoot(tk);
 					getmain(tk,returnData);
-					},function(e){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getcommon);
 			}

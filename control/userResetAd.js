@@ -32,7 +32,7 @@
 					obj.api.run("reset_all_key",{tk:tk,list:model.result().reset},function(){
 						alert("重置成功，所选用户密码已重置为123456")
 						window.location.reload();
-					},function(){})
+					},function(e){alert(e)})
 				})
 				$('img').load(function(){
 				sg.reflash();
@@ -95,15 +95,15 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("client_get",{tk:tk},function(returnData){
 					list=returnData;
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getList);
 			}

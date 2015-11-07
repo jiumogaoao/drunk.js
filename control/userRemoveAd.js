@@ -7,26 +7,32 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
+			var list=[];
 			function page(sg){
+				var showList=[];
+				$.each(list,function(i,n){
+					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email,false]})
+				})
 				obj.model.get("#acMain","userRemoveAd","formTable",function(model){
 				model.set({
 				title:"用户列表",
-				button:[{id:"",text:"提交删除"}],
+				button:[{id:"remove_send",text:"提交删除"}],
 				head:[
 					{"title":"用户编号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"用户名","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"手机","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
 					{"title":"邮箱","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"地址","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"证件号","type":"simple","name":"","placeholder":"","option":[{"label":"","value":""}]},
-					{"title":"重置","type":"checkbox","name":"","placeholder":"","option":[{"label":"","value":""}]}
+					{"title":"删除","type":"checkbox","name":"remove","placeholder":"","option":[{"label":"","value":""}]}
 					],
-				list:[
-					["REDSFDSFFDGGFD","某人","18520812136","394127821@qq.com","广东深圳","44010319861105",false],
-					["REDSFDSFFDGGFD","某人","18520812136","394127821@qq.com","广东深圳","44010319861105",false]
-				]
+				list:showList
 				});
 				model.reflash();
+				model.target.find("#remove_send").unbind("click").bind("click",function(){
+					obj.api.run("client_remove",{tk:tk,list:model.result().remove},function(){
+						alert("删除成功")
+						window.location.reload();
+					},function(e){alert(e)})
+				});
 				model.show();
 				$('img').load(function(){
 				sg.reflash();
@@ -80,7 +86,7 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount==3){
 						headLayout();
 				footLayout();
 				mainLayout();
@@ -89,11 +95,15 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
+				obj.api.run("client_get",{tk:tk},function(returnData){
+					list=returnData;
+					callbackfn()
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getList);
 			}

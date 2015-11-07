@@ -31,7 +31,7 @@
 									obj.api.run("login",result.data,function(returnData){
 									data.type=returnData.type;
 									source.reflash();
-										},function(){})
+										},function(e){alert(e)})
 									
 									};
 						modelB.show();
@@ -46,7 +46,7 @@
 									obj.api.run("register",result.data,function(){
 										data.type=1;
 										source.reflash();
-										},function(){})
+										},function(e){alert(e)})
 									
 									};
 						model.show();

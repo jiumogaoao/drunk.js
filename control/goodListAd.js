@@ -97,15 +97,15 @@
 					console.log(returnData);
 					list=returnData;
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				obj.api.run("obj_get",null,function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				obj.api.run("type_get",null,function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				}
 			obj.api.tk(getObj);
 			}

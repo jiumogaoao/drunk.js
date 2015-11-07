@@ -28,9 +28,7 @@
 				model.target.find("#removeSend").unbind("click").bind("click",function(){
 					obj.api.run("obj_remove",{tk:tk,list:model.result().remove||[]},function(){
 						obj.hash("projectListAd");
-						},function(e){
-						
-						})
+						},function(e){alert(e)})
 					});
 				model.show();
 				$('img').load(function(){
@@ -87,7 +85,7 @@
 						headLayout();
 						footLayout();
 						mainLayout();
-						},function(){});
+						},function(e){alert(e)});
 					}
 				obj.api.tk(getList);
 			}

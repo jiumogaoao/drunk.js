@@ -106,15 +106,15 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("deal_getAll",{tk:tk},function(returnData){
 					dealList=returnData;
 					callbackfn()
-				},function(){});
+				},function(e){alert(e)});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
@@ -124,7 +124,7 @@
 					})
 					product=_.indexBy(product,"id");
 					callbackfn()
-				},function(){});
+				},function(e){alert(e)});
 				}
 			obj.api.tk(getList);
 			}

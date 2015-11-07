@@ -61,7 +61,7 @@
 								obj.api.run("sell",sendData,function(){
 									alert("卖出成功");
 									window.location.reload();
-								},function(){})
+								},function(e){alert(e)})
 							});
 							model.show();
 							app.pop.show();
@@ -97,7 +97,7 @@
 								obj.api.run("change",sendData,function(){
 									alert("转让成功")
 									window.location.reload();
-								},function(){});
+								},function(e){alert(e)});
 							});
 							model.show();
 							app.pop.show();
@@ -168,11 +168,11 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
@@ -183,7 +183,7 @@
 					product=_.groupBy(product,"object")[data.object];
 					product=_.indexBy(product,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("deal_get",{tk:tk},function(returnData){
 					$.each(returnData,function(i,n){
 						if(!n.endTime){

@@ -51,7 +51,7 @@
 					debugger;
 					obj.api.run("product_edit",sendResult,function(addReturn){
 						obj.hash("goodListAd");
-						},function(e){});
+						},function(e){alert(e)});
 					});	
 				model.show();
 				sg.reflash();
@@ -113,11 +113,11 @@
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					list=_.indexBy(returnData,'id');
 					callbackCount();
-					},function(e){})	
+					},function(e){alert(e)})	
 				obj.api.run("type_get",null,function(returnData){
 					type=_.indexBy(returnData,'id');
 					callbackCount();
-					},function(e){});
+					},function(e){alert(e)});
 				
 				}
 			function getcommon(tka){
@@ -126,7 +126,7 @@
 					getHead(tk,returnData);
 					getFoot(tk);
 					getmain(tk,returnData);
-					},function(e){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getcommon);
 			}

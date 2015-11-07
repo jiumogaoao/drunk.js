@@ -39,7 +39,7 @@
 				model.target.find("#sendRemove").unbind("click").bind("click",function(){
 					obj.api.run("product_remove",{tk:tk,list:model.result().remove},function(){
 						obj.hash("goodListAd");
-						},function(e){});
+						},function(e){alert(e)});
 					});
 				model.show();
 				$('img').load(function(){
@@ -104,15 +104,15 @@
 					console.log(returnData);
 					list=returnData;
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				obj.api.run("obj_get",null,function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				obj.api.run("type_get",null,function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){});
+					},function(e){alert(e)});
 				}
 			obj.api.tk(getObj);
 			}

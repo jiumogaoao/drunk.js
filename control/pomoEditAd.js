@@ -34,7 +34,7 @@
 					sendMessage.tk=tk;
 					obj.api.run("promo_edit",{tk:tk,list:sendMessage},function(){
 						obj.hash("pomoListAd");
-						},function(){})
+						},function(e){alert(e)})
 					});
 				model.show();
 				$('img').load(function(){
@@ -98,15 +98,15 @@
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callbackfn()
-					},function(){})
+					},function(e){alert(e)})
 					obj.api.run("promo_get",{tk:tk},function(returnData){
 						list=returnData;
 						callbackfn()
-						},function(){})
+						},function(e){alert(e)})
 					}
 			obj.api.tk(getList)
 			}

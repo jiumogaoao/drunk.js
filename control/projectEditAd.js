@@ -33,7 +33,7 @@
 						})
 					obj.api.run("obj_edit",{tk:tk,list:sendList},function(){
 						obj.hash("projectListAd");
-						},function(e){});
+						},function(e){alert(e)});
 					});
 				model.show();
 				$('img').load(function(){
@@ -90,7 +90,7 @@
 					headLayout();
 					footLayout();
 					mainLayout();
-					},function(e){})
+					},function(e){alert(e)})
 				}
 			obj.api.tk(getObj);
 			}
