@@ -16,13 +16,13 @@
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
 					obj.api.run("realName_edit",sendMessage,function(){
-						alert("修改成功")
-						},function(e){alert(e)});
-					})
+						alert("修改成功");
+						},function(e){alert(e);});
+					});
 				model.show();
 				model.typeChange=function(){
 					sg.reflash();
-					}
+					};
 				$('img').load(function(){
 				sg.reflash();
 				});
@@ -73,24 +73,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("realName_get",{tk:tk},function(returnData){
 					realName=returnData[0];
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

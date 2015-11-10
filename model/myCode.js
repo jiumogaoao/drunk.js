@@ -12,12 +12,12 @@
 				
 				};
 			source.reflash=function(){
-				var main=_.template(source.html[0])(data)
+				var main=_.template(source.html[0])(data);
 				source.target.html(source.css[0]+main);
-			}
+			};
 			//set
 			source.set=function(dataSet){
-				data=dataSet
+				data=dataSet;
 			};
 			}
 		});

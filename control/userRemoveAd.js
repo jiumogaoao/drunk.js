@@ -11,8 +11,8 @@
 			function page(sg){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email,false]})
-				})
+					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email,false]});
+				});
 				obj.model.get("#acMain","userRemoveAd","formTable",function(model){
 				model.set({
 				title:"用户列表",
@@ -29,9 +29,9 @@
 				model.reflash();
 				model.target.find("#remove_send").unbind("click").bind("click",function(){
 					obj.api.run("client_remove",{tk:tk,list:model.result().remove},function(){
-						alert("删除成功")
+						alert("删除成功");
 						window.location.reload();
-					},function(e){alert(e)})
+					},function(e){alert(e);});
 				});
 				model.show();
 				$('img').load(function(){
@@ -69,12 +69,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("userRemoveAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("userRemoveAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -86,24 +88,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("client_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

@@ -12,7 +12,7 @@
 				var showList=[];
 				$.each(list,function(i,n){
 					showList.push({id:n.id,main:[n.id,n.name,"99","99"]});
-					})
+					});
 				model.set({
 				title:"类型列表",
 				button:[],
@@ -61,12 +61,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("typeListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("typeListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -78,20 +80,20 @@ function getList(tka){
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount===2){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					list=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

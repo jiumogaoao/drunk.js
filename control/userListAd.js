@@ -11,8 +11,8 @@
 			function page(sg){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email]})
-				})
+					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email]});
+				});
 				obj.model.get("#acMain","userListAd","formTable",function(model){
 				model.set({
 				title:"用户列表",
@@ -62,12 +62,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("userListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("userListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -79,24 +81,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
-				obj.api.run("client_get",{tk:tk},function(returnData){console.log(returnData)
+					callbackfn();
+					},function(e){alert(e);});
+				obj.api.run("client_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

@@ -56,12 +56,12 @@
     <div class="right_tem">
     	<div class="top_tem">
         	<div class="account_tem">
-            	<img class="icon_tem" src="img/user.jpg"/>
+            	<img class="icon_tem" src="<%= image %>"/>
                 <div class="other_tem">
-                	<div class="number_tem">18520812136</div>
+                	<div class="number_tem"><%= phone %></div>
                     <div class="clear"></div>
-                    <div class="button_tem">充值</div>
-                    <div class="button_tem">提现</div>
+                    <div class="button_tem" id="moneyIn">充值</div>
+                    <div class="button_tem" id="moneyOut">提现</div>
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
@@ -70,25 +70,25 @@
             	<div class="point_tem">
                 	<div class="icon_tem"><span class="fa fa-lab"></span></div>
                     <div class="type_tem">账户余额：</div>
-                    <div class="number_tem">￥999</div>
+                    <div class="number_tem">￥<%= balance %></div>
                     <div class="clear"></div>
                 </div>
                 <div class="point_tem">
                 	<div class="icon_tem"><span class="fa fa-coin-yen"></span></div>
                     <div class="type_tem">交易商品数：</div>
-                    <div class="number_tem">999</div>
+                    <div class="number_tem"><%= buy %></div>
                     <div class="clear"></div>
                 </div>
                 <div class="point_tem">
                 	<div class="icon_tem"><span class="fa fa-cup"></span></div>
                     <div class="type_tem">红包余额：</div>
-                    <div class="number_tem">￥999</div>
+                    <div class="number_tem">￥<%= redpacket %></div>
                     <div class="clear"></div>
                 </div>
                 <div class="point_tem">
                 	<div class="icon_tem"><span class="fa fa-cart"></span></div>
                     <div class="type_tem">预约商品数：</div>
-                    <div class="number_tem">999</div>
+                    <div class="number_tem"><%= order %></div>
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>

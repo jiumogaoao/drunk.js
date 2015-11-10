@@ -29,11 +29,11 @@
 				model.target.find("#editSend").unbind("click").bind("click",function(){
 					var sendList=[];
 					$.each(model.result(),function(i,n){
-						sendList.push(n)
-						})
+						sendList.push(n);
+						});
 					obj.api.run("obj_edit",{tk:tk,list:sendList},function(){
 						obj.hash("projectListAd");
-						},function(e){alert(e)});
+						},function(e){alert(e);});
 					});
 				model.show();
 				$('img').load(function(){
@@ -71,12 +71,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("projectEditAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("projectEditAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -90,7 +92,7 @@
 					headLayout();
 					footLayout();
 					mainLayout();
-					},function(e){alert(e)})
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getObj);
 			}

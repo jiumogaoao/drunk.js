@@ -28,11 +28,11 @@
 				model.target.find("#editSend").unbind("click").bind("click",function(){
 					var senArry=[];
 					$.each(model.result(),function(i,n){
-						senArry.push(n)
-						})
+						senArry.push(n);
+						});
 					obj.api.run("type_edit",{tk:tk,list:senArry},function(){
-						obj.hash("typeListAd")
-						},function(e){alert(e)});
+						obj.hash("typeListAd");
+						},function(e){alert(e);});
 					});
 				model.show();
 				$('img').load(function(){
@@ -70,12 +70,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("typeEditAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("typeEditAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -87,20 +89,20 @@ function getList(tka){
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount===2){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					list=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

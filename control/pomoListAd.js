@@ -12,8 +12,8 @@
 				obj.model.get("#acMain","pomoListAd","formTable",function(model){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.name,n.image,n.link]})
-					})
+					showList.push({id:n.id,main:[n.id,n.name,n.image,n.link]});
+					});
 				model.set({
 				title:"用户列表",
 				button:[],
@@ -27,6 +27,7 @@
 				});
 				model.reflash();
 				model.show();
+				sg.reflash();
 				$('img').load(function(){
 				sg.reflash();
 				});
@@ -62,12 +63,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("pomoListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("pomoListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -79,26 +82,26 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("promo_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
-			obj.api.tk(getList)
+			obj.api.tk(getList);
 			}
 		});
 	})($,app,config);

@@ -1,8 +1,17 @@
-<div class="detail_all">
+<div class="detail_all detail<% 
+                        var now=new Date().getTime();
+                        if(stratTime>now){
+                            print(0)
+                        } else if(stratTime<=now&&payedCount>passNumber&&payedCount<copy){
+                            print(1)
+                        }else{
+                            print(2)
+                        }
+                            %>">
 	<div class="left">
     	<div class="top">
         	<div class="imgframe">
-            	<div class="imgRoll">
+            	<div class="imgRoll" style="width:<%= image.length*100 %>%">
                 <% _.each(image,function(n){ %>
                 	<img src="<%= n %>"/>
                 <% }) %>
@@ -77,7 +86,7 @@
                     <table>
                         <thead>
                             <th>用户姓名</th>
-                            <th>身份证</th>
+                            <th>手机号</th>
                             <th>选购额度</th>
                             <th>抢购时间</th>
                             <th>认筹状态</th>
@@ -85,11 +94,11 @@
                         <tbody>
                         	<% _.each(member,function(n){ %>
                             <tr>
-                                <td><%= n.name %></td>
-                                <td><%= n.number %></td>
-                                <td><%= n.copy %></td>
-                                <td><%= n.time %></td>
-                                <td><%= n.state %></td>
+                                <td><%= n.name?((n.name[0]||"")+"*"+(n.name[2]||"")):"" %></td>
+                                <td><%= n.phone?(n.phone.substr(0,5)+"*****"):"" %></td>
+                                <td><%= n.count %></td>
+                                <td><%= moment(n.startTime,"x").format("YYYY-MM-DD") %></td>
+                                <td><%= n.endTime?"已卖出":"持有" %></td>
                             </tr>
                             <% }) %>
                         </tbody>
@@ -102,7 +111,7 @@
     <div class="right">
     	<div class="top">
         	<div class="title"><%= title %></div>
-            <div class="gain">总金额 <span class="num">￥<%= price %></span></div>
+            <div class="gain">总金额 <span class="num">￥<%= price*copy %></span></div>
             <div class="clear"></div>
             <div class="change">基础年化收益</div>
             <div class="line"></div>
@@ -118,12 +127,12 @@
         </div>
 
         <div class="bottom">
-        	<div class="title">￥<%= price/copy %>来抢，史上最低</div>
+        	<div class="title">￥<%= price %>来抢，史上最低</div>
             <div class="frame">
             	<div class="thirdPoint">
                 	<div class="main">
                     	<div class="point">每份额度：</div>
-                        <div class="point">￥<%= price/copy %></div>
+                        <div class="point">￥<%= price %></div>
                     </div>
                 </div>
                 <div class="thirdPoint">
@@ -147,7 +156,7 @@
                 <div class="numAdd">+</div>
                 <div class="clear"></div>
             </div>
-            <div class="button" id="buyButton" style="display:none;">支持 ￥<%= price/copy %></div>
+            <div class="button" id="buyButton" style="display:none;">支持 ￥<%= price %></div>
         </div>
     </div>
     <div class="clear"></div>

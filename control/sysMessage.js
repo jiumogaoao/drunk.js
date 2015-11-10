@@ -59,15 +59,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("sysMessage");
+						modelA.callback=function(){
+							modelA.change("sysMessage");
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -79,20 +81,20 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount===2){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

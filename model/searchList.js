@@ -45,7 +45,7 @@
 			};
 			source.setResult=function(resultSet){
 				result=resultSet;
-			}
+			};
 			}
 		});
 	})($,app,config);

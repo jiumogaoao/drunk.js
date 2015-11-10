@@ -21,6 +21,7 @@
 	font-size:$fs3;
 	line-height:50px;
 	font-weight:bold;
+	    cursor: pointer;
 	font-family:"SimHei"}
 .head_all .point.hl{
 	color:$col-yel;
@@ -38,4 +39,5 @@
     border-radius: 0;
     border: 1px solid #fff;
     margin-left: 10px;
-    margin-top: 10px;}
+    margin-top: 10px;
+        cursor: pointer;}

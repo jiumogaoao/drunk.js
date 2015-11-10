@@ -25,17 +25,17 @@
 				model.setResult(user);
 				model.reflash();
 				model.target.find("#realName").unbind("click").bind("click",function(){
-					obj.hash("myRealName")
+					obj.hash("myRealName");
 					});
 				model.target.find("#cardBind").unbind("click").bind("click",function(){
-					obj.hash("myCardBind")
+					obj.hash("myCardBind");
 					});
 				model.target.find("#setSend").unbind("click").bind("click",function(){
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
 					obj.api.run("set_detail",sendMessage,function(){
-						alert("修改成功")
-						},function(e){alert(e)});
+						alert("修改成功");
+						},function(e){alert(e);});
 					});
 				model.show();
 				$('img').load(function(){
@@ -73,15 +73,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("myDetail");
+						modelA.callback=function(){
+							modelA.change("myDetail");
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -93,24 +95,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("tk_get",{tk:tk},function(returnData){
 					user=returnData.user;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

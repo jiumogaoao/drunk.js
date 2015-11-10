@@ -116,10 +116,10 @@
 				};
 			source.setResult=function(resultA){
 				result=resultA;
-			}
+			};
 			source.result=function(){
 				return result;
-			}
+			};
 			//set
 			source.set=function(dataSet){
 				data=dataSet;

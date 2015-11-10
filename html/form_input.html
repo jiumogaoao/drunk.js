@@ -71,7 +71,7 @@
             <% if(n.type=="time"){ %>
             	<div class="point">
                     <div class="left"><%= n.title %>：</div>
-                    <div class="right"><input value=<%= moment(n.value,"x").format("YYYY_MM_DD") %> placeholder="<%= n.placeholder %>" class="input time"  D_key="<%= n.name %>" D_type="time"/></div>
+                    <div class="right"><input value="<%= n.value?moment(n.value,"x").format("YYYY_MM_DD"):"" %>" placeholder="<%= n.placeholder %>" class="input time"  D_key="<%= n.name %>" D_type="time"/></div>
                     <div class="clear"></div>
                 </div>
             <%  } %>

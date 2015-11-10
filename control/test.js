@@ -7,7 +7,6 @@
 			$("body").hide();
 			obj.api.tk(function(tk){
 				obj.api.run("promo_get",null,function(returnData){
-				debugger;
 				},function(err){
 					console.log(err);
 					});

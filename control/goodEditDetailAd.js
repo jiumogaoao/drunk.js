@@ -48,10 +48,9 @@
 				model.target.find("#sendEdit").unbind("click").bind("click",function(){
 					var sendResult=model.result();
 					sendResult.tk=tk;
-					debugger;
 					obj.api.run("product_edit",sendResult,function(addReturn){
 						obj.hash("goodListAd");
-						},function(e){alert(e)});
+						},function(e){alert(e);});
 					});	
 				model.show();
 				sg.reflash();
@@ -84,7 +83,7 @@
 				var count=0;
 				var callbackCount=function(){
 					count++;
-					if(count==2){
+					if(count===2){
 						obj.model.get("#main","seguesOne","segues",function(model){
 							model.show();
 							model.goto("pageTwo",function(target,fn){target.clean();
@@ -96,12 +95,14 @@
 										}
 									}
 								obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+									modelA.callback=function(){
+										modelA.change("goodEditAd");
+										modelA.clean();
+										modelA.show();
+										page(model);
+										callback();
+									};
 									modelA.reflash();
-									modelA.change("goodAddAd");
-									modelA.clean();
-									modelA.show();
-									page(model,tk,ob,type);
-								callback();
 									});
 								},{w:"100%"});
 								
@@ -109,15 +110,15 @@
 						}
 						
 						
-					}
+					};
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					list=_.indexBy(returnData,'id');
 					callbackCount();
-					},function(e){alert(e)})	
+					},function(e){alert(e);});	
 				obj.api.run("type_get",null,function(returnData){
 					type=_.indexBy(returnData,'id');
 					callbackCount();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				
 				}
 			function getcommon(tka){
@@ -126,7 +127,7 @@
 					getHead(tk,returnData);
 					getFoot(tk);
 					getmain(tk,returnData);
-					},function(e){alert(e)})
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getcommon);
 			}

@@ -69,15 +69,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("orderManage/"+data.object);
+						modelA.callback=function(){
+							modelA.change("orderManage/"+data.object);
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -89,40 +91,40 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==4){
+					if(callbackcount===4){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
 						if(n.orderTime<=now&&n.stratTime>now){
-							product.push(n)
+							product.push(n);
 						}
-					})
+					});
 					product=_.groupBy(product,"object")[data.object];
 					product=_.indexBy(product,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("deal_get",{tk:tk},function(returnData){
 					$.each(returnData,function(i,n){
 						if(!n.endTime){
-							deal.push(n)
+							deal.push(n);
 						}	
-					})
+					});
 					deal=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

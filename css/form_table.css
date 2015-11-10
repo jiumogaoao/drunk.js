@@ -25,6 +25,7 @@
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   position: relative;
+  cursor: pointer;
   top: -10px; }
 
 .form_table table {
@@ -63,7 +64,12 @@
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   border: 1px solid #dcdcdc;
-  margin: auto; }
+  margin: auto;
+  background-image: url("img/check.jpg");
+  cursor: pointer; }
+
+.form_table td .checkbox.hl {
+  background-image: url("img/check0.jpg"); }
 
 .form_table td .button {
   width: 95%;

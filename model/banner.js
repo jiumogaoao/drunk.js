@@ -5,6 +5,7 @@
 		css:["banner_all"],
 		html:["banner_all"],
 		fn:function(){
+			var clock=0;
 			var data={};
 			/*{
 				image:[{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}],
@@ -14,10 +15,20 @@
 			var source=this;
 			source.setType=function(type){
 				data.type=type;
-				}
+				};
 			//init
+			function runFn(){
+				source.target.find(".roll").animate({"left":"-"+((clock*100)+"%")});
+			}
 			source.init=function(){
-				
+				var setIn=setInterval(function(){
+					if(clock!==3){
+						clock++;
+					}else{
+						clock=0;
+					}
+					runFn();
+				},3000);
 				};
 			source.reflash=function(){
 				obj.api.tk(function(tk){
@@ -29,9 +40,8 @@
 								modelB.callback=function(result){
 									result.data.tk=tk;
 									obj.api.run("login",result.data,function(returnData){
-									data.type=returnData.type;
-									source.reflash();
-										},function(e){alert(e)})
+									window.location.reload();
+										},function(e){alert(e);});
 									
 									};
 						modelB.show();
@@ -44,9 +54,8 @@
 								model.callback=function(result){
 									result.data.tk=tk;
 									obj.api.run("register",result.data,function(){
-										data.type=1;
-										source.reflash();
-										},function(e){alert(e)})
+										window.location.reload();
+										},function(e){alert(e);});
 									
 									};
 						model.show();
@@ -63,15 +72,30 @@
 					});
 				source.target.find("#esc").unbind("click").bind("click",function(){
 					obj.cookies("tk",null,true);
-					data.type=0;
-					source.reflash();
+					window.location.reload();
 					});
 				source.target.find(".bottom .point").unbind("click").bind("click",function(){
 					if($(this).attr("oid")){
 						app.hash("list/"+$(this).attr("oid"));
 						}
 					});
-					})
+				source.target.find(".left").unbind("click").bind("click",function(){
+					if(clock===3){
+						clock=0;
+					}else{
+						clock++;
+					}
+					runFn();
+				});
+				source.target.find(".right").unbind("click").bind("click",function(){
+					if(clock===0){
+						clock=3;
+					}else{
+						clock--;
+					}
+					runFn();
+				});
+					});
 				};
 			//set
 			source.set=function(dataSet){

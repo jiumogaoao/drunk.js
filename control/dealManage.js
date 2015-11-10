@@ -61,7 +61,7 @@
 								obj.api.run("sell",sendData,function(){
 									alert("卖出成功");
 									window.location.reload();
-								},function(e){alert(e)})
+								},function(e){alert(e);});
 							});
 							model.show();
 							app.pop.show();
@@ -69,7 +69,7 @@
 					});
 					model.target.find(".fa-loop").unbind("click").bind("click",function(){
 						var that=this;
-						var changePay=product[deal[$(that).parents(".simple").attr("D_id")].productId].change
+						var changePay=product[deal[$(that).parents(".simple").attr("D_id")].productId].change;
 						obj.model.get("#pop","change","pop",function(model){
 							model.set({
 							title:"转让确认",
@@ -95,9 +95,9 @@
 								sendData.buyPrice=showList[$(that).parents(".simple").attr("y")].main[4];
 								sendData.phone=model.target.find("[D_key='phone']").val();
 								obj.api.run("change",sendData,function(){
-									alert("转让成功")
+									alert("转让成功");
 									window.location.reload();
-								},function(e){alert(e)});
+								},function(e){alert(e);});
 							});
 							model.show();
 							app.pop.show();
@@ -139,15 +139,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("dealManage/"+data.object);
+						modelA.callback=function(){
+							modelA.change("dealManage/"+data.object);
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -159,40 +161,40 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==4){
+					if(callbackcount===4){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
 						if(n.stratTime<=now&&n.payedCount>=n.passNumber&&n.payedCount<n.copy){
-							product.push(n)
+							product.push(n);
 						}
-					})
+					});
 					product=_.groupBy(product,"object")[data.object];
 					product=_.indexBy(product,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("deal_get",{tk:tk},function(returnData){
 					$.each(returnData,function(i,n){
 						if(!n.endTime){
-							deal.push(n)
+							deal.push(n);
 						}	
-					})
+					});
 					deal=_.indexBy(deal,"id");
-					callbackfn()
-					},function(){})
+					callbackfn();
+					},function(){});
 				}
 			obj.api.tk(getList);
 			}

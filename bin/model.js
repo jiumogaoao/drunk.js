@@ -46,6 +46,10 @@
 			if(idArry[id]){/*id已存在*/
 				if(idArry[id].loaded){/*id已加载完成*/
 				//order(target,id);
+				if(!$('.model#'+id).length){
+					target.append("<div class='model' id='"+id+"'></div>");
+				}
+				idArry[id].target=$('.model#'+id);
 				fn(idArry[id]);
 				}else{/*id没加载完成*/
 					if(!idArry[id].callbackArry){

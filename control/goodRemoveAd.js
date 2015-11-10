@@ -12,7 +12,7 @@
 				var showList=[];
 				$.each(list,function(i,n){
 					showList.push(
-					{id:n.id,main:[n.id,n.title,objArry[n.object].name,typeArry[n.type].name,"￥"+n.price,n.copy,n.payedMember,n.payedMoney,moment(n.orderTime,"x").format("YYYY-MM-DD"),"￥"+(n.passNumber*n.price),moment(n.stratTime,"x").format("YYYY-MM-DD"),"预约中"]}
+					{id:n.id,main:[n.id,n.title,objArry[n.object].name,typeArry[n.type].name,"￥"+n.price,n.copy,n.payedMember,n.payedMoney,moment(n.orderTime,"x").format("YYYY-MM-DD"),"￥"+(n.passNumber*n.price),moment(n.stratTime,"x").format("YYYY-MM-DD"),false]}
 					);
 					});
 				obj.model.get("#acMain","goodRemoveAd","formTable",function(model){
@@ -39,7 +39,7 @@
 				model.target.find("#sendRemove").unbind("click").bind("click",function(){
 					obj.api.run("product_remove",{tk:tk,list:model.result().remove},function(){
 						obj.hash("goodListAd");
-						},function(e){alert(e)});
+						},function(e){alert(e);});
 					});
 				model.show();
 				$('img').load(function(){
@@ -77,12 +77,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("goodRemoveAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("goodRemoveAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -94,7 +96,7 @@
 				var callbackCount=0;
 				function callback(){
 					callbackCount++;
-					if(callbackCount==3){
+					if(callbackCount===3){
 						headLayout();
 						footLayout();
 						mainLayout();
@@ -104,15 +106,15 @@
 					console.log(returnData);
 					list=returnData;
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				obj.api.run("obj_get",null,function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				obj.api.run("type_get",null,function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getObj);
 			}

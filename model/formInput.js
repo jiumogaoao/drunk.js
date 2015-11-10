@@ -119,10 +119,10 @@
 				};
 			source.setResult=function(setData){
 				result=setData;
-				}
+				};
 			source.result=function(){
 				return result;
-				}
+				};
 			}
 		});
 	})($,app,config);

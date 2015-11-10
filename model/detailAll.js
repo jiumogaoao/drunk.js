@@ -5,6 +5,7 @@
 		css:["detail_all"],
 		html:["detail_all"],
 		fn:function(){
+			var clock=0;
 			var data={};
 			/*{"id":"",
 		"title":"星星花园",
@@ -56,10 +57,24 @@
 		"balance":999,
 		"reckpacket":99
 		};*/
+		
 			var source=this;
+		function runFn(){
+				source.target.find(".imgRoll").animate({"left":"-"+((clock*100)+"%")});
+			}	
 			//init
 			source.init=function(){
-				
+				var setIn=setInterval(function(){
+					if(data&&data.image&&data.image.length){
+						if(clock!==data.image.length-1){
+						clock++;
+					}else{
+						clock=0;
+					}
+					runFn();
+					}
+					
+				},3000);
 				};
 			source.refalsh=function(){
 				var main=_.template(source.html[0])(data);

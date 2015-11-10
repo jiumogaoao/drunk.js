@@ -10,7 +10,7 @@
 			var user={};
 			function page(sg){
 				obj.model.get("#ucMain","myCode","myCode",function(model){
-				model.set({id:user.id})
+				model.set({id:user.id});
 				model.reflash();
 				model.show();
 				$('img').load(function(){
@@ -48,15 +48,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("myCode");
+						modelA.callback=function(){
+							modelA.change("myCode");
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -68,24 +70,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("tk_get",{tk:tk},function(returnData){
 					user=returnData.user;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

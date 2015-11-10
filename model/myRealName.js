@@ -16,10 +16,10 @@
 					"startTime":"",/*开始时间*/
 					"endTime":"",/*结束时间*/
 					"image":""
-				}
+				};
 			var source=this;
 			//init
-			source.typeChange=function(){}
+			source.typeChange=function(){};
 			source.init=function(){
 				
 				
@@ -29,18 +29,18 @@
 				source.target.html(source.css[0]+main);
 				source.target.find(".typeButton").unbind("click").bind("click",function(){
 					data.cardType=$(this).attr("type");
-					if($(this).attr("type")=="1"){
-						source.target.find(".listOther").show()
+					if($(this).attr("type")==="1"){
+						source.target.find(".listOther").show();
 						}else{
 							source.target.find(".listOther").hide();
 							}
 					source.typeChange();
 					});
 				source.target.find("#baseDetail").unbind("click").bind("click",function(){
-					obj.hash("myDetail")
+					obj.hash("myDetail");
 					});
 				source.target.find("#cardbind").unbind("click").bind("click",function(){
-					obj.hash("myCardBind")
+					obj.hash("myCardBind");
 					});
 				source.target.find("[D_type='input']").unbind("change").bind("change",function(){
 					data[$(this).attr("D_key")]=$(this).val();
@@ -74,7 +74,7 @@
 							});
 						});
 					});	
-				}
+				};
 			//set
 			source.set=function(dataSet){
 				data=dataSet;

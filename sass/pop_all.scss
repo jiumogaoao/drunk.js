@@ -19,6 +19,7 @@
 	float:left;
 	background-color:$col-whi;
 	color:$col-yel;
+	    cursor: pointer;
 	}
 .pop_all .top .nav.hl{
 	background-color:transparent;
@@ -40,7 +41,8 @@
 	height:40px;
 	width:40px;
 	background-color:$col-whi;
-	color:$col-red;}
+	color:$col-red;
+	    cursor: pointer;}
 .pop_all .bottom .button{
 	width:115px;
 	height:30px;
@@ -52,6 +54,7 @@
 	float:right;
 	margin-top:15px;
 	margin-right:20px;
+	    cursor: pointer;
 	}
 .pop_all .center .list .point{
 	margin-top:10px;}
@@ -71,6 +74,7 @@
 	height:33px;
 	@include bdr(5px);
 	border:1px solid $col-gra3;
+	text-align: center;
 	}
 .pop_all .center .list .point .right .longInput{
 	width:500px;
@@ -269,8 +273,10 @@
 	@include bdr(5px);
 	border:1px solid $col-gra3;
 	float:left;
+	    text-align:center;
 	}
 .pop_all .center .list .point .right .code .codeButton{
 	float:right;
 	margin-right:54px;
+	cursor:pointer;
 	color:$col-blu;}

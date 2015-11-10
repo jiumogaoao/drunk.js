@@ -6,6 +6,7 @@
 		html:["user_center_tem"],
 		fn:function(){
 			var tk="";
+			
 			var data={
 				object:[
 					{id:"a",name:"产权众筹"},
@@ -25,11 +26,28 @@
 			source.init=function(){
 				
 				};
+			source.callback=function(){};
 			source.reflash=function(){
-				
-				function layout(tk){
+				var product=[];
+			var deal=[];
+			var user={};
+				function layout(){
+					data.balance=user.balance;
+					data.redpacket=user.redpacket;
+					data.phone=user.phone;
+					data.image=user.image;
+					data.order=0;
+					data.buy=0;
+					$.each(deal,function(i,n){
+						if(product[n.productId]){
+							data.order++;
+						}else{
+							data.buy++;
+						}
+					});
 					var main=_.template(source.html[0])(data);
 				source.target.html(source.css[0]+main);
+				source.callback();
 				source.target.find("#moneyIn").unbind("click").bind("click",function(){
 					obj.model.get("#pop","moneyIn","pop",function(model){
 						model.set({
@@ -44,9 +62,9 @@
 							var sendData=model.result();
 							sendData.tk=tk;
 							obj.api.run("money_in",sendData,function(){
-								alert("充值成功")
+								alert("充值成功");
 								window.location.reload();
-							},function(e){alert(e)})
+							},function(e){alert(e);});
 						});
 						model.show();
 						app.pop.show();
@@ -66,9 +84,9 @@
 							var sendData=model.result();
 							sendData.tk=tk;
 							obj.api.run("money_out",sendData,function(){
-								alert("提现成功")
+								alert("提现成功");
 								window.location.reload();
-							},function(e){alert(e)})
+							},function(e){alert(e);});
 						});
 						model.show();
 						app.pop.show();
@@ -83,7 +101,40 @@
 					obj.hash($(this).attr("pid"));
 					});
 				}
-				obj.api.tk(layout);
+				function getBase(tka){
+					tk=tka;
+				var callbackcount=0;
+				var callbackfn=function(){
+					callbackcount++;
+					if(callbackcount===3){
+						layout();
+						}
+					};
+				obj.api.run("product_get",{tk:tk},function(returnData){
+					var now=new Date().getTime();
+					$.each(returnData,function(i,n){
+						if(n.stratTime>now){
+							product.push(n);
+						}
+					});
+					product=_.indexBy(product,"id");
+					callbackfn();
+					},function(e){alert(e);});
+				obj.api.run("deal_get",{tk:tk},function(returnData){
+					$.each(returnData,function(i,n){
+						if(!n.endTime){
+							deal.push(n);
+						}	
+					});
+					deal=_.indexBy(deal,"id");
+					callbackfn();
+					},function(){});
+				obj.api.run("tk_get",{tk:tk},function(returnData){
+					user=returnData.user;
+					callbackfn();
+					},function(){});
+				}
+				obj.api.tk(getBase);
 				};
 			source.change=function(id){
 				point=id;

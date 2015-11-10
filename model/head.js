@@ -30,9 +30,8 @@
 								modelB.callback=function(result){
 									result.data.tk=tk;
 									obj.api.run("login",result.data,function(returnData){
-									data.type=returnData.type;
-									source.reflash();
-										},function(e){alert(e)})
+									window.location.reload();
+										},function(e){alert(e);});
 									
 									};
 						modelB.show();
@@ -45,9 +44,8 @@
 								model.callback=function(result){
 									result.data.tk=tk;
 									obj.api.run("register",result.data,function(){
-										data.type=1;
-										source.reflash();
-										},function(e){alert(e)})
+										window.location.reload();
+										},function(e){alert(e);});
 									
 									};
 						model.show();
@@ -61,20 +59,20 @@
 					app.hash("index");
 					});
 				source.target.find("#userCenter").unbind("click").bind("click",function(){
-					if(data.type==1){
+					if(data.type===1){
 						app.hash("myAccount");
 						}
-					if(data.type==2){
+					if(data.type===2){
 						app.hash("dealListAd");
 						}
 					});
 				source.target.find("#esc").unbind("click").bind("click",function(){
 					obj.cookies("tk",null,true);
-					data.type=0;
-					obj.hash("index");
+					app.hash("index");
+					window.location.reload();
 					});
-						},function(e){alert(e)});
-					})
+						},function(e){alert(e);});
+					});
 				};
 			source.change=function(id){
 				source.target.find(".point").removeClass("hl");
@@ -83,7 +81,7 @@
 				};
 			source.center=function (center){
 				data.center=center;
-				}
+				};
 			//set
 			source.set=function(dataSet){
 				data=dataSet;

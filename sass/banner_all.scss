@@ -27,6 +27,7 @@ position:relative;}
     left: 10px;
     font-size: 60px;
 	color:$col-whi;
+	cursor: pointer;
 	}
 .banner_all .frame .right{
 	position:absolute;
@@ -34,6 +35,7 @@ position:relative;}
     right: 10px;
     font-size: 60px;
 	color:$col-whi;
+	cursor: pointer;
 	}
 .banner_all .top{
 	width:92%;
@@ -63,6 +65,7 @@ position:relative;}
     border-radius: 0;
 	border:1px solid $col-whi;
 	margin-right:10px;
+	cursor: pointer;
 	margin-top:10px;}
 .banner_all .bottom{
 	width:92%;
@@ -82,6 +85,7 @@ position:relative;}
 .banner_all .bottom .right{
 	float:right;}
 .banner_all .bottom .right .point{
+cursor: pointer;
 	float:left;
 	color:$col-whi;
 	line-height:42px;

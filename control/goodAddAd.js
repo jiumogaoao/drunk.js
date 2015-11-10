@@ -47,7 +47,7 @@
 					sendResult.tk=tk;
 					obj.api.run("product_add",sendResult,function(addReturn){
 						obj.hash("goodListAd");
-						},function(e){alert(e)});
+						},function(e){alert(e);});
 					});	
 				model.show();
 				sg.reflash();
@@ -88,22 +88,25 @@
 										}
 									}
 								obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+									modelA.callback=function(){
+										modelA.change("goodAddAd");
+										modelA.clean();
+										modelA.show();
+										page(model,tk,ob,type);
+										callback();
+									};
 									modelA.reflash();
-									modelA.change("goodAddAd");
-									modelA.clean();
-									modelA.show();
-									page(model,tk,ob,type);
-								callback();
+									
 									});
 								},{w:"100%"});
 								
 							});
 						
-					}
+					};
 				obj.api.run("type_get",null,function(returnData){
 					type=returnData;
 					callbackCount();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				
 				}
 			function getcommon(tk){
@@ -111,7 +114,7 @@
 					getHead(tk,returnData);
 					getFoot(tk);
 					getmain(tk,returnData);
-					},function(e){alert(e)})
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getcommon);
 			}

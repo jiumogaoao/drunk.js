@@ -10,8 +10,8 @@
 				obj.model.get("#acMain","projectRemoveAd","formTable",function(model){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.name,"99","99",false]})
-					})
+					showList.push({id:n.id,main:[n.id,n.name,"99","99",false]});
+					});
 				model.set({
 				title:"项目列表",
 				button:[{id:"removeSend",text:"提交删除"}],
@@ -28,7 +28,7 @@
 				model.target.find("#removeSend").unbind("click").bind("click",function(){
 					obj.api.run("obj_remove",{tk:tk,list:model.result().remove||[]},function(){
 						obj.hash("projectListAd");
-						},function(e){alert(e)})
+						},function(e){alert(e);});
 					});
 				model.show();
 				$('img').load(function(){
@@ -66,12 +66,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("projectRemoveAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("projectRemoveAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -85,7 +87,7 @@
 						headLayout();
 						footLayout();
 						mainLayout();
-						},function(e){alert(e)});
+						},function(e){alert(e);});
 					}
 				obj.api.tk(getList);
 			}

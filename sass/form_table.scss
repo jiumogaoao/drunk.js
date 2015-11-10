@@ -21,6 +21,7 @@
 	background-color:$col-yel;
 	@include bdr(5px);
 	position:relative;
+	cursor:pointer;
 	top:-10px;}
 .form_table table{
 	width:100%;
@@ -54,7 +55,12 @@
 	@include bdr(5px);
 	border:1px solid $col-gra;
 	margin:auto;
+	background-image:url("img/check.jpg");
+	cursor:pointer;
 	}
+.form_table td .checkbox.hl{
+	background-image:url("img/check0.jpg")
+}
 .form_table td .button{
 	width:95%;
 	margin:auto;

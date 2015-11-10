@@ -42,12 +42,12 @@
 						}
 					obj.model.get(target,"detailAll","detailAll",function(modelA){
 						product.buy=0;
-						product.user={}
+						product.user={};
 						if(user&&user.id){
 							product.user={
 							balance:user.balance,
 							redpacket:user.redpacket
-						}
+						};
 						}
 						product.buildtypeArry=["农民房","商品房","商铺"];
 						product.buildStateArry=["未建","在建","新房","二手房"];
@@ -63,6 +63,36 @@
 						}
 						modelA.set(product);
 						modelA.refalsh();
+							modelA.target.find(".addCom").unbind("click").bind("click",function(){
+								if(user&&user.id){
+									obj.model.get("#pop","moneyIn","pop",function(model){
+										model.set({
+										title:"添加评论",
+										button:[{id:"comSend",text:"提交评论"}],
+										list:[
+											{name:"main",title:"内容",placeholder:"",type:"input",value:"",valuelabel:"",option:[{label:"",value:""}]}
+										]
+										});
+										model.reflash();
+										model.target.find("#comSend").unbind("click").bind("click",function(){
+											var sendData=model.result();
+											sendData.tk=tk;
+											sendData.userId=user.id;
+											sendData.productId=product.id;
+											sendData.userHead=user.image;
+											sendData.userName=user.userName;
+											obj.api.run("com_add",sendData,function(){
+												alert("评论成功");
+												window.location.reload();
+											},function(e){alert(e);});
+										});
+										model.show();
+										app.pop.show();
+									});
+								}else{
+									alert("请先登录");
+								}
+							});
 						modelA.target.find("#moneyIn").unbind("click").bind("click",function(){
 					obj.model.get("#pop","moneyIn","pop",function(model){
 						model.set({
@@ -77,9 +107,9 @@
 							var sendData=model.result();
 							sendData.tk=tk;
 							obj.api.run("money_in",sendData,function(){
-								alert("充值成功")
+								alert("充值成功");
 								window.location.reload();
-							},function(e){alert(e)})
+							},function(e){alert(e);});
 						});
 						model.show();
 						app.pop.show();
@@ -96,7 +126,7 @@
 										"sellPrice":0,/*卖出价*/
 										"count":product.buy,/*数量*/
 										"tk":tk
-										}
+										};
 							obj.model.get("#pop","buy","pop",function(modelBuy){
 							modelBuy.set({
 							title:"买入确认",
@@ -110,15 +140,23 @@
 								{name:"",title:"买入时间",placeholder:"",type:"simple",value:moment(newBuy.startTime,"x").format("YYYY-MM-DD"),valuelabel:"",option:[{label:"",value:""}]},
 								{name:"",title:"合计金额",placeholder:"",type:"simple",value:"￥"+(newBuy.buyPrice*newBuy.count),valuelabel:"",option:[{label:"",value:""}]}
 							]
-							})
+							});
 							modelBuy.reflash();
 							modelBuy.show();
 							modelBuy.target.find("#buySend").unbind("click").bind("click",function(){
 								obj.api.run("buy",newBuy,function(){
 									alert("购买成功");
-									obj.hash("orderManage");
-								},function(e){alert(e)})
-							})
+									app.pop.hide();
+									var now=new Date().getTime();
+									if(product.stratTime>now){
+									obj.hash("orderManage/"+product.object);	
+								}else{
+									obj.hash("dealManage/"+product.object);
+								}
+									
+								},function(e){alert(e);});
+								
+							});
 							app.pop.show();
 							});
 						});
@@ -146,8 +184,6 @@
 						modelA.target.find(".numInput").unbind("change").bind("change",function(){
 							var maxValue=((product.copy-product.payedCount)<Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price))?(product.copy-product.payedCount):Math.floor(((product.user.balance||0)+(product.user.reckpacket||0))/product.price);
 							product.buy=Number($(this).val());
-							console.log(maxValue)
-							console.log(product.buy)
 							if(product.buy>maxValue){
 								product.buy=maxValue;
 							}
@@ -170,29 +206,27 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==4){
+					if(callbackcount===4){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("product_detail",{tk:tk,id:data.id},function(returnData){
 					product=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();					},function(e){alert(e);});
 				obj.api.run("tk_get",{tk:tk},function(returnData){
 					user=returnData.user;
-					console.log(user);
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

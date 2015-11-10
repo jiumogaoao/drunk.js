@@ -60,12 +60,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("projectListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("projectListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -77,11 +79,11 @@
 				obj.api.run("obj_get",{tk:tk},function(retuenData){
 					$.each(retuenData,function(i,n){
 						list[n.id]=n;
-						})
+						});
 					headLayout();
 					footLayout();
 					mainLayout();
-					},function(e){alert(e)})
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getObj);
 			}

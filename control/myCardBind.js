@@ -27,14 +27,14 @@
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
 					obj.api.run("cardBind_edit",sendMessage,function(){
-						alert("修改成功")
-						},function(e){alert(e)})
-					})
+						alert("修改成功");
+						},function(e){alert(e);});
+					});
 				model.target.find("#baseDetail").unbind("click").bind("click",function(){
-					obj.hash("myDetail")
+					obj.hash("myDetail");
 					});
 				model.target.find("#realName").unbind("click").bind("click",function(){
-					obj.hash("myRealName")
+					obj.hash("myRealName");
 					});
 				model.show();
 				$('img').load(function(){
@@ -87,24 +87,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("cardBind_get",{tk:tk},function(returnData){
 					cardBind=returnData[0];
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

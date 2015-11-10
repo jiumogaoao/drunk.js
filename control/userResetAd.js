@@ -11,8 +11,8 @@
 			function page(sg){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email,false]})
-				})
+					showList.push({id:n.id,main:[n.id,n.userName,n.phone,n.email,false]});
+				});
 				obj.model.get("#acMain","userResetAd","formTable",function(model){
 				model.set({
 				title:"用户列表",
@@ -30,10 +30,10 @@
 				model.show();
 				model.target.find("#resetId").unbind("click").bind("click",function(){
 					obj.api.run("reset_all_key",{tk:tk,list:model.result().reset},function(){
-						alert("重置成功，所选用户密码已重置为123456")
+						alert("重置成功，所选用户密码已重置为123456");
 						window.location.reload();
-					},function(e){alert(e)})
-				})
+					},function(e){alert(e);});
+				});
 				$('img').load(function(){
 				sg.reflash();
 				});
@@ -69,12 +69,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("userResetAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("userResetAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -86,24 +88,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("client_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

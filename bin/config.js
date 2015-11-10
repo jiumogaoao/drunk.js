@@ -1,7 +1,7 @@
 // JavaScript Document
 var sourArry=["localhost",location.hostname];
 var config={
-	sour:sourArry[0],
+	sour:sourArry[1],
 	loadingOn:function(){},
 	loadingOff:function(){}
 	};

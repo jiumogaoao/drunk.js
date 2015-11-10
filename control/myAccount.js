@@ -11,8 +11,8 @@
 			function page(sg){
 				var showList=[];
 				$.each(list,function(i,n){
-					showList.push({id:n.id,main:[n.id,n.money,moment(n.time,"x").format("YYYY-MM-DD"),(n.type==="0")?"充值":"提现",(n.state==="0")?"进行中":"已完成"]})
-				})
+					showList.push({id:n.id,main:[n.id,n.money,moment(n.time,"x").format("YYYY-MM-DD"),(n.type==="0")?"充值":"提现",(n.state==="0")?"进行中":"已完成"]});
+				});
 				obj.model.get("#ucMain","myAccount","formTable",function(model){
 				model.set({
 				title:"收支记录",
@@ -64,15 +64,18 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("myAccount");
+						modelA.callback=function(){
+							modelA.change("myAccount");
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
+						
 						});
 					},{w:"100%"});
 					
@@ -84,24 +87,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
-				obj.api.run("money_get",{tk:tk},function(returnData){console.log(returnData)
+					callbackfn();
+					},function(e){alert(e);});
+				obj.api.run("money_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

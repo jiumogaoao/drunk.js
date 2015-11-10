@@ -21,11 +21,15 @@
 .detail_all .left .top .imgframe {
   width: 800px;
   height: 394px;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
 
 .detail_all .left .top .imgRoll {
   width: 3200px;
-  height: 394px; }
+  height: 394px;
+  position: absolute;
+  top: 0px;
+  left: 0px; }
 
 .detail_all .left .top .thirdPoint {
   width: 33%;
@@ -70,7 +74,8 @@
   height: 60px;
   text-align: center;
   line-height: 60px;
-  float: left; }
+  float: left;
+  cursor: pointer; }
 
 .detail_all .left .bottom .nav .point.hl {
   background-color: #fff;
@@ -88,7 +93,8 @@
   line-height: 40px;
   text-align: center;
   margin: auto;
-  margin-top: 20px; }
+  margin-top: 20px;
+  cursor: pointer; }
 
 .detail_all .left .bottom .com .comFrame {
   width: 790px;
@@ -192,6 +198,7 @@
   text-align: center;
   color: #fff;
   background-color: #ec8215;
+  cursor: pointer;
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   margin: auto; }
@@ -247,7 +254,8 @@
   float: left;
   border-right: 1px solid #dcdcdc;
   line-height: 32px;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
 
 .detail_all .right .bottom .numInput {
   float: left;
@@ -262,7 +270,8 @@
   float: left;
   border-left: 1px solid #dcdcdc;
   line-height: 32px;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
 
 .detail_all .right .bottom .button {
   width: 330px;
@@ -274,6 +283,7 @@
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   margin: auto;
+  cursor: pointer;
   margin-top: 20px; }
 
 .detail_all .com, .detail_all .member {
@@ -284,5 +294,38 @@
 
 .detail_all .left .bottom .desc img {
   width: 800px; }
+
+.detail_all.detail0 .button {
+  background-color: #ec8215 !important; }
+
+.detail_all.detail1 .button {
+  background-color: #ec1a4f !important; }
+
+.detail_all.detail2 .button {
+  background-color: #1a84ec !important; }
+
+.detail_all.detail0 .left .bottom .nav .point.hl {
+  color: #ec8215;
+  border-top: 2px solid #ec8215; }
+
+.detail_all.detail1 .left .bottom .nav .point.hl {
+  color: #ec1a4f;
+  border-top: 2px solid #ec1a4f; }
+
+.detail_all.detail2 .left .bottom .nav .point.hl {
+  color: #1a84ec;
+  border-top: 2px solid #1a84ec; }
+
+.detail_all.detail0 .left .bottom .com .addCom {
+  background-color: #ec8215; }
+
+.detail_all.detail1 .left .bottom .com .addCom {
+  background-color: #ec1a4f; }
+
+.detail_all.detail2 .left .bottom .com .addCom {
+  background-color: #1a84ec; }
+
+.detail_all.detail2 .right .bottom {
+  display: none !important; }
 
 /*# sourceMappingURL=detail_all.css.map */

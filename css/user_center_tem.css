@@ -27,7 +27,8 @@
 
 .user_center_tem .left_tem .group_tem.hl .groupHead_tem {
   background-color: #1a84ec;
-  color: #fff; }
+  color: #fff;
+  cursor: pointer; }
 
 .user_center_tem .left_tem .group_tem.hl .list_tem {
   display: block; }
@@ -47,6 +48,7 @@
 .user_center_tem .left_tem .point_tem {
   height: 40px;
   line-height: 40px;
+  cursor: pointer;
   text-align: center; }
 
 .user_center_tem .left_tem .point_tem.hl {
@@ -98,7 +100,8 @@
 .user_center_tem .right_tem .top_tem .list_tem .point_tem {
   float: left;
   margin-left: 57px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  cursor: pointer; }
 
 .user_center_tem .right_tem .top_tem .list_tem .point_tem .icon_tem {
   float: left;
@@ -118,6 +121,7 @@
 .user_center_tem .right_tem .bottom_tem {
   width: 100%;
   margin-top: 64px;
-  min-height: 612px; }
+  min-height: 612px;
+  padding-bottom: 30px; }
 
 /*# sourceMappingURL=user_center_tem.css.map */

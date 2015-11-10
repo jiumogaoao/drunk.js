@@ -20,6 +20,7 @@
 		hide:function(){
 			$("#pop").hide();
 			$("#popBG").hide();
+			$("#pop").find(".model").hide();
 			}
 		};
 	app.cookies=function(key,value,remove){

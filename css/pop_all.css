@@ -20,7 +20,8 @@
   width: 50%;
   float: left;
   background-color: #fff;
-  color: #efc94c; }
+  color: #efc94c;
+  cursor: pointer; }
 
 .pop_all .top .nav.hl {
   background-color: transparent;
@@ -45,7 +46,8 @@
   height: 40px;
   width: 40px;
   background-color: #fff;
-  color: #ec1a4f; }
+  color: #ec1a4f;
+  cursor: pointer; }
 
 .pop_all .bottom .button {
   width: 115px;
@@ -58,7 +60,8 @@
   behavior: url(include/PIE.htc);
   float: right;
   margin-top: 15px;
-  margin-right: 20px; }
+  margin-right: 20px;
+  cursor: pointer; }
 
 .pop_all .center .list .point {
   margin-top: 10px; }
@@ -80,7 +83,8 @@
   height: 33px;
   border-radius: 5px;
   behavior: url(include/PIE.htc);
-  border: 1px solid #7c7c7c; }
+  border: 1px solid #7c7c7c;
+  text-align: center; }
 
 .pop_all .center .list .point .right .longInput {
   width: 500px; }
@@ -300,11 +304,13 @@
   border-radius: 5px;
   behavior: url(include/PIE.htc);
   border: 1px solid #7c7c7c;
-  float: left; }
+  float: left;
+  text-align: center; }
 
 .pop_all .center .list .point .right .code .codeButton {
   float: right;
   margin-right: 54px;
+  cursor: pointer;
   color: #1a84ec; }
 
 /*# sourceMappingURL=pop_all.css.map */

@@ -23,13 +23,13 @@
 				model.target.find("#setSend").unbind("click").bind("click",function(){
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
-					if(sendMessage.oldKey&&sendMessage.newKey&&sendMessage.newKey2&&(sendMessage.newKey===sendMessage.newKey2)){debugger;
+					if(sendMessage.oldKey&&sendMessage.newKey&&sendMessage.newKey2&&(sendMessage.newKey===sendMessage.newKey2)){
 						obj.api.run("set_key",sendMessage,function(){
-							alert("修改成功")
+							alert("修改成功");
 							model.reflash();
-							},function(e){alert(e)})
+							},function(e){alert(e);});
 						}
-					})
+					});
 				model.show();
 				$('img').load(function(){
 				sg.reflash();
@@ -66,15 +66,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("setKey");
+						modelA.clean();
+						page(model);
+						modelA.show();
+					callback();
+						};
 						modelA.set({
 							object:objArry
-						})
+						});
 						modelA.reflash();
-						modelA.change("setKey");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -86,20 +88,20 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==2){
+					if(callbackcount===2){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

@@ -10,7 +10,7 @@
 			var dealList=[];
 			var product=[];
 			function page(sg){
-				var showList=[]
+				var showList=[];
 				$.each(dealList,function(i,n){
 					if(product[n.productId]){
 						showList.push(
@@ -25,9 +25,9 @@
 									moment(n.startTime,"x").format("YYYY-MM-DD"),
 									moment(product[n.productId].stratTime,"x").format("YYYY-MM-DD")
 									]
-							})
+							});
 					}
-				})
+				});
 				obj.model.get("#acMain","orderListAd","formTable",function(model){
 				model.set({
 				title:"预约列表",
@@ -80,12 +80,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("orderListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("orderListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -97,34 +99,34 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==4){
+					if(callbackcount===4){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("deal_getAll",{tk:tk},function(returnData){
 					dealList=returnData;
-					callbackfn()
-				},function(e){alert(e)});
+					callbackfn();
+				},function(e){alert(e);});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					var now=new Date().getTime();
 					$.each(returnData,function(i,n){
 						if(n.stratTime>now){
-							product.push(n)
+							product.push(n);
 						}
-					})
+					});
 					product=_.indexBy(product,"id");
-					callbackfn()
-				},function(e){alert(e)});
+					callbackfn();
+				},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

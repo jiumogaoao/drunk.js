@@ -20,10 +20,14 @@
 	width:800px;
 	height:394px;
 	overflow:hidden;
+	position:relative;
 	}
 .detail_all .left .top .imgRoll{
 	width:800px * 4;
 	height:394px;
+	position:absolute;
+	top:0px;
+	left:0px;
 	}
 .detail_all .left .top .thirdPoint{
 	width:33%;
@@ -63,6 +67,7 @@
 	text-align:center;
 	line-height:60px;
 	float:left;
+	cursor: pointer;
 	}
 .detail_all .left .bottom .nav .point.hl{
 	background-color:$col-whi;
@@ -80,6 +85,7 @@
 	text-align:center;
 	margin:auto;
 	margin-top:20px;
+	cursor: pointer;
 	}
 .detail_all .left .bottom .com .comFrame{
 	width:790px;
@@ -166,6 +172,7 @@
 	text-align:center;
 	color:$col-whi;
 	background-color:$col-org;
+	cursor: pointer;
 	@include bdr(5px);
 	margin:auto;}
 .detail_all .right .bottom{
@@ -214,7 +221,8 @@
 	float:left;
 	border-right:1px solid $col-gra;
 	line-height:32px;
-	text-align:center;}
+	text-align:center;
+	cursor: pointer;}
 .detail_all .right .bottom .numInput{
 	float:left;
 	height:32px;
@@ -228,6 +236,7 @@
 	border-left:1px solid $col-gra;
 	line-height:32px;
 	text-align:center;
+	cursor: pointer;
 	}
 .detail_all .right .bottom .button{
 	width:330px;
@@ -238,6 +247,7 @@
 	background-color:$col-org;
 	@include bdr(5px);
 	margin:auto;
+	cursor: pointer;
 	margin-top:20px;}
 .detail_all .com,.detail_all .member{
 	display:none;
@@ -247,4 +257,37 @@
 }
 .detail_all .left .bottom .desc img{
 	width:800px;
+}
+.detail_all.detail0 .button{
+	background-color:$col-org !important;
+}
+.detail_all.detail1 .button{
+	background-color:$col-red !important;
+}
+.detail_all.detail2 .button{
+	background-color:$col-blu !important;
+}
+.detail_all.detail0 .left .bottom .nav .point.hl{
+	color: $col-org;
+    border-top: 2px solid $col-org;
+}
+.detail_all.detail1 .left .bottom .nav .point.hl{
+	color: $col-red;
+    border-top: 2px solid $col-red;
+}
+.detail_all.detail2 .left .bottom .nav .point.hl{
+	color: $col-blu;
+    border-top: 2px solid $col-blu;
+}
+.detail_all.detail0 .left .bottom .com .addCom{
+	background-color:$col-org;
+}
+.detail_all.detail1 .left .bottom .com .addCom{
+	background-color:$col-red;
+}
+.detail_all.detail2 .left .bottom .com .addCom{
+	background-color:$col-blu;
+}
+.detail_all.detail2 .right .bottom{
+	display:none !important;
 }

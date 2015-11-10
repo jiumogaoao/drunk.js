@@ -7,7 +7,7 @@
 			var tk="";
 			var objArry=[];
 			var typeArry=[];
-			var list=[]
+			var list=[];
 			function headLayout(){
 				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
@@ -51,7 +51,7 @@
 							type:data.type,
 							state:data.state,
 							order:data.order
-						})
+						});
 						modelA.reflash();
 						modelA.callback=function(selectData){
 							obj.hash("search/"+data.object+"/"+selectData.type+"/"+selectData.state+"/"+selectData.order);
@@ -66,16 +66,16 @@
 						function checkState(n){
 							if(data.state!=="0"){
 								if(data.state==="1"&&n.orderTime<=now&&n.stratTime>=now){
-									showList.push(n)
+									showList.push(n);
 								}
 								if(data.state==="2"&&n.stratTime<=now&&n.payedCount>=n.passNumber&&n.payedCount<n.copy){
-									showList.push(n)
+									showList.push(n);
 								}
 								if(data.state==="3"&&((n.stratTime<=now&&n.payedCount<n.passNumber)||(n.stratTime<=now&&n.payedCount===n.copy))){
-									showList.push(n)
+									showList.push(n);
 								}
 							}else{
-								showList.push(n)
+								showList.push(n);
 							}
 						}
 						$.each(list,function(i,n){
@@ -88,22 +88,22 @@
 									checkState(n);
 								}
 							}
-						})
+						});
 						if(data.order!=="0"){
 							if(data.order==="1"){
 								showList=_.sortBy(showList,function(point) {
     return - point.stratTime;
-})
+});
 							}
 							if(data.order==="2"){
 								showList=_.sortBy(showList,function(point) {
     return - point.payedMember;
-})
+});
 							}
 							if(data.order==="3"){
 								showList=_.sortBy(showList,function(point) {
     return - (point.copy*point.price);
-})
+});
 							}
 						}
 						modelA.set({list:showList,
@@ -123,24 +123,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

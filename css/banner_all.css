@@ -31,14 +31,16 @@
   top: 220px;
   left: 10px;
   font-size: 60px;
-  color: #fff; }
+  color: #fff;
+  cursor: pointer; }
 
 .banner_all .frame .right {
   position: absolute;
   top: 220px;
   right: 10px;
   font-size: 60px;
-  color: #fff; }
+  color: #fff;
+  cursor: pointer; }
 
 .banner_all .top {
   width: 92%;
@@ -70,6 +72,7 @@
   border-radius: 0;
   border: 1px solid #fff;
   margin-right: 10px;
+  cursor: pointer;
   margin-top: 10px; }
 
 .banner_all .bottom {
@@ -94,6 +97,7 @@
   float: right; }
 
 .banner_all .bottom .right .point {
+  cursor: pointer;
   float: left;
   color: #fff;
   line-height: 42px;

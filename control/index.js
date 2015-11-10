@@ -8,6 +8,7 @@
 			var objArry=[];
 			var typeArry=[];
 			var productArry=[];
+			var pomo=[];
 			function headLayput(){
 				obj.model.get("#head","headSimple","head",function(model){
 				model.set({
@@ -44,7 +45,7 @@
 						}
 					obj.model.get(target,"banner","banner",function(modelA){
 						modelA.set({
-				image:[{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"},{"id":"","name":"","image":"img/pic.jpg","link":"img/pic.jpg"}],
+				image:[pomo["00"],pomo["01"],pomo["02"],pomo["03"]],
 				object:objArry,
 				type:0
 				});
@@ -53,19 +54,24 @@
 							modelA.reflash();
 							modelA.show();
 							callback(model);
-							},function(e){alert(e)});
+							},function(e){alert(e);});
 						});
 					obj.model.get(target,"navIndex","navIndex",function(modelA){
 						modelA.show();
 					callback(model);
 						});
 					obj.model.get(target,"listIndex","listIndex",function(modelA){
+						$.each(objArry,function(i,n){
+							if(n.list&&n.list.length){
+								n.list=[];
+							}
+						});
 						$.each(productArry,function(i,n){
 							if(!objArry[n.object].list){
 								objArry[n.object].list=[];
 								}
 								objArry[n.object].list.push(n);
-							})
+							});
 						modelA.set({
 				list:objArry,
 				type:typeArry
@@ -84,24 +90,28 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===4){
 						headLayput();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("product_get",{tk:tk},function(returnData){
 					productArry=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
+				obj.api.run("promo_get",{tk:tk},function(returnData){
+					pomo=_.indexBy(returnData,"id");
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

@@ -12,7 +12,7 @@
 				var showList=[];
 				$.each(list,function(i,n){
 					showList.push({id:n.id,main:[n.id,n.money,moment(n.strat,"x").format("YYYY-MM-DD"),n.type?"购买邀请奖励":"注册邀请奖励"]});
-				})
+				});
 				obj.model.get("#ucMain","myRedPacket","formTable",function(model){
 				model.set({
 				title:"红包记录",
@@ -62,15 +62,17 @@
 							}
 						}
 					obj.model.get(target,"userCenterTem","userCenterTem",function(modelA){
-						modelA.set({
-							object:objArry
-						})
-						modelA.reflash();
-						modelA.change("myRedPacket");
+						modelA.callback=function(){
+							modelA.change("myRedPacket");
 						modelA.clean();
 						page(model);
 						modelA.show();
 					callback();
+						};
+						modelA.set({
+							object:objArry
+						});
+						modelA.reflash();
 						});
 					},{w:"100%"});
 					
@@ -82,24 +84,24 @@
 				var callbackcount=0;
 				var callbackfn=function(){
 					callbackcount++;
-					if(callbackcount==3){
+					if(callbackcount===3){
 						headLayout();
 				footLayout();
 				mainLayout();
 						}
-					}
+					};
 				obj.api.run("obj_get",{tk:tk},function(returnData){
 					objArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				obj.api.run("type_get",{tk:tk},function(returnData){
 					typeArry=_.indexBy(returnData,"id");
-					callbackfn()
-					},function(e){alert(e)})
-				obj.api.run("redpacket_get",{tk:tk},function(returnData){console.log(returnData)
+					callbackfn();
+					},function(e){alert(e);});
+				obj.api.run("redpacket_get",{tk:tk},function(returnData){
 					list=returnData;
-					callbackfn()
-					},function(e){alert(e)})
+					callbackfn();
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getList);
 			}

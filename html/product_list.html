@@ -4,7 +4,16 @@
             	<div class="point" pid="<%= p.id %>">
                     <div class="top">
                         <img class="image" src="<%= p.image %>"/>
-                        <img class="tag" src="img/tag0.png"/>
+                        <img class="tag" src="img/tag<% 
+                        var now=new Date().getTime();
+                        if(p.stratTime>now){
+                            print(0)
+                        } else if(p.stratTime<=now&&p.payedCount>p.passNumber&&p.payedCount<p.copy){
+                            print(1)
+                        }else{
+                            print(2)
+                        }
+                            %>.png"/>
                     </div>
                     <div class="center">
                         <div class="title"><%= p.title %></div>

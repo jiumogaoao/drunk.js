@@ -71,12 +71,14 @@
 							}
 						}
 					obj.model.get(target,"adminCenterTem","adminCenterTem",function(modelA){
+						modelA.callback=function(){
+							modelA.change("goodListAd");
+							modelA.clean();
+							modelA.show();
+							page(model);
+							callback();
+						};
 						modelA.reflash();
-						modelA.change("goodListAd");
-						modelA.clean();
-						modelA.show();
-						page(model);
-					callback();
 						});
 					},{w:"100%"});
 					
@@ -87,7 +89,7 @@
 				var callbackCount=0;
 				function callback(){
 					callbackCount++;
-					if(callbackCount==3){
+					if(callbackCount===3){
 						headLayout();
 						footLayout();
 						mainLayout();
@@ -97,15 +99,15 @@
 					console.log(returnData);
 					list=returnData;
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				obj.api.run("obj_get",null,function(returnData){
 					objArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				obj.api.run("type_get",null,function(returnData){
 					typeArry=_.indexBy(returnData,"id");
 					callback();
-					},function(e){alert(e)});
+					},function(e){alert(e);});
 				}
 			obj.api.tk(getObj);
 			}

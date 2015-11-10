@@ -2,7 +2,7 @@
 	<div class="list type" searchType="type">
     	<div class="title">类型筛选</div>
         <div class="main">
-        	<div class="point hl" pid="all">全部</div>
+        	<div class="point" pid="0">全部</div>
             <% _.each(typeList,function(n){ %>
             <div class="point" pid="<%= n.id %>"><%= n.name %></div>
             <% }) %>
@@ -13,7 +13,7 @@
     <div class="list state" searchType="state">
     	<div class="title">状态筛选</div>
         <div class="main">
-        	<div class="point hl" pid="all">全部</div>
+        	<div class="point" pid="0">全部</div>
             <% _.each(stateList,function(n){ %>
             <div class="point" pid="<%= n.id %>"><%= n.name %></div>
             <% }) %>
@@ -24,7 +24,7 @@
     <div class="list order" searchType="order">
     	<div class="title">排序筛选</div>
         <div class="main">
-        	<div class="point hl" pid="all">全部</div>
+        	<div class="point" pid="0">全部</div>
             <% _.each(orderList,function(n){ %>
             <div class="point" pid="<%= n.id %>"><%= n.name %></div>
             <% }) %>
