@@ -26,6 +26,22 @@
 				model.target.find("#editSend").unbind("click").bind("click",function(){
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
+					if(!sendMessage.name){
+						alert("请输入开户名")
+						return false;
+					}
+					if(!sendMessage.number){
+						alert("请填写开户银行卡号")
+						return false;
+					}
+					if(!sendMessage.place){
+						alert("请填写开户城市")
+						return false;
+					}
+					if(!sendMessage.bank){
+						alert("请填写开户支行")
+						return false;
+					}
 					obj.api.run("cardBind_edit",sendMessage,function(){
 						alert("修改成功");
 						},function(e){alert(e);});

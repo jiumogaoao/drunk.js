@@ -15,6 +15,14 @@
 				model.target.find("#editSend").unbind("click").bind("click",function(){
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
+					if(!sendMessage.name){
+						alert("请输入真实姓名")
+						return false;
+					}
+					if(!sendMessage.cardNumber){
+						alert("请输入证件号")
+						return false;
+					}
 					obj.api.run("realName_edit",sendMessage,function(){
 						alert("修改成功");
 						},function(e){alert(e);});

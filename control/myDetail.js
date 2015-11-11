@@ -14,7 +14,7 @@
 					title:"基本资料",
 					nav:[{id:"realName",title:"实名认证"},{id:"cardBind",title:"银行卡绑定"}],
 					list:[
-					{name:"phone",title:"手机",placeholder:"",type:"simple",value:user.phone,valuelabel:"",option:[{label:"",value:""}]},
+					{name:"phone",title:"手机",placeholder:"",type:"input",value:user.phone,valuelabel:"",option:[{label:"",value:""}]},
 					{name:"email",title:"邮箱",placeholder:"请填写邮箱",type:"input",value:user.email,valuelabel:"",option:[{label:"",value:""}]},
 					{name:"image",title:"头像",placeholder:"支持JPG,JPEG,GIF,PNG,BMP格式，且不超过5M",type:"singlePic",value:user.image,valuelabel:"",option:[{label:"",value:""}]},
 					{name:"userName",title:"昵称",placeholder:"请填写昵称",type:"input",value:user.userName,valuelabel:"",option:[{label:"",value:""}]},
@@ -33,6 +33,26 @@
 				model.target.find("#setSend").unbind("click").bind("click",function(){
 					var sendMessage=model.result();
 					sendMessage.tk=tk;
+					if(!sendMessage.phone){
+						alert("请输入手机号")
+						return false;
+					}
+					if(!sendMessage.email){
+						alert("请输入邮箱")
+						return false;
+					}
+					if(!sendMessage.image){
+						alert("请上传头像")
+						return false;
+					}
+					if(!sendMessage.userName){
+						alert("请输入用户名")
+						return false;
+					}
+					if(!sendMessage.dsc){
+						alert("请输入简介")
+						return false;
+					}
 					obj.api.run("set_detail",sendMessage,function(){
 						alert("修改成功");
 						},function(e){alert(e);});

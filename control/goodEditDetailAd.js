@@ -48,6 +48,74 @@
 				model.target.find("#sendEdit").unbind("click").bind("click",function(){
 					var sendResult=model.result();
 					sendResult.tk=tk;
+					if(!sendResult.title){
+						alert("商品名不能为空")
+						return false;
+					}
+					if(!sendResult.object){
+						alert("请选择所属项目")
+						return false;
+					}
+					if(!sendResult.type){
+						alert("请选择所属类型")
+						return false;
+					}
+					if(!sendResult.price){
+						alert("请设置每份售价")
+						return false;
+					}
+					if(!sendResult.copy){
+						alert("请设置份数")
+						return false;
+					}
+					if(!sendResult.orderTime){
+						alert("请设置预约时间")
+						return false;
+					}
+					if(!sendResult.passNumber){
+						alert("请设置通过份数")
+						return false;
+					}
+					if(!sendResult.stratTime){
+						alert("请设置开始时间")
+						return false;
+					}
+					if(!sendResult.canChange){
+						alert("请设置转让规则")
+						return false;
+					}
+					if(!sendResult.yearReturn){
+						alert("请设置年化率")
+						return false;
+					}
+					if(!sendResult.change){
+						alert("请设置转让费用")
+						return false;
+					}
+					if(!sendResult.place){
+						alert("请设置地点")
+						return false;
+					}
+					if(!sendResult.buildtype){
+						alert("请设置建筑类型")
+						return false;
+					}
+					if(!sendResult.buildState){
+						alert("请设置建筑阶段")
+						return false;
+					}
+					if(!sendResult.image){
+						alert("请上传产品图片")
+						return false;
+					}
+					if(!sendResult.dsc){
+						alert("请填写产品描述")
+						return false;
+					}
+					if(!sendResult.detail){
+						alert("上传产品图片")
+						return false;
+					}
 					obj.api.run("product_edit",sendResult,function(addReturn){
 						obj.hash("goodListAd");
 						},function(e){alert(e);});
